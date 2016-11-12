@@ -18,4 +18,3 @@ mongoose.connection.on('disconnected', function () {
     console.log('Mongoose disconnected');
 });
 
-require('../model/model');
