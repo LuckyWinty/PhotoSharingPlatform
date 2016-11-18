@@ -1,0 +1,11 @@
+#footer{
+	min-width: 680px;
+	height: 80px;
+	width:100%;
+	background-color: #77b1d7;	
+}
+#footer p{
+	padding: 10px;
+	text-align: center;
+	color: #fff;
+}

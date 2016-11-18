@@ -1,0 +1,16 @@
+#container{
+	margin:0 auto;
+	width:84%;
+	min-width: 680px;
+}
+#box{
+	width:29%;
+	margin:2%;
+	display: inline-block;
+}
+#picPanel{
+	height:310px; 
+}
+#row img{
+	height: 60px;
+}

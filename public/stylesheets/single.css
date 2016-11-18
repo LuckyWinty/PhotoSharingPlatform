@@ -1,0 +1,9 @@
+#picPanel{
+	width:550px;
+	height: 600px;
+	overflow: hidden;
+}
+#picPanel #singlePic{
+	width:100%;
+	height: 100%;
+}
