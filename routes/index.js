@@ -9,4 +9,9 @@ router.get('/index', function(req, res, next) {
     res.render('index');
 });
 
+/* 加载个人中心页 */
+router.get('/user', function(req, res, next) {
+    res.render('user');
+});
+
 module.exports = router;
