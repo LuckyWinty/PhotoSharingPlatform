@@ -6,7 +6,12 @@ block append style
 	link(rel='stylesheet',href='/stylesheets/index.css')
 
 block content
-	-var lists=[{id:1,picture:['/img/bg.jpg','/img/chat.svg']},{id:2,picture:['/img/bg.jpg','/img/chat.svg']},{id:2,picture:['/img/bg.jpg','/img/chat.svg']},{id:2,picture:['/img/bg.jpg','/img/chat.svg']},{id:2,picture:['/img/bg.jpg','/img/chat.svg']},{id:2,picture:['/img/bg.jpg','/img/chat.svg']}]
+	-var lists=[{id:1,picture:['/img/bg.jpg','/img/chat.svg']},
+				{id:2,picture:['/img/bg.jpg','/img/chat.svg']},
+				{id:2,picture:['/img/bg.jpg','/img/chat.svg']},
+				{id:2,picture:['/img/bg.jpg','/img/chat.svg']},
+				{id:2,picture:['/img/bg.jpg','/img/chat.svg']},
+				{id:2,picture:['/img/bg.jpg','/img/chat.svg']}]
 	
 	mixin box(pic)
 		if pic.length==1
