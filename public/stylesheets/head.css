@@ -1,0 +1,40 @@
+#head{
+	padding: 0 100px;
+	overflow: hidden;
+	background-color: #a7d1ea;	
+	min-width: 680px;
+}
+#head a{
+	display: block;
+	padding-left: 25px;
+	width:130px;
+	color: #fff;
+	opacity: 0.5;
+	font-weight: bold;
+	line-height: 50px; 
+	letter-spacing: 3px;
+	text-decoration: none;
+	transition:all 1s; 
+}
+#head a:hover{   
+	opacity: 1;
+}
+#hot,
+#new{
+	float: left;
+}
+#personal{
+	float: right;
+}
+#hot{
+	background: url('/img/fire.svg') 0 15px no-repeat;
+	background-size: 15%;
+}
+#new{
+	background: url('/img/new.svg') 0 15px no-repeat;
+	background-size: 15%;
+}
+#personal{
+	background: url('/img/user.svg') 0 15px no-repeat;
+	background-size: 15%;
+}
