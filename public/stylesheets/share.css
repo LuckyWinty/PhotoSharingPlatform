@@ -1,0 +1,90 @@
+#share-container{
+	margin: 0 auto;
+	width: 66%;
+	min-width: 680px;
+	background-color: rgba(242,242,245,0.7);
+}
+#sharerPicture{
+	width:66%;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+#share-container #sharer,
+#sharePanel{
+	padding: 30px 50px;
+	background-color: #f9f9f9;
+}
+#share-container #sharer img{
+	width: 70px;
+	height: 70px;
+	background-color: #eee; 
+	float: left;
+	margin-right: 30px;
+}
+#share-container #sharer p{
+	line-height: 35px;
+	margin: 0;
+}
+#share-container #Name{ 
+	font-weight: bold;
+	font-size: 16px;
+}
+#paragraph{
+	margin-left: 100px; 
+}
+#sharePanel{
+	padding: 1% 5%;
+	border-bottom: 2px solid #d9d9d9;
+}
+#sharePanel #collect,
+#sharePanel #praise,
+#sharePanel #comment{
+	background: url(/img/icon.png) no-repeat;
+    background-size: 10%;
+    position: relative;
+}
+#sharePanel #collect{
+	background-position: 50px -120px; 
+}
+#sharePanel #collect:visited{
+	background-position: 50px -160px; 
+}
+#sharePanel #praise{
+	background-position: 50px 0px;
+}
+#sharePanel #praise:hover{
+	background-position: 50px -40px;
+}
+#sharePanel #comment{
+	background-position: 50px -80px;
+}
+#sharePanel #collect,
+#sharePanel #comment{
+	border-right: 2px solid #d9d9d9; 
+}
+#sharePanel #collect,
+#sharePanel #comment,
+#sharePanel #praise{
+	line-height: 25px;
+	width:30%;
+	min-width: 204px;
+	float: left;
+	text-align: center;
+}
+#share-input{
+	padding: 2px 5px;
+	margin-bottom:20px; 
+	height: 33px;
+	min-width: 580px;
+	font-size: 16px;
+	line-height: 30px;
+	background-color: #f9f9f9; 
+}
+#share-comment{
+	margin: 40px 10%;
+}
+#share-comment .btn{
+	width: 80px;
+	float: right;
+}
+
