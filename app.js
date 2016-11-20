@@ -7,7 +7,7 @@ var bodyParser = require('body-parser');
 
 /*这里写相应页面的js文件*/
 var routes = require('./routes/indexTest');
-var users = require('./routes/users');
+var user = require('./routes/user');
 var index = require('./routes/index');
 
 //-------------------------------
@@ -29,7 +29,7 @@ app.use(express.static(path.join(__dirname, '/public')));  //加了'/'
 
 // 定路由
 app.use('/', routes);  //测试之用
-app.use('/users', users);
+app.use('/users', user);
 app.use('/', index);
 //---------------------------
 
