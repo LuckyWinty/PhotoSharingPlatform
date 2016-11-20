@@ -5,8 +5,8 @@
   h4 有什么新鲜事想分享大家？
   form(method='post' action='/declare' enctype='multipart/form-data')
     span#input_tip 还可以输入<span id="input_num">#{input_num}</span>字
-    textarea#share_content
-    input(type='file' name='uploadPic')
+    textarea(name='content')#share_content
+    input(type='file' name='pic')
     //ul#pic_list
     //  each val in [1,2,3,4,5]
     //    li
