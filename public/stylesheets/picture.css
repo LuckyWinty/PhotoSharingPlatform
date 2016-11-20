@@ -1,0 +1,34 @@
+/*singlePic*/
+#picPanel{
+	width:100%;
+	height: 335px;
+	overflow: hidden;
+}
+#picPanel #singlePic{
+	width:100%;
+	height: 100%;
+}
+
+/*morePic*/
+#picsPanel{
+	width:100%;
+	height: 335px;
+	overflow: hidden;
+}
+#picsPanel img:first-child{
+	width:100%;
+	height: 225px;
+}
+#picsPanel img:first-child{
+	width:100%;
+	height: 225px;
+}
+#picsPanel #row{
+	margin-right: -2%;
+	margin-left: -2%;
+}
+#picsPanel #row img{
+	width:18%;
+	height: 100px;
+	margin: 10px 1% 0; 
+}

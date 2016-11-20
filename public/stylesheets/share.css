@@ -7,6 +7,7 @@
 #sharerPicture{
 	width:66%;
 	margin: 0 auto;
+	margin-bottom: 30px;
 }
 #share-container #sharer,
 #sharePanel{
@@ -35,10 +36,27 @@
 	padding: 1% 5%;
 	border-bottom: 2px solid #d9d9d9;
 }
-#sharePanel img{
-	width:18px;
-	height: 18px;
-	margin: 0px 5px;
+#sharePanel #collect,
+#sharePanel #praise,
+#sharePanel #comment{
+	background: url(/img/icon.png) no-repeat;
+    background-size: 10%;
+    position: relative;
+}
+#sharePanel #collect{
+	background-position: 50px -120px; 
+}
+#sharePanel #collect:visited{
+	background-position: 50px -160px; 
+}
+#sharePanel #praise{
+	background-position: 50px 0px;
+}
+#sharePanel #praise:hover{
+	background-position: 50px -40px;
+}
+#sharePanel #comment{
+	background-position: 50px -80px;
 }
 #sharePanel #collect,
 #sharePanel #comment{

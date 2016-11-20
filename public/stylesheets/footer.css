@@ -4,8 +4,10 @@
 	width:100%;
 	background-color: #77b1d7;	
 }
-#footer p{
-	padding: 10px;
+#footer p {
 	text-align: center;
 	color: #fff;
+	height: 100%;
+	line-height: 80px;
+	margin: 0;
 }

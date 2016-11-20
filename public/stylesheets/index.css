@@ -6,11 +6,27 @@
 #box{
 	width:29%;
 	margin:2%;
+	position: relative;
 	display: inline-block;
 }
 #picPanel{
 	height:310px; 
 }
-#row img{
+#box #row img{
 	height: 60px;
+}
+#box #comment{
+	opacity: 0;
+	font-size: 14px;
+	height: 80px;
+	position: absolute;
+	left: 0;
+	bottom:100px;
+	overflow: hidden;
+	background: rgba(255,255,255,0.7);
+	transition: all 1s;
+}
+#box #comment:hover{
+	opacity: 1;
+	bottom: 110px;
 }
