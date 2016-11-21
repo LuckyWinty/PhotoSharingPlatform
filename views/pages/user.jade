@@ -1,0 +1,23 @@
+extend ../layout
+
+block title
+  title 个人中心
+
+block append style
+  link(rel='stylesheet', href='/stylesheets/user.css')
+  link(rel='stylesheet', href='/stylesheets/user_header.css')
+  link(rel='stylesheet', href='/stylesheets/user_left.css')
+  link(rel='stylesheet', href='/stylesheets/user_share.css')
+  link(rel='stylesheet', href='/stylesheets/user_display.css')
+  link(rel='stylesheet', href='/stylesheets/user_right.css')
+  link(rel='stylesheet', href='/stylesheets/picture.css')
+
+block content
+  div#user_container
+    include ../includes/user_header
+    div#user_content
+      include ../includes/user_left
+      div#user_center
+        include ../includes/user_share
+        include ../includes/user_display
+      include ../includes/user_right

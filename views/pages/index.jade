@@ -1,0 +1,18 @@
+extends ../layout
+
+block append style
+	link(rel='stylesheet',href='/stylesheets/picture.css')
+	link(rel='stylesheet',href='/stylesheets/index.css')
+
+block content
+	-var lists=[{id:1,picture:['/img/bg.jpg'],comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'},{id:2,picture:['/img/bg.jpg','/img/chat.svg'],comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'},{id:2,picture:['/img/bg.jpg','/img/chat.svg'],comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'}]
+
+	mixin box(picture)
+		include pics
+	#container.clearfix
+		each list in lists
+			#box
+				+box(list.picture)
+				#comment #{list.comment}
+
+

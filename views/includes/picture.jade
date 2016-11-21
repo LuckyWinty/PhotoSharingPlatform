@@ -1,0 +1,17 @@
+-var picture=['/img/bg.jpg','/img/chat.svg']
+if picture.length==1
+	#picPanel
+		each pic in picture
+			img#singlePic(src='#{pic}')
+else
+	#picsPanel
+		each pic,item in picture
+			if item==0
+				img(src= pic,value= item)
+			else 
+				#row
+					each pic,item in picture
+						if item>=1
+							img(src= pic,value= item)
+
+	

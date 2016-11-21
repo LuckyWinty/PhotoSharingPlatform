@@ -1,0 +1,80 @@
+#head{
+	padding: 0 100px;
+	overflow: hidden;
+	background-color: #a7d1ea;	
+	min-width: 680px;
+}
+#head a{
+	display: block;
+	padding-left: 25px;
+	width:130px;
+	color: #fff;
+	opacity: 0.5;
+	font-weight: bold;
+	line-height: 50px; 
+	letter-spacing: 3px;
+	text-decoration: none;
+	transition:all 1s; 
+}
+#head a:hover{   
+	opacity: 1;
+}
+#hot,
+#new{
+	float: left;
+}
+#personal{
+	float: right;
+}
+#hot{
+	background: url('/img/fire.svg') 0 15px no-repeat;
+	background-size: 15%;
+}
+#new{
+	background: url('/img/new.svg') 0 15px no-repeat;
+	background-size: 15%;
+}
+#personal{
+	background: url('/img/user.svg') 0 15px no-repeat;
+	background-size: 15%;
+}
+/*注册登录*/
+#loginblock{
+	background: rgba(255,255,255,0.5);
+	width: 400px;
+	height: 300px;
+	position: absolute;
+	z-index: 1000;
+	top:50%;
+	left:50%;
+	margin-top:-150px;
+	margin-left: -200px; 
+	display: none;
+}
+#loginblock #title{
+	line-height: 50px;
+	background-color: #428bca;
+	color: #fff;
+	font-size: 16px;
+	font-weight: bolder;
+	text-align: center;
+}
+#account,
+#accountMes,
+#password,
+#passwordMes{
+	width:300px;
+	margin:10px auto; 
+}
+#account,
+#password{
+	font-size: 16px;
+}
+#login{
+	margin-right:50px;
+	float: right;
+}
+#enrollblock{
+	margin-top: 25px;
+	margin-left: 180px;
+}
