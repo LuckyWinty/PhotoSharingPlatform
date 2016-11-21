@@ -3,25 +3,60 @@
  */
 var mongoose=require('mongoose');
 require('../models/model');
-var share=mongoose.model('share');
+var Share=mongoose.model('share');
+
+var fs = require('fs');
+var Busboy = require('busboy');
+var mongo = require('mongodb');
+var Grid = require('gridfs-stream');
+var db = new mongo.Db('sharePictures', new mongo.Server("127.0.0.1", 27017), {safe: false});
+var gfs;
+var util = require('util');
+var bodyParser = require('body-parser');
+
+db.open(function (err) {
+    if (err) {
+        throw err;
+    }
+    gfs = Grid(db, mongo);
+});
 
 
 module.exports.doDeclare=function(req,res){
 
-    //...
+    var busboy = new Busboy({headers: req.headers});
+    var fileId = new mongo.ObjectId();
 
-console.log(req.body.content);
+    busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+        console.log('got file', filename, mimetype, encoding);
+        var writeStream = gfs.createWriteStream({
+            _id: fileId,
+            filename: filename,
+            mode: 'w',
+            content_type: mimetype
+        });
+        file.pipe(writeStream);
+    }).on('finish', function () {
+       console.log('sucess to upload!');
+    });
 
-    share.create({
-        content:req.body.content,
-        images:{'$addToSet':req.body.pic}
-    },function(error,User){
+    req.pipe(busboy);
+
+    var sha=new Share;
+    sha.content=req.body.content;
+    sha.images.push(fileId);
+
+    sha.save(function(error,share){
+        var filesIdArray = [];
         if(error){
             console.log(error);
         }else{
-            res.render('share');
-            console.log(User);
-            console.log(User.content);
+            gfs.files.find({}, {'_id' : 1}).sort({uploadDate: -1}).toArray(function (err, filesId) {
+                filesId.forEach(function (item) {
+                    filesIdArray.push(item._id);
+                });
+            });
+            res.render('user',{'content':share.content,'ids':filesIdArray});
         }
     })
 }

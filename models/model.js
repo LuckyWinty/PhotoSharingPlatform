@@ -60,7 +60,7 @@ var commentSchema = new mongoose.Schema({
 //分享Schema定义
 var shareSchema = new mongoose.Schema({
     content: String, //分享内容为字符串
-    images:[],//存图片id
+    images:[{type:String}],//存图片id
     created: {
         type: Date, //创建时间类型为日期类型
         "default": Date.now //默认值为创建日期
