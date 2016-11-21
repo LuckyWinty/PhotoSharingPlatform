@@ -24,7 +24,6 @@ router.get('/share', function(req, res, next) {
 
 /* 发布. */
 router.post('/declare', function (req, res) {
-    console.log('--------'+req.body.content);
     userCtrl.doDeclare(req, res);
 });
 

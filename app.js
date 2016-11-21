@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var busboy = require('busboy');
 
 /*这里写相应页面的js文件*/
 //var routes = require('./routes/indexTest');
