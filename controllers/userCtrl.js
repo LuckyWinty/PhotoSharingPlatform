@@ -19,7 +19,16 @@ db.open(function (err) {
     }
     gfs = Grid(db, mongo);
 });
-
+module.exports.openCenter=function(req,res){
+    Share.find({},function(error,sha){
+        if(error){
+            console.log('.....查找所有分享出错',error);
+        }else{
+            console.log('------------------查出来的分享：',sha.length);
+            res.render('user',{'shares':sha});
+        }
+    })
+}
 
 module.exports.doDeclare = function (req, res) {
 
@@ -49,17 +58,17 @@ module.exports.doDeclare = function (req, res) {
         sha.images.push(fileId);
 
         sha.save(function (error, share) {
-            var filesIdArray = [];
             if (error) {
                 console.log(error);
             } else {
-                gfs.files.find({}, {'_id': 1}).sort({uploadDate: -1}).toArray(function (err, filesId) {
-                    filesId.forEach(function (item) {
-                        filesIdArray.push(item._id);
-                    });
-                });
-                console.log('0--------------------;', share.images);
-                res.render('user', {'content': share.content, 'ids': share.images});
+                Share.find({},function(error,sha){
+                    if(error){
+                        console.log('.....查找所有分享出错',error);
+                    }else{
+                        console.log('------------------查出来的分享：',sha.length);
+                        res.render('user',{'shares':sha});
+                    }
+                })
             }
         })
     });

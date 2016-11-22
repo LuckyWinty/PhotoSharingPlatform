@@ -9,7 +9,7 @@ router.get('/index', function(req, res, next) {
 
 /* 加载个人中心页 */
 router.get('/user', function(req, res, next) {
-    res.render('user');
+    userCtrl.openCenter(req, res);
 });
 
 /* 加载ceshi */
