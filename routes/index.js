@@ -1,10 +1,11 @@
 var express = require('express');
 var router = express.Router();
+var indexCtrl=require('../controllers/indexCtrl');
 var userCtrl=require('../controllers/userCtrl');
 
 /* 加载主页 */
 router.get('/index', function(req, res, next) {
-    res.render('index');
+    indexCtrl.showIndex(req, res);
 });
 
 /* 加载个人中心页 */
