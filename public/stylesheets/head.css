@@ -14,9 +14,9 @@
 	line-height: 50px; 
 	letter-spacing: 3px;
 	text-decoration: none;
-	transition:all 1s; 
+	transition:all 0.5s; 
 }
-#head a:hover{   
+#head .active{   
 	opacity: 1;
 }
 #hot,
@@ -40,7 +40,7 @@
 }
 /*注册登录*/
 #loginblock{
-	background: rgba(255,255,255,0.5);
+	background: rgba(255,255,255,0.7);
 	width: 400px;
 	height: 300px;
 	position: absolute;
@@ -59,15 +59,14 @@
 	font-weight: bolder;
 	text-align: center;
 }
-#account,
-#accountMes,
-#password,
-#passwordMes{
-	width:300px;
-	margin:10px auto; 
+#loginblock .form-group label{
+	display: block;
 }
+#loginblock .form-group label,
 #account,
 #password{
+	width:300px;
+	margin:10px auto; 
 	font-size: 16px;
 }
 #login{
