@@ -26,6 +26,9 @@ router.get('/share', function(req, res, next) {
 router.post('/declare', function (req, res) {
     userCtrl.doDeclare(req, res);
 });
-
+//加载图片
+router.get('/image', function (req, res) {
+    userCtrl.getImage(req, res);
+});
 
 module.exports = router;

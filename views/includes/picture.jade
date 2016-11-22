@@ -1,5 +1,5 @@
 //-var picture=['/img/bg.jpg','/img/chat.svg']
-//if ids.length == 1
+//if ids
 //    #picPanel
 //        each pic in ids
 //            img#singlePic(src='/image?imageId=' + pic)
@@ -16,5 +16,6 @@
 
 
 if ids
-    each pic in ids
-        img(src='/image?imageId=' + pic)
+    #picPanel
+      each pic in ids
+        img#singlePic(src='/image?imageId=' + pic)

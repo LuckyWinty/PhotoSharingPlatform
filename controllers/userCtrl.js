@@ -58,14 +58,36 @@ module.exports.doDeclare = function (req, res) {
                         filesIdArray.push(item._id);
                     });
                 });
-                console.log('0--------------------;', filesIdArray);
-                res.render('user', {'content': share.content, 'ids': filesIdArray});
+                console.log('0--------------------;', share.images);
+                res.render('user', {'content': share.content, 'ids': share.images});
             }
         })
     });
 
     req.pipe(busboy);
 
-
-
 }
+module.exports.getImage = function (req, res) {
+    var _id = new mongo.ObjectId(req.query.imageId);
+
+    gfs.files.findOne({'_id': _id}, function (err, file) {
+        // gfs.files.find({}).toArray(function (err, files) {
+        //     console.log(util.inspect(file, {showHidden: false, depth: null}));
+        if (err) return res.status(400).send(err);
+        if (!file) return res.status(404).send('');
+
+        res.set('Content-Type', file.contentType);
+        res.set('Content-Disposition', 'attachment; filename=""');
+
+        var readstream = gfs.createReadStream({
+            _id: file._id
+        });
+
+        readstream.on("error", function(err) {
+            console.log("Got error while processing stream " + err.message);
+            res.end();
+        });
+
+        readstream.pipe(res);
+    });
+};
