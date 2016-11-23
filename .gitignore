@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+.idea/
+node_modules/
+=======
 node_modules/
 .idea/
 
+>>>>>>> e033d0fb34e4f34ec125a1b9eaf3ef5d20145426

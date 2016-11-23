@@ -3,30 +3,41 @@
 	width:84%;
 	min-width: 680px;
 }
-#box{
+#box,
+#boxes{
 	width:29%;
 	margin:2%;
 	position: relative;
 	display: inline-block;
 }
-#picPanel{
-	height:310px; 
+
+#picPanel,
+#picsPanel{
+	height: 310px;
 }
-#box #row img{
+#boxes #picsPanel #row img{
 	height: 60px;
 }
-#box #comment{
+#box #comment,
+#boxes #comment{
 	opacity: 0;
 	font-size: 14px;
 	height: 80px;
 	position: absolute;
 	left: 0;
-	bottom:100px;
+	bottom:-10px;
 	overflow: hidden;
 	background: rgba(255,255,255,0.7);
 	transition: all 1s;
 }
-#box #comment:hover{
+#box #comment:hover,
+#boxes #comment:hover{
 	opacity: 1;
-	bottom: 110px;
+	bottom: 0px;
+}
+#boxes #comment{
+	bottom: 75px;
+}
+#boxes #comment:hover{
+	bottom: 85px;
 }
