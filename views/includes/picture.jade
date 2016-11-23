@@ -1,17 +1,22 @@
--var picture=['/img/bg.jpg','/img/chat.svg']
-if picture.length==1
-	#picPanel
-		each pic in picture
-			img#singlePic(src='#{pic}')
-else
-	#picsPanel
-		each pic,item in picture
-			if item==0
-				img(src= pic,value= item)
-			else 
-				#row
-					each pic,item in picture
-						if item>=1
-							img(src= pic,value= item)
+//-var picture=['/img/bg.jpg','/img/chat.svg']
+//if ids
+//    #picPanel
+//        each pic in ids
+//            img#singlePic(src='/image?imageId=' + pic)
+//else
+//    #picsPanel
+//        each pic,item in ids
+//            if item == 0
+//                img(src='/image?imageId=' + pic)
+//            else
+//                #row
+//                    each pic,item in ids
+//                        if item >= 1
+//                            img(src='/image?imageId=' + pic)
 
-	
+
+if shares.images
+    #picPanel
+      each pic in shares.images
+        img#singlePic(src='/image?imageId=' + pic)
+

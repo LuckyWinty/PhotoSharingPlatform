@@ -8,14 +8,23 @@
   "dependencies": {
     "body-parser": "~1.15.1",
     "bootstrap": "^3.3.7",
+<<<<<<< HEAD
+=======
+    "busboy": "^0.2.13",
+>>>>>>> e033d0fb34e4f34ec125a1b9eaf3ef5d20145426
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",
     "express": "~4.13.4",
+    "gridfs-stream": "^1.1.1",
     "jade": "~1.11.0",
     "mongodb": "^2.2.11",
     "mongoose": "^4.6.7",
     "morgan": "~1.7.0",
     "nodemon": "^1.11.0",
+<<<<<<< HEAD
+=======
+    "querystring": "^0.2.0",
+>>>>>>> e033d0fb34e4f34ec125a1b9eaf3ef5d20145426
     "serve-favicon": "~2.3.0"
   }
 }

@@ -7,5 +7,9 @@
 			}
 			e.target.className="active";
 		}
+		if(e.target.id=="personal"){
+			var login=document.getElementById("loginblock");
+			login.style.display="block";
+		}
 	})
 })()

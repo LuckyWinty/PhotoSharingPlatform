@@ -1,0 +1,86 @@
+div#user_container div#rightBar {
+    position: absolute;
+    right: 10px;
+    top: 20px;
+    width: 200px;
+}
+
+/* 个人信息板块 */
+div#user_container div#personInfo_block{
+	background-color: #ffffff;
+	height: 140px;
+	position: relative;
+	padding-top: 30px; 
+}
+div#user_container div#personInfo_bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 75px;
+	background: url(/img/user/bg_s.jpg) no-repeat 0 0;
+	background-size: 100% 100%;
+}
+div#user_container div#user_pic_sm{
+	position: relative;
+	width: 66px;
+    height: 66px;
+}
+div#user_container div#user_pic_sm>img{
+	padding: 3px;
+}
+div#user_container div#personInfo_block h3{
+	font-size: 14px;
+	letter-spacing: 1px;
+    color: #333;
+}
+div#user_container div#personInfo_block>a {
+    color: #808080;
+    font-size: 12px;
+    position: absolute;
+    right: 7px;
+    bottom: 7px;
+    font-family: 'Arial','Microsoft YaHei';
+}
+
+
+/* 我的收获板块 */
+div#user_container div#result_block {
+    background-color: #ffffff;
+    margin-top: 10px;
+}
+div#user_container div#result_block>h4 {
+    margin: 0;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #373737;
+    letter-spacing: 1px;
+    height: 42px;
+    line-height: 42px;
+}
+div#user_container div#result_block>ul {
+    margin: 0;
+    list-style: none;
+    padding: 0px 0px 15px;
+    height: 52px;
+    box-sizing: border-box;
+}
+div#user_container div#result_block li {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+    border-right: 1px solid #d9d9d9;
+}
+div#user_container div#result_block li:last-child {
+    border-right: none;
+}
+div#user_container .result_number {
+    font-size: 16px;
+    font-weight: bold;
+}
+div#user_container .result_text {
+    color: #808080;
+    font-family: 'Arial','Microsoft YaHei';
+    font-size: 12px;
+}
