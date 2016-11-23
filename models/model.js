@@ -23,19 +23,24 @@ var userSchema = new mongoose.Schema({
         "default":true
     },
     myShares:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myFocus:{
-        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myCollections:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myLikes:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myComments:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     }
 });
 
@@ -60,7 +65,7 @@ var commentSchema = new mongoose.Schema({
 //分享Schema定义
 var shareSchema = new mongoose.Schema({
     content: String, //分享内容为字符串
-    images:[],//存图片id
+    images:[{type:String}],//存图片id
     created: {
         type: Date, //创建时间类型为日期类型
         "default": Date.now //默认值为创建日期
