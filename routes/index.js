@@ -3,6 +3,8 @@ var router = express.Router();
 var indexCtrl=require('../controllers/indexCtrl');
 var userCtrl=require('../controllers/userCtrl');
 
+/*登录*/
+
 /* 加载主页 */
 router.get('/index', function(req, res, next) {
     indexCtrl.showIndex(req, res);
