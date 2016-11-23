@@ -7,8 +7,10 @@ var bodyParser = require('body-parser');
 var busboy = require('busboy');
 
 /*这里写相应页面的js文件*/
+
 //var routes = require('./routes/indexTest');
 var user = require('./routes/user');
+
 var index = require('./routes/index');
 
 //-------------------------------
@@ -17,6 +19,7 @@ require('./servers/db');
 var app = express();
 
 // view engine setup
+
 app.set('views', './views/pages');
 app.set('view engine', 'jade');
 
@@ -26,11 +29,15 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+app.use(session({secret:'winty',cookie:{maxAge:86400000}}));
+
 app.use(express.static(path.join(__dirname, '/public')));  //加了'/'
 
 // 定路由
 //app.use('/', routes);  //测试之用
 app.use('/users', user);
+
 app.use('/', index);
 //---------------------------
 

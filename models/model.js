@@ -6,6 +6,7 @@ var mongoose=require('mongoose');
 //用户Schema定义
 var userSchema = new mongoose.Schema({
     userName: String, //用户名的类型为字符串
+    portraitUrl:String, //用户头像
     password: {
         type: String, //密码的类型为字符串
         require: true //非空
@@ -23,19 +24,24 @@ var userSchema = new mongoose.Schema({
         "default":true
     },
     myShares:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myFocus:{
-        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myCollections:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myLikes:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myComments:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     }
 });
 

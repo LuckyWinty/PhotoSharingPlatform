@@ -1,6 +1,7 @@
 /**
  * Created by winty on 2016/11/11.
  */
+
 var mongoose = require('mongoose');
 require('../models/model');
 var Share = mongoose.model('share');
@@ -15,3 +16,4 @@ module.exports.showIndex=function(req,res){
         }
     })
 }
+

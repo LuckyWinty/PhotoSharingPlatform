@@ -8,6 +8,7 @@ var dbUrl=require('../configure/urlConfigures');
 
 var conn=mongoose.connect(dbUrl.dbUrl);
 
+
 mongoose.connection.on('connected', function () {
     console.log('Mongoose connected to ' + dbUrl.dbUrl);
 });
@@ -19,3 +20,4 @@ mongoose.connection.on('disconnected', function () {
 });
 
 module.exports=conn;
+
