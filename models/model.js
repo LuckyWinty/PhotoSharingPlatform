@@ -23,19 +23,24 @@ var userSchema = new mongoose.Schema({
         "default":true
     },
     myShares:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myFocus:{
-        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myCollections:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myLikes:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     },
     myComments:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}]
+        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        "default":[]
     }
 });
 
