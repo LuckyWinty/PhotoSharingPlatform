@@ -6,7 +6,7 @@
     form(method='post' action='/declare' enctype='multipart/form-data')
         span#input_tip 还可以输入<span id="input_num">#{input_num}</span>字
         textarea(name='content')#share_content
-        input(type='file' name='pic')
+        input(type='file' name='pic' multiple)
         //ul#pic_list
         //  each val in [1,2,3,4,5]
         //    li
