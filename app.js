@@ -30,6 +30,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
+app.use(session({secret:'winty',cookie:{maxAge:86400000}}));
+
 app.use(express.static(path.join(__dirname, '/public')));  //加了'/'
 
 // 定路由

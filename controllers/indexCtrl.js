@@ -7,6 +7,7 @@ require('../models/model');
 var Share = mongoose.model('share');
 
 module.exports.showIndex=function(req,res){
+    console.log('我有吗？')
     Share.find({},function(error,sha){
         if(error){
             console.log('.....查找所有分享出错',error);

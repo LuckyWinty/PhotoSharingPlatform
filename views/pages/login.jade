@@ -3,7 +3,7 @@ block append style
 
 #loginblock
 	p#title 用户登录
-	form(role="form")
+	form(method='post',action='doLogin')
 		.form-group
 			label(for="account" ) 账号
 			input.form-control#account(name="account" placeholder="请输入账号")

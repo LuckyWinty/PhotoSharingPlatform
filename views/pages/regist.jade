@@ -1,3 +1,17 @@
-//
-   Created by zhouwenting1 on 2016/11/23.
+block append style
+    link(rel="stylesheet",href="/stylesheets/login.css")
 
+#loginblock
+    p#title 用户注册
+        form.form-horizontal(method='post',action='/doRegist')
+            .form-group
+                label.col-sm-2.control-label(for="account") 账号
+                .col-sm-10
+                    input.form-control#account(type="text", name="account")
+            .form-group
+                label.col-sm-2.control-label(for="password") 密码
+                .col-sm-10
+                    input.form-control#password(type="password", name="password")
+            .form-group
+                .col-sm-offset-2.col-sm-10
+                    button.btn.btn-default(type="submit") 注册
