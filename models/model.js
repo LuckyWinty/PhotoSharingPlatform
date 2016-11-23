@@ -2,15 +2,6 @@
  * Created by winty on 2016/11/11.
  */
 var mongoose=require('mongoose');
-<<<<<<< HEAD
-var dbUrl=require('../configure/urlConfigures');
-
-var testSchema=new mongoose.Schema({
-    name:String
-});
-
-mongoose.model('Test',testSchema);
-=======
 
 //用户Schema定义
 var userSchema = new mongoose.Schema({
@@ -87,4 +78,3 @@ var shareSchema = new mongoose.Schema({
 var User=mongoose.model('user',userSchema);
 var Share=mongoose.model('share',shareSchema);
 var Comment=mongoose.model('comment',commentSchema);
->>>>>>> e033d0fb34e4f34ec125a1b9eaf3ef5d20145426

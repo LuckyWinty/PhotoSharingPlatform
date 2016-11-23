@@ -1,20 +1,7 @@
 /**
  * Created by winty on 2016/11/11.
  */
-<<<<<<< HEAD
-//var mongoose=require('mongoose');
-//var Test=mongoose.model('Test');
-//
-//module.exports.index=function(req,res){
-//    Test.findOne({name:"test"},function(error,test){
-//        if(error){
-//            console.log(error);
-//        }else if(test){
-//           // res.
-//        }
-//    })
-//}
-=======
+
 var mongoose = require('mongoose');
 require('../models/model');
 var Share = mongoose.model('share');
@@ -29,4 +16,4 @@ module.exports.showIndex=function(req,res){
         }
     })
 }
->>>>>>> e033d0fb34e4f34ec125a1b9eaf3ef5d20145426
+

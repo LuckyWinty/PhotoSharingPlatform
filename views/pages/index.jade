@@ -16,12 +16,12 @@ block content
 			#picsPanel
 				each pic,item in picture
 					if item==0
-						img(src= pic,value= item)
+						img(src= '#{pic}',value= item)
 					else 
 						#row
 							each pic,item in picture
 								if item>=1
-									img(src= pic,value= item)				
+									img(src= '#{pic}',value= item)				
 	#container.clearfix
 		each list in lists
 			if list.picture.length==1

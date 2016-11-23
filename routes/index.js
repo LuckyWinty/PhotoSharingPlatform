@@ -8,9 +8,6 @@ var userCtrl=require('../controllers/userCtrl');
 
 /* 加载主页 */
 router.get('/index', function(req, res, next) {
-<<<<<<< HEAD
-    res.render('index');
-=======
     indexCtrl.showIndex(req, res);
 });
 
@@ -36,7 +33,6 @@ router.post('/declare', function (req, res) {
 //加载图片
 router.get('/image', function (req, res) {
     userCtrl.getImage(req, res);
->>>>>>> e033d0fb34e4f34ec125a1b9eaf3ef5d20145426
 });
 
 /* 加载ceshi */
