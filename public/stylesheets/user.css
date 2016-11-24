@@ -36,6 +36,7 @@ div#user_container div#user_content {
     background: rgba(121, 187, 224, 0.3);
     padding: 20px 10px 0 0;
     position: relative;
+    min-height: 465px;
 }
 
 /* 中间模块 */

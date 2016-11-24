@@ -14,10 +14,14 @@ div#user_container div#leftBar li {
     padding-left: 15px;
     height: 34px;
     line-height: 34px;
-    color: #ffffff;
     font-weight: bold;
     font-size: 13px;
     cursor: pointer;
+}
+div#user_container div#leftBar a{
+    color: #ffffff;
+    display: block;
+    text-decoration: none;
 }
 div#user_container div#leftBar li:hover{
 	background-color: #a7d4eb;
