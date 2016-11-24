@@ -6,13 +6,32 @@ block append style
 
 block content
 	-var lists=[{id:1,picture:['/img/bg.jpg'],comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'},{id:2,picture:['/img/bg.jpg','/img/chat.svg'],comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'},{id:2,picture:['/img/bg.jpg','/img/chat.svg'],comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'}]
-if shares
+
 	mixin box(picture)
-		include pics
+		if picture.length==1
+			#picPanel
+				each pic in picture
+					img#singlePic(src='#{pic}')
+		else
+			#picsPanel
+				each pic,item in picture
+					if item==0
+						img(src= '#{pic}',value= item)
+					else
+						#row
+							each pic,item in picture
+								if item>=1
+									img(src= '#{pic}',value= item)
 	#container.clearfix
-		each list in shares
-			#box
-				+box(list.picture)
-				#comment #{list.content}
+		each list in lists
+			if list.picture.length==1
+				#box
+					+box(list.picture)
+					#comment #{list.comment}
+			else
+				#boxes
+					+box(list.picture)
+					#comment #{list.comment}
+
 
 

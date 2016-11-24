@@ -5,12 +5,29 @@ div#user_container div#rightBar {
     width: 200px;
 }
 
+/* commmon */
+div#user_container #rightBar>div{
+    background-color: #ffffff;
+    margin-top: 10px;   
+}
+div#user_container #rightBar>div>h4 {
+    margin: 0;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 1px;
+    height: 42px;
+    line-height: 42px;
+}
+
 /* 个人信息板块 */
 div#user_container div#personInfo_block{
 	background-color: #ffffff;
-	height: 140px;
+	height: 145px;
 	position: relative;
 	padding-top: 30px; 
+    margin: 0;
 }
 div#user_container div#personInfo_bg {
 	position: absolute;
@@ -34,7 +51,15 @@ div#user_container div#personInfo_block h3{
 	letter-spacing: 1px;
     color: #333;
 }
-div#user_container div#personInfo_block>a {
+div#user_container div#personInfo_block #concern {
+    color: #808080;
+    font-size: 12px;
+    position: absolute;
+    left: 7px;
+    bottom: 7px;
+    font-family: 'Arial','Microsoft YaHei';
+}
+div#user_container div#personInfo_block #mask {
     color: #808080;
     font-size: 12px;
     position: absolute;
@@ -45,20 +70,6 @@ div#user_container div#personInfo_block>a {
 
 
 /* 我的收获板块 */
-div#user_container div#result_block {
-    background-color: #ffffff;
-    margin-top: 10px;
-}
-div#user_container div#result_block>h4 {
-    margin: 0;
-    text-align: center;
-    font-size: 16px;
-    font-weight: bold;
-    color: #373737;
-    letter-spacing: 1px;
-    height: 42px;
-    line-height: 42px;
-}
 div#user_container div#result_block>ul {
     margin: 0;
     list-style: none;
@@ -83,4 +94,50 @@ div#user_container .result_text {
     color: #808080;
     font-family: 'Arial','Microsoft YaHei';
     font-size: 12px;
+}
+
+/* focus block */
+#focus_block{
+    padding-bottom: 15px;
+}
+#focus_block ul{
+    margin: 0;
+    padding: 0 7px;
+    list-style: none;
+    height: 112px;
+    overflow-y: auto;
+}
+#focus_block li{
+    position: relative;
+    margin: 0 0 7px 0;
+    padding-bottom: 7px;
+    border-bottom: 1px dashed #e5e2e2;
+}
+#focus_block li:last-child{
+    border: none;
+}
+#focus_block a{
+    display: block;
+    text-decoration: none;
+}
+#focus_block .focus_user_pic{
+    position: absolute;
+    top: 0;
+    left: 7px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+#focus_block .focus_user_pic>img{
+    width: 100%;
+    height: 100%;
+}
+#focus_block h5{
+    margin: 0 0 0 70px;
+    color: #333;
+    height: 45px;
+    line-height: 45px;
+    font-size: 13px;
+    font-weight: normal;
 }

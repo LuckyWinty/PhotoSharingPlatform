@@ -1,6 +1,7 @@
 - var praise = 35
 - var collect = 20
 - var comment = 15
+- var focus = [{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'}]
 
 
 
@@ -10,7 +11,8 @@
     div.user_pic#user_pic_sm
       img(src="/img/user/user.jpg")
     h3.user_name 暝暝之钟ing
-    a(href="javascript:;") 屏蔽
+    a#concern(href="javascript:;") 关注我
+    a#mask(href="javascript:;") 屏蔽
 
   #result_block
     h4 我的收获
@@ -24,3 +26,13 @@
       li
         .result_number= comment
         .result_text 评论
+
+  #focus_block
+    h4 我的关注
+    ul
+      each user in focus
+        li
+          a(href="/user/#{user.id}")
+            .focus_user_pic
+              img(src=user.pic)
+            h5= user.name

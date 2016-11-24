@@ -6,6 +6,7 @@ var mongoose=require('mongoose');
 //用户Schema定义
 var userSchema = new mongoose.Schema({
     userName: String, //用户名的类型为字符串
+    portraitUrl:String, //用户头像
     password: {
         type: String, //密码的类型为字符串
         require: true //非空
