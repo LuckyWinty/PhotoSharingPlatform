@@ -11,27 +11,28 @@ block content
 		if picture.length==1
 			#picPanel
 				each pic in picture
-					img#singlePic(src='#{pic}')
+					img#singlePic(src='/image?imageId=' + pic)
 		else
 			#picsPanel
 				each pic,item in picture
 					if item==0
-						img(src= '#{pic}',value= item)
+						img(src='/image?imageId=' + pic)
 					else
 						#row
 							each pic,item in picture
 								if item>=1
-									img(src= '#{pic}',value= item)
+									img(src='/image?imageId=' + pic)
 	#container.clearfix
-		each list in lists
-			if list.picture.length==1
+		if shares
+		each list in shares
+			if list.images.length==1
 				#box
-					+box(list.picture)
-					#comment #{list.comment}
+					+box(list.images)
+					#comment= list.content
 			else
 				#boxes
-					+box(list.picture)
-					#comment #{list.comment}
+					+box(list.images)
+					#comment= list.content
 
 
 

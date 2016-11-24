@@ -24,23 +24,23 @@ var userSchema = new mongoose.Schema({
         "default":true
     },
     myShares:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        shares:[{type:mongoose.Schema.ObjectId,ref:'share'}],
         "default":[]
     },
     myFocus:{
-        users:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        users:[{type:mongoose.Schema.ObjectId,ref:'share'}],
         "default":[]
     },
     myCollections:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        shares:[{type:mongoose.Schema.ObjectId,ref:'share'}],
         "default":[]
     },
     myLikes:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        shares:[{type:mongoose.Schema.ObjectId,ref:'share'}],
         "default":[]
     },
     myComments:{
-        shares:[{type:mongoose.Schema.ObjectId,ref:'Share'}],
+        shares:[{type:mongoose.Schema.ObjectId,ref:'share'}],
         "default":[]
     }
 });
@@ -58,7 +58,7 @@ var commentSchema = new mongoose.Schema({
     subComment: [this], //自评论的类型为评论类型，也就是本身类型
     userId: {
         type: mongoose.Schema.Types.ObjectId, //评论用户的引用
-        ref: 'User', //引用自User Model
+        ref: 'user', //引用自User Model
         require: true //非空
     }
 });
@@ -73,7 +73,7 @@ var shareSchema = new mongoose.Schema({
     },
     userId: {
         type: mongoose.Schema.Types.ObjectId, //发布者的引用
-        ref: 'User', //引用自User Model
+        ref: 'user', //引用自User Model
         require: true //非空
     },
     comment: [commentSchema] //subDocument，子文档，即该分享的评论
@@ -81,6 +81,6 @@ var shareSchema = new mongoose.Schema({
 
 
 
-var User=mongoose.model('user',userSchema);
-var Share=mongoose.model('share',shareSchema);
-var Comment=mongoose.model('comment',commentSchema);
+mongoose.model('user',userSchema);
+mongoose.model('share',shareSchema);
+mongoose.model('comment',commentSchema);

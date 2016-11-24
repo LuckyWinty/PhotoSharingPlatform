@@ -5,7 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var busboy = require('busboy');
-
+var session=require('express-session');
 /*这里写相应页面的js文件*/
 
 //var routes = require('./routes/indexTest');
@@ -15,7 +15,6 @@ var index = require('./routes/index');
 
 //-------------------------------
 require('./servers/db');
-
 var app = express();
 
 // view engine setup
@@ -30,7 +29,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-app.use(session({secret:'winty',cookie:{maxAge:86400000}}));
+app.use(session({
+  secret:'winty',
+  cookie:{maxAge:86400000},
+  resave: false,
+  saveUninitialized: true
+}));
 
 app.use(express.static(path.join(__dirname, '/public')));  //加了'/'
 

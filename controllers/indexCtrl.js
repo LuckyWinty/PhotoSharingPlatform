@@ -11,8 +11,8 @@ module.exports.showIndex=function(req,res){
         if(error){
             console.log('.....查找所有分享出错',error);
         }else{
-            console.log('------------------查出来的分享：',sha.length);
-            res.render('index',{'shares':sha});
+            console.log('----主页的session：',req.session.user);
+            res.render('index',{'shares':sha,'user':req.session.user});
         }
     })
 }

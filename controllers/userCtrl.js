@@ -4,6 +4,7 @@
 var mongoose = require('mongoose');
 require('../models/model');
 var Share = mongoose.model('share');
+var User=mongoose.model('user');
 
 var fs = require('fs');
 var Busboy = require('busboy');
@@ -12,6 +13,7 @@ var Grid = require('gridfs-stream');
 var db = new mongo.Db('sharePictures', new mongo.Server("127.0.0.1", 27017), {safe: false});
 var gfs;
 var util = require('util');
+var moment=require('moment');
 
 db.open(function (err) {
     if (err) {
@@ -20,12 +22,12 @@ db.open(function (err) {
     gfs = Grid(db, mongo);
 });
 module.exports.openCenter=function(req,res){
-    Share.find({},function(error,sha){
+    Share.find({'userId':req.session.user._id})
+        .exec(function(error,sha){
         if(error){
             console.log('.....查找所有分享出错',error);
         }else{
-            console.log('------------------查出来的分享：',sha.length);
-            res.render('user',{'shares':sha});
+            res.render('user',{'shares':sha,'user':req.session.user,'moment':moment});
         }
     })
 }
@@ -49,24 +51,24 @@ module.exports.doDeclare = function (req, res) {
     }).on('field', function (key, value) {
         body[key] = value;
     }).on('finish', function () {
-        console.log('sucess to upload!');
-        console.log('-----------body: ');
         console.log(util.inspect(body, {showHidden: false, depth: null}));
 
         var sha = new Share;
         sha.content = body.content;
         sha.images.push(fileId);
+        sha.userId=req.session.user._id;
 
         sha.save(function (error, share) {
             if (error) {
                 console.log(error);
             } else {
-                Share.find({},function(error,sha){
+                Share.find({'userId':req.session.user._id})
+                    .exec(function(error,sha){
                     if(error){
                         console.log('.....查找所有分享出错',error);
                     }else{
-                        console.log('------------------查出来的分享：',sha.length);
-                        res.render('user',{'shares':sha});
+                        console.log('------------------查出来的session：',req.session.user);
+                        res.render('user',{'shares':sha,'user':req.session.user});
                     }
                 })
             }

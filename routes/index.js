@@ -9,7 +9,7 @@ var userCtrl=require('../controllers/userCtrl');
 router.get('/login', function(req, res, next) {
     res.render('login');
 });
-router.post('/doLogin', function(req, res, next) {
+router.post('/index', function(req, res, next) {
     loginCtrl.doLogin(req,res);
 });
 //注册

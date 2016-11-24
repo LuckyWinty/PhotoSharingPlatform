@@ -9,18 +9,18 @@
     #personInfo_bg
     div.user_pic#user_pic_sm
       img(src="/img/user/user.jpg")
-    h3.user_name 暝暝之钟ing
-    a(href="javascript:;") 屏蔽
+    h3.user_name= user.userName
+    a(href="javascript:;")= user.isPublic==true?'屏蔽':'已屏蔽'
 
   #result_block
     h4 我的收获
     ul
       li
-        .result_number= praise
+        .result_number= user.myLikes.shares.length
         .result_text 赞
       li
-        .result_number= collect
+        .result_number= user.myCollections.shares.length
         .result_text 收藏
       li
-        .result_number= comment
+        .result_number= user.myComments.shares.length
         .result_text 评论
