@@ -1,5 +1,6 @@
 block append style
 	link(rel="stylesheet",href="/stylesheets/login.css")
+	link(rel="stylesheet",href="/stylesheets/bootstrap.css")
 
 #loginblock
 	p#title 用户登录
@@ -13,9 +14,7 @@ block append style
 		button#login.btn.btn-primary 登录
 		p#loginError 用户账号或密码错误
 		#enrollblock
-			a#enroll 注册
-			span /
-			a#forget 忘记密码
+		a#enroll 注册
 			
 block append script
 	script(src="/js/head.js")
