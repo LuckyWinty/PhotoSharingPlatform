@@ -41,7 +41,6 @@ app.use(express.static(path.join(__dirname, '/public')));  //加了'/'
 // 定路由
 //app.use('/', routes);  //测试之用
 app.use('/users', user);
-
 app.use('/', index);
 //---------------------------
 

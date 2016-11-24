@@ -4,6 +4,7 @@ var registCtrl=require('../controllers/registCtrl');
 var loginCtrl=require('../controllers/loginCtrl');
 var indexCtrl=require('../controllers/indexCtrl');
 var userCtrl=require('../controllers/userCtrl');
+var errorCtrl=require('../controllers/errorCtrl');
 
 /*登录*/
 router.get('/login', function(req, res, next) {
@@ -30,8 +31,8 @@ router.get('/user', function(req, res, next) {
 });
 
 /* 加载ceshi */
-router.get('/ceshi', function(req, res, next) {
-    res.render('test');
+router.get('/error', function(req, res, next) {
+    errorCtrl.doError(req,res);
 });
 
 /* 加载分享页 */

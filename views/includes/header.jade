@@ -1,11 +1,14 @@
 div#head
-	a#new.active
-		<img>最新分享
-	a#hot 
-		<img>最热分享
-	a#personal(href='/user' data-userId=user._id)
-		<img>个人中心
-
+    a#new.active
+        <img>最新分享
+    a#hot
+        <img>最热分享
+    if user
+      a#personal(href='/user' data-userId=user._id)
+        <img>个人中心
+    else
+    a(href='/login') 登陆
+    a(href='/regist') 注册
 block append script
-	script(src="/js/head.js")
+    script(src="/js/head.js")
 
