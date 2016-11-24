@@ -24,12 +24,12 @@ db.open(function (err) {
 module.exports.openCenter=function(req,res){
     Share.find({'userId':req.session.user._id})
         .exec(function(error,sha){
-        if(error){
-            console.log('.....查找所有分享出错',error);
-        }else{
-            res.render('user',{'shares':sha,'user':req.session.user,'moment':moment});
-        }
-    })
+            if(error){
+                console.log('.....查找所有分享出错',error);
+            }else{
+                res.render('user',{'shares':sha,'user':req.session.user,'moment':moment});
+            }
+        })
 }
 
 module.exports.doDeclare = function (req, res) {
@@ -51,24 +51,37 @@ module.exports.doDeclare = function (req, res) {
     }).on('field', function (key, value) {
         body[key] = value;
     }).on('finish', function () {
-        console.log(util.inspect(body, {showHidden: false, depth: null}));
+       console.log(util.inspect(body, {showHidden: false, depth: null}));
 
         var sha = new Share;
         sha.content = body.content;
         sha.images.push(fileId);
-        sha.userId=req.session.user._id;
+        sha.userId=req.query.userId;
 
         sha.save(function (error, share) {
             if (error) {
                 console.log(error);
             } else {
-                Share.find({'userId':req.session.user._id})
+                console.log('-----------------req.quey.userId: ', req.query.userId);
+                Share.find({'userId':req.query.userId})
                     .exec(function(error,sha){
+                        console.log('***************'+sha);
                     if(error){
                         console.log('.....查找所有分享出错',error);
                     }else{
-                        console.log('------------------查出来的session：',req.session.user);
-                        res.render('user',{'shares':sha,'user':req.session.user});
+                        console.log('***************&&&&&&&'+req.query.userId);
+                        User.find({'_id':req.query.userId})
+                            .exec(function(err,person){
+                            console.log('....！',person);
+                            person.myShares.shares.push(Share._id);
+                            person.save(function(err,use){
+                                if(err){
+                                    console.log('....发布失败！');
+                                }else{
+                                    res.render('user',{'shares':sha,'user':use});
+                                }
+                            })
+                        })
                     }
                 })
             }
