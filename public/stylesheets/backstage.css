@@ -1,0 +1,37 @@
+#backstageTitle{
+	padding:50px;
+	width:100%;
+	font-size: 20px;
+	font-weight: bolder;
+	text-align: center;
+}
+#userManagement,
+#shareManagement{
+	display: inline-block;
+	margin:0 50px 20px 50px;
+	font-size: 20px;
+}
+#userBlock{
+	position: absolute;
+	top:176px;
+	left: 25px;
+	display: block;
+}
+#shareBlock{
+	position: absolute;
+	top:176px;
+	left: 25px;
+	display: none;
+}
+#row div{
+    background-color: rgba(86,61,124,.15);
+}
+.row div{
+	padding: 10px;
+	text-align: center;
+	border: 1px solid rgba(86,61,124,.2);
+	font-size: 16px;
+}
+.row button{
+	margin:0 40px;
+}

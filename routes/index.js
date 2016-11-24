@@ -47,5 +47,9 @@ router.post('/declare', function (req, res) {
 router.get('/image', function (req, res) {
     userCtrl.getImage(req, res);
 });
+//加载后台管理
+router.get('/back', function(req, res, next) {
+    res.render('backstage');
+});
 
 module.exports = router;

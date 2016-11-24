@@ -1,0 +1,34 @@
+link(rel="stylesheet",href="/stylesheets/bootstrap.css")
+link(rel="stylesheet",href="/stylesheets/backstage.css")
+
+#backstageTitle 后台管理页
+a#userManagement 用户管理
+a#shareManagement 分享管理
+#userBlock.container
+	#row.row
+		.col-md-3 userName
+		.col-md-2 isAdmin
+		.col-md-2 isPublic
+		.col-md-5 operation
+	.row
+		.col-md-3 123
+		.col-md-2 123
+		.col-md-2 123
+		.col-md-5 
+			button.btn.btn-info.btn-xs 修改
+			button.btn.btn-danger.btn-xs 删除
+#shareBlock.container
+	#row.row
+		.col-md-2 shareId
+		.col-md-2 userName
+		.col-md-4 comment
+		.col-md-4 operation
+	.row
+		.col-md-2 123
+		.col-md-2 123
+		.col-md-4 123
+		.col-md-4 
+			button.btn.btn-info.btn-xs 屏蔽
+			button.btn.btn-danger.btn-xs 删除
+
+script(src="/js/backstage.js")
