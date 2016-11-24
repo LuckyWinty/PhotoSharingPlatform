@@ -22,11 +22,13 @@ db.open(function (err) {
     gfs = Grid(db, mongo);
 });
 module.exports.openCenter=function(req,res){
-    Share.find({'userId':req.session.user._id})
+    Share.find({'userId':req.query.userId})
+        .populate('userId')
         .exec(function(error,sha){
             if(error){
                 console.log('.....查找所有分享出错',error);
             }else{
+                console.log('user',sha.user);
                 res.render('user',{'shares':sha,'user':req.session.user,'moment':moment});
             }
         })
@@ -62,23 +64,19 @@ module.exports.doDeclare = function (req, res) {
             if (error) {
                 console.log(error);
             } else {
-                console.log('-----------------req.quey.userId: ', req.query.userId);
-                Share.find({'userId':req.query.userId})
+                Share.find({'userId':req.query.userId}).sort({created:-1})
                     .exec(function(error,sha){
-                        console.log('***************'+sha);
                     if(error){
                         console.log('.....查找所有分享出错',error);
                     }else{
-                        console.log('***************&&&&&&&'+req.query.userId);
-                        User.find({'_id':req.query.userId})
+                        User.findById(req.query.userId)
                             .exec(function(err,person){
-                            console.log('....！',person);
                             person.myShares.shares.push(Share._id);
                             person.save(function(err,use){
                                 if(err){
                                     console.log('....发布失败！');
                                 }else{
-                                    res.render('user',{'shares':sha,'user':use});
+                                    res.render('user',{'shares':sha,'user':use,'moment':moment});
                                 }
                             })
                         })
