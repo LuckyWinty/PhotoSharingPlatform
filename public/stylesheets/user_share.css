@@ -58,7 +58,7 @@ ul#pic_list>li>img{
 	width: 100%;
 	height: 100%;
 }
-div#user_container button.btn {
+div#user_container #btn-publish {
     background-color: #FFC09F;
     border: none;
     letter-spacing: 4px;

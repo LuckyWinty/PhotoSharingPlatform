@@ -2,6 +2,7 @@
 - var collect = 20
 - var comment = 15
 - var focus = [{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'}]
+-var user = {userName: '暝暝之钟ing',_id: '5836ecb43b6e671af421e9b2',img: ''}
 
 
 
@@ -27,15 +28,22 @@
                 .result_number= user.myComments.shares.length
                 .result_text 评论
 
-    #focus_block
-        h4 我的关注
-        if user.myFocus.users.length > 0
-            ul
-                each u in user.myFocus.users
-                    li
-                        a(href="/user/#{u._id}")
-                            .focus_user_pic
-                                img(src=u.pic)
-                            h5= u.userName
-        else
-            h5 还没有关注的人！
+  #focus_block
+    h4 我的关注
+    if user.myFocus.users.length > 0
+      ul
+        each u in user.myFocus.users
+          li
+            a(href="/user/#{u._id}")
+              .focus_user_pic
+                img(src=u.pic)
+              h5= u.userName
+    else
+      h5 还没有关注的人！
+
+  #motify_block
+    h4 修改头像
+    form.form#pic_form
+      input(type="hidden",name="_id",value=user._id)
+      input(type="file",id="InputPic", name='portrait')
+      button.btn.btn-default(type="submit")#btn-submit 提交

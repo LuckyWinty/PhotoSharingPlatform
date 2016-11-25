@@ -49,6 +49,11 @@ router.post('/declare', function (req, res) {
 router.get('/image', function (req, res) {
     userCtrl.getImage(req, res);
 });
+/* 上传头像 */
+router.post('/user', function (req, res) {
+    userCtrl.doPortrait(req, res);
+});
+
 //点赞
 router.post('/doLike',function(req,res){
     shareCtrl.doLike(req,res);
