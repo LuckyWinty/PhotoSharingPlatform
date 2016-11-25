@@ -21,7 +21,7 @@ module.exports.doShare=function(req,res){
            }
 
             for(var i=0;i<sha.userId.myLikes.shares.length;i++){
-                if(sha.userId.myLikes.shares[i]==sha._id){
+                if(sha.userId.myLikes.shares[i].toString()==sha._id.toString()){
                     info.isLike=true;
                     break;
                 }
@@ -46,16 +46,14 @@ var likeNum=0;
                    res.json({success:0,message:'点赞失败'});
                }else{
                    likeNum=sha.likeNum;
-                   sha.likeNum=likeNum++;
+                   sha.likeNum=++likeNum;
                    console.log('111111111111~~~~'+sha.likeNum,likeNum);
                    sha.save(function(err,share){
                        if(err){
                            res.json({success:0,message:'点赞失败'});
                        }else{
                            likeNum=share.likeNum;
-                           console.log('1111oooooo1~~~~'+share.likeNum,likeNum);
-                           console.log(req.session.user._id,req.body.userId);
-                           User.findById({'_id':req.session.user._id})
+                           User.findOne({_id:req.body.userId})
                                .exec(function(err,person){
                                    person.myLikes.shares.push(req.body.shareId);
                                    person.save(function(err,use){
@@ -71,6 +69,38 @@ var likeNum=0;
                }
             })
     }else{
-        res.json({success:1,isLike:0,message:'取赞成功'});
+        Share.findById({'_id':req.body.shareId})
+            .exec(function(error,sha) {
+                if(error){
+                    res.json({success:0,message:'消赞失败'});
+                }else{
+                    likeNum=sha.likeNum;
+                    sha.likeNum=--likeNum;
+                    console.log('111111111111~~~~'+sha.likeNum,likeNum);
+                    sha.save(function(err,share){
+                        if(err){
+                            res.json({success:0,message:'消赞失败'});
+                        }else{
+                            likeNum=share.likeNum;
+                            User.findOne({_id:req.body.userId})
+                                .exec(function(err,person){
+                                    for(var i=0;i<person.myLikes.shares.length;i++){
+                                        if(person.myLikes.shares[i].toString()==sha._id.toString()){
+                                            person.myLikes.shares.splice(i, 1);
+                                            break;
+                                        }
+                                    }
+                                    person.save(function(err,use){
+                                        if(err){
+                                            res.json({success:0,message:'消赞失败'});
+                                        }else{
+                                            res.json({success:1,isLike:0,likeNum:likeNum,message:'消赞成功'});
+                                        }
+                                    })
+                                })
+                        }
+                    })
+                }
+            })
     }
 }
