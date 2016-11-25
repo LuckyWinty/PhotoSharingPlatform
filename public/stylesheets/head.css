@@ -4,10 +4,13 @@
 	background-color: #a7d1ea;	
 	min-width: 680px;
 }
-#head a{
+#head a,
+#checked a,
+#checked{
 	display: block;
+	cursor: pointer;
 	padding-left: 25px;
-	width:130px;
+	width:135px;
 	color: #fff;
 	opacity: 0.5;
 	font-weight: bold;
@@ -23,7 +26,8 @@
 #new{
 	float: left;
 }
-#personal{
+#personal,
+#checked{
 	float: right;
 }
 #hot{
@@ -34,7 +38,13 @@
 	background: url('/img/new.svg') 0 15px no-repeat;
 	background-size: 15%;
 }
-#personal{
+#personal,
+#checked{
 	background: url('/img/user.svg') 0 15px no-repeat;
 	background-size: 15%;
+}
+#checked a{
+	padding: 0;
+	display: inline-block;
+	width:35px;
 }

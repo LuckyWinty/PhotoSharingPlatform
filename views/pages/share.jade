@@ -19,10 +19,10 @@ block content
             #paragraph=share.content
         #sharerPicture
             //-条件判断图片数量
-        if share.images
-            #picPanel
-                each pic in share.images
-                    img#singlePic(src='/image?imageId=' + pic)
+            if share.images
+                #picPanel
+                    each pic in share.images
+                        img#singlePic(src='/image?imageId=' + pic)
         #sharePanel.clearfix
             #collect
                 span=share.collectionNum
