@@ -11,7 +11,7 @@
         div.user_pic#user_pic_sm
             img(src="/img/user/user.jpg")
         h3.user_name= user.userName
-        a#concern(href="javascript:;") 关注我
+        a#concern(href="javascript:;")= isMyself==false? '关注我':''
         a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
     #result_block

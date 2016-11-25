@@ -23,13 +23,24 @@ db.open(function (err) {
 });
 module.exports.openCenter=function(req,res){
     Share.find({'userId':req.query.userId})
-        .populate('userId')
         .exec(function(error,sha){
             if(error){
                 console.log('.....查找所有分享出错',error);
             }else{
-                console.log('user',sha.user);
-                res.render('user',{'shares':sha,'user':req.session.user,'moment':moment});
+                User.findById(req.query.userId)
+                    .exec(function(err,person){
+                        if(err){
+                            console.log('查找用户失败！');
+                        }else{
+                            var isMyself;
+                            if(!req.session.user){
+                                isMyself=false;
+                            }else{
+                                isMyself=person._id==req.session.user._id?true:false;
+                            }
+                            res.render('user',{'shares':sha,'user':person,'isMyself':isMyself,'moment':moment});
+                        }
+                    })
             }
         })
 }
@@ -71,8 +82,10 @@ module.exports.doDeclare = function (req, res) {
                     }else{
                         User.findById(req.query.userId)
                             .exec(function(err,person){
-                            person.myShares.shares.push(Share._id);
+                                //person.myShares.shares=[];
+                            person.myShares.shares.push(share._id);
                             person.save(function(err,use){
+                                console.log('....发布后的用户！',use.myShares.shares);
                                 if(err){
                                     console.log('....发布失败！');
                                 }else{

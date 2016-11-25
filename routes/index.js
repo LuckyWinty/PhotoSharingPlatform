@@ -5,6 +5,7 @@ var loginCtrl=require('../controllers/loginCtrl');
 var indexCtrl=require('../controllers/indexCtrl');
 var userCtrl=require('../controllers/userCtrl');
 var errorCtrl=require('../controllers/errorCtrl');
+var shareCtrl=require('../controllers/shareCtrl');
 
 /*登录*/
 router.get('/login', function(req, res, next) {
@@ -37,7 +38,7 @@ router.get('/error', function(req, res, next) {
 
 /* 加载分享页 */
 router.get('/share', function(req, res, next) {
-    res.render('share');
+    shareCtrl.doShare(req,res);
 });
 
 /* 发布. */

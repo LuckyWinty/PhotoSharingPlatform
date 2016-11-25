@@ -76,6 +76,14 @@ var shareSchema = new mongoose.Schema({
         ref: 'user', //引用自User Model
         require: true //非空
     },
+    collectionNum:{
+        type:Number,
+        "default":0
+    },
+    likeNum:{
+        type:Number,
+        "default":0
+    },
     comment: [commentSchema] //subDocument，子文档，即该分享的评论
 });
 
