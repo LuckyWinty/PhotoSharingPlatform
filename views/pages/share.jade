@@ -24,15 +24,25 @@ block content
                 each pic in share.images
                     img#singlePic(src='/image?imageId=' + pic)
         #sharePanel.clearfix
-            #collect
-                span=share.collectionNum
+            if info.isCollect == false
+                #collect
+                    span=share.collectionNum
+            else
+                #collect.active
+                    span=share.collectionNum
             #comment
                 span=share.comment.length
-            #praise
-                span=share.likeNum
+            if info.isLike == false
+                #praise
+                    span=share.likeNum
+            else
+                #praise.active
+                    span=share.likeNum
         #share-comment.clearfix
             #share-input(contenteditable=true)
             input.btn.btn-danger.btn-sm(type='button',value='评论')
         include comment
 
-            script(src="/js/head.js")
+    script(src="/js/tools.js")
+    script(src="/js/jquery.min.js")
+    script(src="/js/shareDeail.js")

@@ -46,13 +46,13 @@
 #sharePanel #collect{
 	background-position: 50px -120px; 
 }
-#sharePanel #collect:visited{
+#sharePanel #collect.active{
 	background-position: 50px -160px; 
 }
 #sharePanel #praise{
 	background-position: 50px 0px;
 }
-#sharePanel #praise:hover{
+#sharePanel #praise.active{
 	background-position: 50px -40px;
 }
 #sharePanel #comment{
@@ -87,4 +87,3 @@
 	width: 80px;
 	float: right;
 }
-

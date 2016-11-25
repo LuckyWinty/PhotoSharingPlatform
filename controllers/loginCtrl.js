@@ -12,13 +12,13 @@ module.exports.doLogin = function(req, res){
             console.log(error);
         }else if(person){
             if(person.password!=req.body.password){
-                res.render('error', { error:{type: '密码错误！',message:'请检查密码是否正确！',href:'/login'}});
+                res.render('error', {message:{title: '该用户不存在！请先注册,',link:'/regist'}});
             }else{
                 req.session.user = person;
                 indexCtrl.showIndex(req, res);
             }
         }else{
-            res.render('error', { error:{type: '该用户不存在！',message:'请先注册！',href:'/regist'}});
+            res.render('error', { message:{title: '该用户不存在！请先注册,',link:'/regist'}});
         }
     })
 };
