@@ -4,12 +4,14 @@ var registCtrl=require('../controllers/registCtrl');
 var loginCtrl=require('../controllers/loginCtrl');
 var indexCtrl=require('../controllers/indexCtrl');
 var userCtrl=require('../controllers/userCtrl');
+var errorCtrl=require('../controllers/errorCtrl');
+var shareCtrl=require('../controllers/shareCtrl');
 
 /*登录*/
 router.get('/login', function(req, res, next) {
     res.render('login');
 });
-router.post('/doLogin', function(req, res, next) {
+router.post('/index', function(req, res, next) {
     loginCtrl.doLogin(req,res);
 });
 //注册
@@ -30,13 +32,13 @@ router.get('/user', function(req, res, next) {
 });
 
 /* 加载ceshi */
-router.get('/ceshi', function(req, res, next) {
-    res.render('test');
+router.get('/error', function(req, res, next) {
+    errorCtrl.doError(req,res);
 });
 
 /* 加载分享页 */
 router.get('/share', function(req, res, next) {
-    res.render('share');
+    shareCtrl.doShare(req,res);
 });
 
 /* 发布. */
@@ -52,5 +54,9 @@ router.post('/user', function (req, res) {
     userCtrl.doPortrait(req, res);
 });
 
+//加载后台管理
+router.get('/back', function(req, res, next) {
+    res.render('backstage');
+});
 
 module.exports = router;

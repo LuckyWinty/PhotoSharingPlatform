@@ -5,7 +5,11 @@ var mongoose = require('mongoose');
 var _ = require('underscore');
 require('../models/model');
 var Share = mongoose.model('share');
+<<<<<<< HEAD
 var User = mongoose.model('user');
+=======
+var User=mongoose.model('user');
+>>>>>>> 8b1e9a8d08c2c7b605b1a674caf380572a897027
 
 var fs = require('fs');
 var Busboy = require('busboy');
@@ -14,6 +18,7 @@ var Grid = require('gridfs-stream');
 var db = new mongo.Db('sharePictures', new mongo.Server("127.0.0.1", 27017), {safe: false});
 var gfs;
 var util = require('util');
+var moment=require('moment');
 
 db.open(function (err) {
     if (err) {
@@ -22,14 +27,27 @@ db.open(function (err) {
     gfs = Grid(db, mongo);
 });
 module.exports.openCenter=function(req,res){
-    Share.find({},function(error,sha){
-        if(error){
-            console.log('.....查找所有分享出错',error);
-        }else{
-            console.log('------------------查出来的分享：',sha.length);
-            res.render('user',{'shares':sha});
-        }
-    })
+    Share.find({'userId':req.query.userId})
+        .exec(function(error,sha){
+            if(error){
+                console.log('.....查找所有分享出错',error);
+            }else{
+                User.findById(req.query.userId)
+                    .exec(function(err,person){
+                        if(err){
+                            console.log('查找用户失败！');
+                        }else{
+                            var isMyself;
+                            if(!req.session.user){
+                                isMyself=false;
+                            }else{
+                                isMyself=person._id==req.session.user._id?true:false;
+                            }
+                            res.render('user',{'shares':sha,'user':person,'isMyself':isMyself,'moment':moment});
+                        }
+                    })
+            }
+        })
 }
 
 module.exports.doDeclare = function (req, res) {
@@ -51,24 +69,35 @@ module.exports.doDeclare = function (req, res) {
     }).on('field', function (key, value) {
         body[key] = value;
     }).on('finish', function () {
-        console.log('sucess to upload!');
-        console.log('-----------body: ');
-        console.log(util.inspect(body, {showHidden: false, depth: null}));
+       console.log(util.inspect(body, {showHidden: false, depth: null}));
 
         var sha = new Share;
         sha.content = body.content;
         sha.images.push(fileId);
+        sha.userId=req.query.userId;
 
         sha.save(function (error, share) {
             if (error) {
                 console.log(error);
             } else {
-                Share.find({},function(error,sha){
+                Share.find({'userId':req.query.userId}).sort({created:-1})
+                    .exec(function(error,sha){
                     if(error){
                         console.log('.....查找所有分享出错',error);
                     }else{
-                        console.log('------------------查出来的分享：',sha.length);
-                        res.render('user',{'shares':sha});
+                        User.findById(req.query.userId)
+                            .exec(function(err,person){
+                                //person.myShares.shares=[];
+                            person.myShares.shares.push(share._id);
+                            person.save(function(err,use){
+                                console.log('....发布后的用户！',use.myShares.shares);
+                                if(err){
+                                    console.log('....发布失败！');
+                                }else{
+                                    res.render('user',{'shares':sha,'user':use,'moment':moment});
+                                }
+                            })
+                        })
                     }
                 })
             }

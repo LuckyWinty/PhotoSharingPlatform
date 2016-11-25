@@ -1,35 +1,38 @@
 extends ../layout
 
 block append style
-	link(rel='stylesheet',href='/stylesheets/share.css')
-	link(rel='stylesheet',href='/stylesheets/comment.css')
-	link(rel='stylesheet',href='stylesheets/picture.css')
-	
+    link(rel='stylesheet',href='/stylesheets/share.css')
+    link(rel='stylesheet',href='/stylesheets/comment.css')
+    link(rel='stylesheet',href='stylesheets/picture.css')
+
 block content
-	#share-container.clearfix
-		#sharer.clearfix
-			img(src= '#{headPic}')
-			p#Name #{name} 摄影师么么锐
-			p
-				span#data #{date} 11月16日 
-				span#time #{time} 19:30
-			#paragraph 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！
-		#sharerPicture
-			//-条件判断图片数量
-			include ../includes/picture
-		#sharePanel.clearfix
-			#collect 
-				span 收藏
-			#comment 
-				span 12345
-			#praise 
-				span 12345
-		#share-comment.clearfix
-			#share-input(contenteditable=true)
-			input.btn.btn-danger.btn-sm(type='button',value='评论') 
-		include comment
+    #share-container.clearfix
+        #sharer.clearfix
+            if user.portraitUrl
+                img(src= '#{user.portraitUrl}')
+            else
+                img(src= '../img/user/test4.jpg')
+            p#Name=user.userName
+            p
+                span#data=moment(share.created).format("YYYY-MM-DD HH:mm:ss")
+                //span#time #{time} 19:30
+            #paragraph=share.content
+        #sharerPicture
+            //-条件判断图片数量
+        if share.images
+            #picPanel
+                each pic in share.images
+                    img#singlePic(src='/image?imageId=' + pic)
+        #sharePanel.clearfix
+            #collect
+                span=share.collectionNum
+            #comment
+                span=share.comment.length
+            #praise
+                span=share.likeNum
+        #share-comment.clearfix
+            #share-input(contenteditable=true)
+            input.btn.btn-danger.btn-sm(type='button',value='评论')
+        include comment
 
-		
-
-
-
+            script(src="/js/head.js")

@@ -39,7 +39,7 @@
 #sharePanel #collect,
 #sharePanel #praise,
 #sharePanel #comment{
-	background: url(/img/icon.png) no-repeat;
+	background: url('../img/icon.png') no-repeat;
     background-size: 10%;
     position: relative;
 }
@@ -74,7 +74,7 @@
 #share-input{
 	padding: 2px 5px;
 	margin-bottom:20px; 
-	height: 33px;
+	height: 100px;
 	min-width: 580px;
 	font-size: 16px;
 	line-height: 30px;

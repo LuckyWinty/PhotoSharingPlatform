@@ -9,8 +9,8 @@ if shares
                   .sharing_user_pic
                       img(src='/img/user/user.jpg')
                   .sharing_content
-                      h4.sharing_user_name= 'hhh'
-                      .sharing_time= 'sharing.time'
+                      h4.sharing_user_name= user.userName
+                      .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
                       p.sharing_text= sharing.content
                       if sharing.images
                         #picPanel
@@ -23,7 +23,7 @@ if shares
                                   span
                                       span 赞
                           li
-                              a.comment_block
+                              a(href='/share?shareId=#{sharing._id}').comment_block
                                   span
                                       span 评论
                           li

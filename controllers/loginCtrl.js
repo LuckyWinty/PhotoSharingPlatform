@@ -14,6 +14,7 @@ module.exports.doLogin = function(req, res){
             if(person.password!=req.body.password){
                 res.render('error', { error:{type: '密码错误！',message:'请检查密码是否正确！',href:'/login'}});
             }else{
+                req.session.user = person;
                 indexCtrl.showIndex(req, res);
             }
         }else{

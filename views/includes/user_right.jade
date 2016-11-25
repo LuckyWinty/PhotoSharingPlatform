@@ -7,36 +7,39 @@
 
 
 #rightBar
-  #personInfo_block
-    #personInfo_bg
-    div.user_pic#user_pic_sm
-      img(src="/img/user/user.jpg")
-    h3.user_name 暝暝之钟ing
-    a#concern(href="javascript:;") 关注我
-    a#mask(href="javascript:;") 屏蔽
+    #personInfo_block
+        #personInfo_bg
+        div.user_pic#user_pic_sm
+            img(src="/img/user/user.jpg")
+        h3.user_name= user.userName
+        a#concern(href="javascript:;")= isMyself==false? '关注我':''
+        a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
-  #result_block
-    h4 我的收获
-    ul
-      li
-        .result_number= praise
-        .result_text 赞
-      li
-        .result_number= collect
-        .result_text 收藏
-      li
-        .result_number= comment
-        .result_text 评论
+    #result_block
+        h4 我的收获
+        ul
+            li
+                .result_number= user.myLikes.shares.length
+                .result_text 赞
+            li
+                .result_number= user.myCollections.shares.length
+                .result_text 收藏
+            li
+                .result_number= user.myComments.shares.length
+                .result_text 评论
 
   #focus_block
     h4 我的关注
-    ul
-      each user in focus
-        li
-          a(href="/user/#{user.id}")
-            .focus_user_pic
-              img(src=user.pic)
-            h5= user.name
+    if user.myFocus.users.length > 0
+      ul
+        each u in user.myFocus.users
+          li
+            a(href="/user/#{u._id}")
+              .focus_user_pic
+                img(src=u.pic)
+              h5= u.userName
+    else
+      h5 还没有关注的人！
 
   #motify_block
     h4 修改头像
