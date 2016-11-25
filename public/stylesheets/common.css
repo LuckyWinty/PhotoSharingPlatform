@@ -21,3 +21,26 @@ body{
     top: 63px;
     left: 415px;
 }
+#errorMes{
+	width: 40%;
+	height: 300px;
+	margin:0 auto;
+	position: relative;
+	background: url("/img/error.png") no-repeat 0 0;
+}
+#errorMes h1:first-child{
+	font-size: 25px;
+	color: #d9534f;
+	position: absolute;
+	top: 50px;
+	left:230px;
+}
+#errorMes h1:nth-child(2){
+	font-size: 20px;
+	position: absolute;
+	top: 110px;
+	left: 0px;
+	width: 100%;
+	font-weight: bolder;
+	text-align: center;
+}

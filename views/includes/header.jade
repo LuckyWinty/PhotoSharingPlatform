@@ -7,8 +7,10 @@ div#head
       a#personal(href='/user?userId=#{user._id}' data-userId=user._id)
         <img>个人中心
     else
-      a(href='/login') 登陆
-      a(href='/regist') 注册
+      #checked
+        a(href='/login') 登陆
+        span  / 
+        a(href='/regist') 注册
 block append script
     script(src="/js/head.js")
 

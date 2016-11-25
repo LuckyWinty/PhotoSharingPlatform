@@ -28,6 +28,10 @@
 #share-container #Name{ 
 	font-weight: bold;
 	font-size: 16px;
+	color: #eb7350;
+}
+#sharer #data{
+	color: #c1c1c1;
 }
 #paragraph{
 	margin-left: 100px; 

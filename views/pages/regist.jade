@@ -1,6 +1,7 @@
 block append style
-    link(rel="stylesheet",href="/stylesheets/login.css")
     link(rel="stylesheet",href="/stylesheets/bootstrap.css")
+    link(rel="stylesheet",href="/stylesheets/login.css")
+    
 
 
 #loginblock
@@ -8,8 +9,11 @@ block append style
         form.form-horizontal(method='post',action='/doRegist')
             .form-group
                 label(for="account") 账号
-                input.form-control#account(type="text", name="account")
+                input.form-control#account(type="text", name="account",placeholder="输入账号名字")
             .form-group
                 label(for="password") 密码
-                input.form-control#password(type="password", name="password")
+                input.form-control#password(type="password", name="password",placeholder="输入账号密码")
             button#regist.btn.btn-default(type="submit") 注册
+            p#registError 
+                span 已有账号，直接
+                a(href='/login') 登录
