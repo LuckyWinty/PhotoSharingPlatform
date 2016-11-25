@@ -5,11 +5,7 @@ var mongoose = require('mongoose');
 var _ = require('underscore');
 require('../models/model');
 var Share = mongoose.model('share');
-<<<<<<< HEAD
 var User = mongoose.model('user');
-=======
-var User=mongoose.model('user');
->>>>>>> 8b1e9a8d08c2c7b605b1a674caf380572a897027
 
 var fs = require('fs');
 var Busboy = require('busboy');
