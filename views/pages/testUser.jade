@@ -1,0 +1,7 @@
+extend ../layout
+
+block content
+	h4= user._id
+	h4= user.userName
+	h4= user.password
+	img(src='/image?imageId=' + user.portraitUrl)

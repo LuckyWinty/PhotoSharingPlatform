@@ -141,3 +141,24 @@ div#user_container .result_text {
     font-size: 13px;
     font-weight: normal;
 }
+
+
+/* 修改头像板块 */
+div#user_container div#motify_block {
+    padding: 0 10px 12px;
+}
+div#user_container form.form {
+    text-align: center;
+}
+div#user_container input#InputPic {
+    margin: 7px 0 15px;
+    width: 100%;
+    overflow-x: hidden;
+}
+div#user_container button#btn-submit {
+    width: 70px;
+    font-size: 13px;
+    padding: 0;
+    height: 25px;
+    line-height: 25px;
+}
