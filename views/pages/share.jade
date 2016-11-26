@@ -22,10 +22,20 @@ block content
             #paragraph=share.content
         #sharerPicture
             //-条件判断图片数量
-            if share.images
+            if share.images.length == 1
                 #picPanel
                     each pic in share.images
                         img#singlePic(src='/image?imageId=' + pic)
+            else
+                #picsPanel
+                    each pic,item in share.images
+                        if item == 0
+                            img#singlePic(src='/image?imageId=' + pic)
+                        else
+                            #row
+                                each pic,item in share.images
+                                    if item >= 1
+                                        img#singlePic(src='/image?imageId=' + pic)
         #sharePanel.clearfix
             if info.isCollect == false
                 #collect
