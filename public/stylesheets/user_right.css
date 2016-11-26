@@ -100,6 +100,10 @@ div#user_container .result_text {
 #focus_block{
     padding-bottom: 15px;
 }
+#focus_block h5#sp{
+    margin: 0;
+    text-align: center;
+}
 #focus_block ul{
     margin: 0;
     padding: 0 7px;

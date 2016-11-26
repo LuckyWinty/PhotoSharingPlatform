@@ -1,4 +1,7 @@
 div#user_header
   div.user_pic#user_pic_lg
-    img(src="/img/user/user.jpg")
+    if user.portraitUrl
+        img(src='/image?imageId=' + user.portraitUrl)
+    else
+        img(src='../img/user/user.jpg')
   h3.user_name= user.userName
