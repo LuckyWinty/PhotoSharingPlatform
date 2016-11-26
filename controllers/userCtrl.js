@@ -2,9 +2,10 @@
  * Created by winty on 2016/11/20.
  */
 var mongoose = require('mongoose');
+var _ = require('underscore');
 require('../models/model');
 var Share = mongoose.model('share');
-var User=mongoose.model('user');
+var User = mongoose.model('user');
 
 var fs = require('fs');
 var Busboy = require('busboy');
@@ -126,3 +127,57 @@ module.exports.getImage = function (req, res) {
         readstream.pipe(res);
     });
 };
+
+module.exports.doPortrait = function (req, res) {
+    var busboy = new Busboy({headers: req.headers});
+    var fileId = new mongo.ObjectId();
+    var body = {};
+
+    busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+        // console.log('got file', filename, mimetype, encoding);
+        console.log('got file', fieldname, filename);
+        var writeStream = gfs.createWriteStream({
+            _id: fileId,
+            filename: filename,
+            mode: 'w',
+            content_type: mimetype
+        });
+        file.pipe(writeStream);
+    }).on('field', function (key, value) {
+        body[key] = value;
+    }).on('finish', function () {
+        console.log('sucess to upload!');
+        console.log('-----------body: ');
+        console.log(util.inspect(body, {showHidden: false, depth: null}));
+
+        var u = new Object();
+        u.portraitUrl = fileId;
+        u._id = body._id;  //测试，数据库已存在
+        
+        var _user;
+
+        User.findOne({_id: u._id},function(err,user){
+            if (err) {
+                console.log(err);
+            }
+            _user = _.extend(user,u);
+            _user.save(function(err,user){
+                if (err) {
+                    console.log(err);
+                }
+                //console.log("user.userName" + user.userName);
+                //console.log("user.password" + user.password);
+                //console.log("user._id" + user._id);
+                //console.log("user.portraitUrl" + user.portraitUrl);
+                res.json({
+                    success: 1,
+                    img: user.portraitUrl
+                });
+            })
+        })
+
+    });
+
+    req.pipe(busboy);
+
+}

@@ -4,7 +4,7 @@ div#head
     a#hot
         <img>最热分享
     if user
-      a#personal(href='/user?userId=#{user._id}' data-userId=user._id)
+      a#personal(href='/user?userId=#{user._id}' data-userId='#{user._id}')
         <img>个人中心
     else
       #checked
