@@ -16,10 +16,15 @@ block content
     div#user_container
         include ../includes/user_header
         div#user_content
-            include ../includes/user_left
+            if user._id == sessionUser._id
+                include ../includes/user_left
             div#user_center
-                include ../includes/user_share
-                include ../includes/user_display
+                if user._id == sessionUser._id
+                    include ../includes/user_share
+                if user.isPublic == true
+                    include ../includes/user_display
+                else
+                    h3 空空如也
             include ../includes/user_right
 block script
     script(src='/js/jquery.min.js')

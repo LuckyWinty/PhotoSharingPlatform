@@ -17,9 +17,8 @@ block content
                         img(src='/image?imageId=' + pic)
                     else
                         #row
-                            each pic,item in picture
-                                if item >= 1
-                                    img(src='/image?imageId=' + pic)
+                            if item >= 1
+                                img(src='/image?imageId=' + pic)
 
     input#search.form-control(placeholder="搜索")
     img#searchIcon(src="/img/search.svg")

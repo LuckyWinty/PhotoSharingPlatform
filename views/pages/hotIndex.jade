@@ -1,3 +1,38 @@
-//
-   Created by Administrator on 2016/11/26.
+extends ../layout
+
+block append style
+    link(rel='stylesheet',href='/stylesheets/picture.css')
+    link(rel='stylesheet',href='/stylesheets/index.css')
+
+block content
+    mixin box(picture)
+        if picture.length == 1
+            #picPanel
+                each pic in picture
+                    img#singlePic(src='/image?imageId=' + pic)
+        else
+            #picsPanel
+                each pic,item in picture
+                    if item == 0
+                        img(src='/image?imageId=' + pic)
+                    else
+                        #row
+                            if item >= 1
+                                img(src='/image?imageId=' + pic)
+
+    input#search.form-control(placeholder="搜索")
+    img#searchIcon(src="/img/search.svg")
+    #container.clearfix
+        if shares
+        each list in shares
+            if list.images.length == 1
+                a#box(href='/share?shareId=#{list._id}')
+                    +box(list.images)
+                    #comment= list.content
+            else
+                a#boxes(href='/share?shareId=#{list._id}')
+                    +box(list.images)
+                    #comment= list.content
+
+
 
