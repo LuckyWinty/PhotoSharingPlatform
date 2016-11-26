@@ -38,13 +38,7 @@ module.exports.doShare = function (req, res) {
                             }
                         })
                 }
-                res.render('share', {
-                    'share': sha,
-                    'user': sha.userId,
-                    'info': info,
-                    'moment': moment,
-                    'sessionUser': req.session.user
-                });
+                res.render('share', {'share': sha, 'user': sha.userId, 'info': info, 'moment': moment,'sessionUser':req.session.user});
             }
         })
 }
