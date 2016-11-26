@@ -9,7 +9,7 @@ block content
     #share-container.clearfix
         #sharer.clearfix
             if user.portraitUrl
-                img(src= '#{user.portraitUrl}')
+                img(src= '/image?imageId=#{user.portraitUrl}')
             else
                 img(src= '../img/user/test4.jpg')
             p#Name=user.userName

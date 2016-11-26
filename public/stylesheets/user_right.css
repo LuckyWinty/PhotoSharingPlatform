@@ -59,7 +59,7 @@ div#user_container div#personInfo_block #concern {
     bottom: 7px;
     font-family: 'Arial','Microsoft YaHei';
 }
-div#user_container div#personInfo_block #mask {
+div#user_container div#personInfo_block #ignore {
     color: #808080;
     font-size: 12px;
     position: absolute;

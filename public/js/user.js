@@ -56,4 +56,23 @@ window.onload = function(){
 			$('#input_num')[0].innerHTML = remlen;
 		}
 	})
+
+	$('#ignore').click(function(e){
+		var obj = e.target;
+
+		$.ajax({
+			url: '/user/ignore',
+			type: 'GET',
+			dataType: 'json'
+		})
+		.done(function(results){
+			if (results.success === 1) {
+				if (results.isPublic === true) {
+					obj.innerHTML = "屏蔽";
+				}else {
+					obj.innerHTML = "已屏蔽";
+				}
+			}
+		})
+	})
 }

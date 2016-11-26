@@ -7,8 +7,10 @@
             else
                 img(src='../img/user/user.jpg')
         h3.user_name= user.userName
-        a#concern(href="javascript:;")= isMyself==false? '关注我':''
-        a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
+        if isMyself==false
+            a#concern(href="javascript:;") 关注我
+        else
+            a#ignore(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
     #result_block
         h4 我的收获
@@ -36,9 +38,10 @@
         else
             h5#sp 还没有关注的人！
 
-    #motify_block
-        h4 修改头像
-        form.form#pic_form
-            input(type="hidden",name="_id",value=user._id)
-            input(type="file",id="InputPic", name='portrait')
-            button.btn.btn-default(type="submit")#btn-submit 提交
+    if isMyself==true
+        #motify_block
+            h4 修改头像
+            form.form#pic_form
+                input(type="hidden",name="_id",value=user._id)
+                input(type="file",id="InputPic", name='portrait')
+                button.btn.btn-default(type="submit")#btn-submit 提交
