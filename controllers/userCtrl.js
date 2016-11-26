@@ -178,5 +178,23 @@ module.exports.doPortrait = function (req, res) {
     });
 
     req.pipe(busboy);
+}
 
+module.exports.doIgnore = function(req, res){
+    var userId = req.session.user._id;
+    User.findOne({_id: userId},function(err, user){
+        if (err) {
+            console.log(err);
+        }else {
+            user.isPublic = !user.isPublic;
+            //console.log(user.isPublic);
+            user.save(function(err,user){
+                if (err) {
+                    console.log(err);
+                }else {
+                    res.json({success: 1, isPublic: user.isPublic});
+                }
+            })
+        }
+    })
 }

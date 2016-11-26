@@ -1,4 +1,3 @@
-- var sharings = [{"id":"sfssf1","user_pic":"/img/user/user.jpg","user_name":"暝暝之钟ing","time":"2015-12-02 08:59","content":"#美国总统大选来了#【奥巴马的求职面试】众所周知，奥巴马很快就要失业，年龄已经55岁，上一份工作干了8年都没有升职，这种境况想找一份新工作确实不太容易。为了帮助这位朋友，扣扣熊对他进行了一场模拟面试。。。各种笑点各种梗，非常精彩。L秒拍视频","imgs":["/img/user/test1.jpg","/img/user/test2.jpg","/img/user/test3.jpg","/img/user/test4.jpg","/img/user/test5.jpg","/img/user/test6.jpg"]}, {"id":"sfssf2","user_pic":"/img/user/user.jpg","user_name":"七七ing","time":"2015-12-02 08:59","content":"#美国总统大选来了#【奥巴马的求职面试】众所周知，奥巴马很快就要失业，年龄已经55岁，上一份工作干了8年都没有升职，这种境况想找一份新工作确实不太容易。为了帮助这位朋友，扣扣熊对他进行了一场模拟面试。。。各种笑点各种梗，非常精彩。L秒拍视频","imgs":["/img/user/test1.jpg"]}]
 - var pages = [1,2,3];
 
 if shares
@@ -7,7 +6,11 @@ if shares
             each sharing in shares
                 .sharing_div(id= 'sharing.id')
                     .sharing_user_pic
-                        img(src='/img/user/user.jpg')
+                        // 这里的用户名和用户头像要改
+                        if user.portraitUrl
+                            img(src='/image?imageId=' + user.portraitUrl)
+                        else
+                            img(src='../img/user/user.jpg')
                     .sharing_content
                         h4.sharing_user_name= user.userName
                         .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")

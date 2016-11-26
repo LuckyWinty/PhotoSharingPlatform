@@ -82,6 +82,7 @@ div#user_container .sharing_footer a>span>span {
     line-height: 22px;
     vertical-align: top;
     padding-left: 22px; 
+    cursor: pointer;
 }
 div#user_container .praise_block>span>span{
 	background: url(/img/icon.png) no-repeat;

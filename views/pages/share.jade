@@ -10,7 +10,7 @@ block content
         #sharer.clearfix
             if user.portraitUrl
                 a(href='/user?userId=#{user._id}')
-                  img(src= '#{user.portraitUrl}')
+                    img(src= '/image?imageId=#{user.portraitUrl}')
             else
                 a(href='/user?userId=#{user._id}')
                   img(src= '../img/user/test4.jpg')
