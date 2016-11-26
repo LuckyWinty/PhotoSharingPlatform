@@ -11,7 +11,7 @@ module.exports.doRegist=function(req,res){
         if(error){
             console.log(error);
         }else if(person){
-            res.render('error', { error:{type: '该用户已存在！',message:'直接登录吧！',href:'/login',link:'点我登录'}});
+            res.render('error', { message:{title: '该用户已存在！直接登录吧！',link:'/login'}});
         }else{
             User.create({
                 userName:req.body.account,

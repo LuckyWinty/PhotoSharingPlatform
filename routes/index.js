@@ -54,6 +54,10 @@ router.post('/user', function (req, res) {
     userCtrl.doPortrait(req, res);
 });
 
+//点赞
+router.post('/doLike',function(req,res){
+    shareCtrl.doLike(req,res);
+});
 //加载后台管理
 router.get('/back', function(req, res, next) {
     res.render('backstage');

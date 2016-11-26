@@ -34,13 +34,25 @@
 	margin-right:50px;
 	float: right;
 }
-#loginError{
+#loginError,
+#registError {
 	margin:10px 0 0 50px;
 	width:130px;
 	float: left;
 	color: red;
 	display: none;
 }
+#registError{
+	color: #337ab7;
+	display: block;
+}
+.form-group{
+	margin-bottom: 0;
+}
+#registError a{
+	color:red;
+}
+
 #enroll{
 	display: block;
 	margin-top: 25px;
