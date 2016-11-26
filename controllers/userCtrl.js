@@ -39,7 +39,7 @@ module.exports.openCenter=function(req,res){
                             }else{
                                 isMyself=person._id==req.session.user._id?true:false;
                             }
-                            res.render('user',{'shares':sha,'user':person,'isMyself':isMyself,'moment':moment});
+                            res.render('user',{'shares':sha,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment});
                         }
                     })
             }
@@ -49,14 +49,15 @@ module.exports.openCenter=function(req,res){
 module.exports.doDeclare = function (req, res) {
 
     var busboy = new Busboy({headers: req.headers});
-    var fileId = new mongo.ObjectId();
+    var fileIds = [];
     var body = {};
 
     busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
         // console.log('got file', filename, mimetype, encoding);
+        fileIds.push(new mongo.ObjectId());
         console.log('got file', fieldname, filename);
         var writeStream = gfs.createWriteStream({
-            _id: fileId,
+            _id: fileIds[fileIds.length-1],
             filename: filename,
             mode: 'w',
             content_type: mimetype
@@ -65,11 +66,12 @@ module.exports.doDeclare = function (req, res) {
     }).on('field', function (key, value) {
         body[key] = value;
     }).on('finish', function () {
+        console.log('--------------------finish');
        console.log(util.inspect(body, {showHidden: false, depth: null}));
 
         var sha = new Share;
         sha.content = body.content;
-        sha.images.push(fileId);
+        sha.images.push.apply(sha.images, fileIds);
         sha.userId=req.query.userId;
 
         sha.save(function (error, share) {

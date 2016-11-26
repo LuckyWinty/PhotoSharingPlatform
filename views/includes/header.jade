@@ -1,11 +1,12 @@
 div#head
-    a#new.active
+    a(href='/index')#new.active
         <img>最新分享
     a#hot
         <img>最热分享
-    if user
-      a#personal(href='/user?userId=#{user._id}' data-userId='#{user._id}')
+    if sessionUser
+      a#personal(href='/user?userId=#{sessionUser._id}' data-userId='#{sessionUser._id}')
         <img>个人中心
+      h5 欢迎你#{sessionUser.userName}
     else
       #checked
         a(href='/login') 登陆

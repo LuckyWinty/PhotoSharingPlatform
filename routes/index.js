@@ -31,7 +31,7 @@ router.get('/user', function(req, res, next) {
     userCtrl.openCenter(req, res);
 });
 
-/* 加载ceshi */
+/* 加载error */
 router.get('/error', function(req, res, next) {
     errorCtrl.doError(req,res);
 });
@@ -58,10 +58,17 @@ router.post('/user', function (req, res) {
 router.post('/doLike',function(req,res){
     shareCtrl.doLike(req,res);
 });
+
 //收藏
 router.post('/doCollect',function(req,res){
     shareCtrl.doCollect(req,res);
 });
+
+//评论
+router.post('/doComment',function(req,res){
+    shareCtrl.doComment(req,res);
+})
+
 //加载后台管理
 router.get('/back', function(req, res, next) {
     res.render('backstage');

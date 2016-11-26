@@ -9,10 +9,13 @@ block content
     #share-container.clearfix
         #sharer.clearfix
             if user.portraitUrl
-                img(src= '#{user.portraitUrl}')
+                a(href='/user?userId=#{user._id}')
+                  img(src= '#{user.portraitUrl}')
             else
-                img(src= '../img/user/test4.jpg')
-            p#Name=user.userName
+                a(href='/user?userId=#{user._id}')
+                  img(src= '../img/user/test4.jpg')
+            a(href='/user?userId=#{user._id}')
+              p#Name=user.userName
             p
                 span#data=moment(share.created).format("YYYY-MM-DD HH:mm:ss")
                 //span#time #{time} 19:30
@@ -40,9 +43,10 @@ block content
                     span=share.likeNum
         #share-comment.clearfix
             #share-input(contenteditable=true)
-            input.btn.btn-danger.btn-sm(type='button',value='评论')
+            input#comment-btn.btn.btn-danger.btn-sm(type='button',value='评论')
         include comment
 
     script(src="/js/tools.js")
     script(src="/js/jquery.min.js")
+    script(src='/js/moment.min.js')
     script(src="/js/shareDeail.js")
