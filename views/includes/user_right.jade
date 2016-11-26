@@ -9,11 +9,11 @@
         h3.user_name= user.userName
         if isMyself==false
             a#concern(href="javascript:;") 关注我
-        else
+        if user._id == sessionUser._id
             a#ignore(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
     #result_block
-        h4 我的收获
+        h4 活力度
         ul
             li
                 .result_number= user.myLikes.shares.length
@@ -38,7 +38,7 @@
         else
             h5#sp 还没有关注的人！
 
-    if isMyself==true
+    if user._id == sessionUser._id
         #motify_block
             h4 修改头像
             form.form#pic_form

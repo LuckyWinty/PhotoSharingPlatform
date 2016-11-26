@@ -9,20 +9,33 @@ block content
     #share-container.clearfix
         #sharer.clearfix
             if user.portraitUrl
-                img(src= '/image?imageId=#{user.portraitUrl}')
+                a(href='/user?userId=#{user._id}')
+                    img(src= '/image?imageId=#{user.portraitUrl}')
             else
-                img(src= '../img/user/test4.jpg')
-            p#Name=user.userName
+                a(href='/user?userId=#{user._id}')
+                  img(src= '../img/user/test4.jpg')
+            a(href='/user?userId=#{user._id}')
+              p#Name=user.userName
             p
                 span#data=moment(share.created).format("YYYY-MM-DD HH:mm:ss")
                 //span#time #{time} 19:30
             #paragraph=share.content
         #sharerPicture
             //-条件判断图片数量
-            if share.images
+            if share.images.length == 1
                 #picPanel
                     each pic in share.images
                         img#singlePic(src='/image?imageId=' + pic)
+            else
+                #picsPanel
+                    each pic,item in share.images
+                        if item == 0
+                            img#singlePic(src='/image?imageId=' + pic)
+                        else
+                            #row
+                                each pic,item in share.images
+                                    if item >= 1
+                                        img#singlePic(src='/image?imageId=' + pic)
         #sharePanel.clearfix
             if info.isCollect == false
                 #collect
@@ -40,9 +53,10 @@ block content
                     span=share.likeNum
         #share-comment.clearfix
             #share-input(contenteditable=true)
-            input.btn.btn-danger.btn-sm(type='button',value='评论')
+            input#comment-btn.btn.btn-danger.btn-sm(type='button',value='评论')
         include comment
 
     script(src="/js/tools.js")
     script(src="/js/jquery.min.js")
+    script(src='/js/moment.min.js')
     script(src="/js/shareDeail.js")

@@ -42,3 +42,16 @@
 #boxes #comment:hover{
 	bottom: 85px;
 }
+
+#search{
+	margin: 10px 0 10px 150px;
+	width: 300px;
+	opacity: 0.8;
+}
+#searchIcon{
+	height: 30px;
+    position: absolute;
+    top: 63px;
+    left: 415px;
+    cursor: pointer;
+}

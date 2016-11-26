@@ -1,38 +1,49 @@
 - var pages = [1,2,3];
 
 if shares
-  #user_display
-      #user_display_block
-          each sharing in shares
-              .sharing_div(id= 'sharing.id')
-                  .sharing_user_pic
-                      // 这里的用户名和用户头像要改
-                      if user.portraitUrl
-                          img(src='/image?imageId=' + user.portraitUrl)
-                      else
-                          img(src='../img/user/user.jpg')
-                  .sharing_content
-                      h4.sharing_user_name= user.userName
-                      .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
-                      p.sharing_text= sharing.content
-                      if sharing.images
-                        #picPanel
-                          each pic in sharing.images
-                            img#singlePic(src='/image?imageId=' + pic)
-                  .sharing_footer
-                      ul
-                          li
-                              a.praise_block
-                                  span
-                                      span 赞
-                          li
-                              a(href='/share?shareId=#{sharing._id}').comment_block
-                                  span
-                                      span 评论
-                          li
-                              a.collect_block
-                                  span
-                                      span 收藏
+    #user_display
+        #user_display_block
+            each sharing in shares
+                .sharing_div(id= 'sharing.id')
+                    .sharing_user_pic
+                        // 这里的用户名和用户头像要改
+                        if user.portraitUrl
+                            img(src='/image?imageId=' + user.portraitUrl)
+                        else
+                            img(src='../img/user/user.jpg')
+                    .sharing_content
+                        h4.sharing_user_name= user.userName
+                        .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
+                        p.sharing_text= sharing.content
+                        if sharing.images.length==1
+                            #picPanel
+                                each pic in sharing.images
+                                    img#singlePic(src='/image?imageId=' + pic)
+                        else
+                            #picsPanel
+                                each pic,item in sharing.images
+                                    if item == 0
+                                        img#singlePic(src='/image?imageId=' + pic)
+                                    else
+                                        #row
+                                            each pic,item in sharing.images
+                                                if item >= 1
+                                                    img#singlePic(src='/image?imageId=' + pic)
+
+                    .sharing_footer
+                        ul
+                            li
+                                a.praise_block
+                                    span
+                                        span 赞
+                            li
+                                a(href='/share?shareId=#{sharing._id}').comment_block
+                                    span
+                                        span 评论
+                            li
+                                a.collect_block
+                                    span
+                                        span 收藏
 
 
     #pagination_block
