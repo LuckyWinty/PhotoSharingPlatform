@@ -1,18 +1,10 @@
-- var praise = 35
-- var collect = 20
-- var comment = 15
-- var focus = [{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'},{id: 1, name: '阿拉蕾77', pic: '/img/user/user.jpg'}]
--var user = {userName: '暝暝之钟ing',_id: '5836ecb43b6e671af421e9b2',img: ''}
-
-
-
 #rightBar
     #personInfo_block
         #personInfo_bg
         div.user_pic#user_pic_sm
             img(src="/img/user/user.jpg")
         h3.user_name= user.userName
-        a#concern(href="javascript:;")= isMyself==false? '关注我':''
+        a#concern(href="javascript:;")= isMyself == false ? '关注我' : ''
         a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
     #result_block
@@ -28,22 +20,22 @@
                 .result_number= user.myComments.shares.length
                 .result_text 评论
 
-  #focus_block
+#focus_block
     h4 我的关注
     if user.myFocus.users.length > 0
-      ul
-        each u in user.myFocus.users
-          li
-            a(href="/user/#{u._id}")
-              .focus_user_pic
-                img(src=u.pic)
-              h5= u.userName
+        ul
+            each u in user.myFocus.users
+                li
+                    a(href="/user/#{u._id}")
+                        .focus_user_pic
+                            img(src=u.pic)
+                        h5= u.userName
     else
-      h5 还没有关注的人！
+        h5 还没有关注的人！
 
-  #motify_block
+#motify_block
     h4 修改头像
     form.form#pic_form
-      input(type="hidden",name="_id",value=user._id)
-      input(type="file",id="InputPic", name='portrait')
-      button.btn.btn-default(type="submit")#btn-submit 提交
+        input(type="hidden",name="_id",value=user._id)
+        input(type="file",id="InputPic", name='portrait')
+        button.btn.btn-default(type="submit")#btn-submit 提交

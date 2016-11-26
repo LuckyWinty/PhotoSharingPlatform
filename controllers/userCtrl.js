@@ -39,7 +39,7 @@ module.exports.openCenter=function(req,res){
                             }else{
                                 isMyself=person._id==req.session.user._id?true:false;
                             }
-                            res.render('user',{'shares':sha,'user':person,'isMyself':isMyself,'moment':moment});
+                            res.render('user',{'shares':sha,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment});
                         }
                     })
             }

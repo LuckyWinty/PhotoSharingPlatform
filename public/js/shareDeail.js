@@ -33,7 +33,35 @@ $(function(){
                 }
             }
         })
+    })
+    //评论
+    $('#comment-btn').click(function(){
+        var comment=$('#share-input');
+        var userid=$('#personal').attr('data-userid');
 
+        $.ajax({
+            url:'/doComment',
+            type:'post',
+            data:{
+                comment:comment.text(),
+                shareId:getParam.shareId,
+                userId:userid
+            },
+            success:function(data){
+              if(data.success==1){
+                  comment.text('');
+                  var commentHTML='<div id="discussList" class="clearfix">'+
+                      '<div id="discussContent" class="clearfix">'+
+                      '<img src="/img/woman.png">'+
+                      '<strong>'+data.user.userName+'</strong>'+data.comment.content+
+                      '</div><div id="discussDetail">'+
+                      '<span>'+moment(data.comment.created).format("YYYY-MM-DD HH:mm:ss")+'</span>'+
+                      '<a class="reply">回复</a></div></div>';
+                  $('#discussion').append(commentHTML);
+              }
+
+            }
+        })
     })
 
 })

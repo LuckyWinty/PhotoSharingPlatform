@@ -1,14 +1,12 @@
--var persons=[{id:'12345',headPic:'/img/woman.png',name:'jade',date:'11月16日',time:'11:59',comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'},{id:'123',headPic:'/img/woman.png',name:'jade',date:'11月16日',time:'11:59',comment:': 感叹人生逝去的快。纵是千万般不舍。却是百般中无奈。行进中的我和家人的人生。就不能过得犹豫马虎。之前一同学的签名“每天死一点”。虽然消极晦暗却是不争的事实。眼前身边的种种。必要万般珍惜起来了。逝者如斯夫！'}]
-				mixin discuss(headPic,name,comment,date,time,id)
-						#discussList.clearfix
-							#discussContent.clearfix
-								<img src= '#{headPic}'/>
-								<strong> #{name}</strong> #{comment}
-							#discussDetail
-								span #{date}
-								span #{time}
-								a(id= '#{id}') 回复
-		#discussion
-			if persons
-				each person in persons
-					+discuss(person.headPic,person.name,person.comment,person.date,person.time,person.id)
+mixin discuss(comment,user)
+    #discussList.clearfix
+        #discussContent.clearfix
+            <img src= '#{headPic}'/>
+            <strong> #{comment.userId.userName}</strong> #{comment.content}
+        #discussDetail
+            span= moment(comment.created).format("YYYY-MM-DD HH:mm:ss")
+            a(id= '#{id}') 回复
+#discussion
+    if share.comment
+        each comment in share.comment
+            +discuss(comment,user)
