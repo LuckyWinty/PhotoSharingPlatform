@@ -1,6 +1,6 @@
 #share-container{
 	margin: 0 auto;
-	width: 66%;
+	width: 50%;
 	min-width: 680px;
 	background-color: rgba(242,242,245,0.7);
 }
@@ -44,23 +44,23 @@
 #sharePanel #praise,
 #sharePanel #comment{
 	background: url('../img/icon.png') no-repeat;
-    background-size: 10%;
+    background-size: 25px;
     position: relative;
 }
 #sharePanel #collect{
-	background-position: 50px -120px; 
+	background-position: 50px -150px; 
 }
 #sharePanel #collect.active{
-	background-position: 50px -160px; 
+	background-position: 50px -200px; 
 }
 #sharePanel #praise{
 	background-position: 50px 0px;
 }
 #sharePanel #praise.active{
-	background-position: 50px -40px;
+	background-position: 50px -50px;
 }
 #sharePanel #comment{
-	background-position: 50px -80px;
+	background-position: 50px -100px;
 }
 #sharePanel #collect,
 #sharePanel #comment{

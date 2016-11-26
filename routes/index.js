@@ -62,6 +62,10 @@ router.post('/doLike',function(req,res){
 router.post('/doComment',function(req,res){
     shareCtrl.doComment(req,res);
 })
+//收藏
+router.post('/doCollect',function(req,res){
+    shareCtrl.doCollect(req,res);
+});
 //加载后台管理
 router.get('/back', function(req, res, next) {
     res.render('backstage');

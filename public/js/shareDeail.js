@@ -64,4 +64,36 @@ $(function(){
         })
     })
 
+    $('#collect').click(function(){
+        var collect=$('#collect');
+        var isCollect;
+        var userid=$('#personal').attr("data-userid");
+        if($(this).hasClass("active")){
+            isCollect='0';
+        }else{
+            isCollect='1';
+        }
+        $.ajax({
+            url:'/doCollect',
+            type:'post',
+            data:{
+                isCollect:isCollect,
+                shareId:getParam.shareId,
+                userId:userid
+            },
+            success:function(data){
+                console.log(data.isCollect);
+                if(data.success==1){
+                    if(data.isCollect==1){
+                        collect.addClass('active');
+                    }else{
+                        collect.removeClass('active');
+                    }
+                    collect.find('span').text(data.CollectNum);
+                }
+            }
+
+        })    
+    })
+
 })

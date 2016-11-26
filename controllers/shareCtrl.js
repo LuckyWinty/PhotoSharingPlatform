@@ -145,3 +145,84 @@ module.exports.doComment = function (req, res) {
             }
         })
 }
+//收藏
+module.exports.doCollect=function(req,res){
+  var collectionNum=0;
+  if(req.body.isCollect=='1'){
+    Share.findById({'_id':req.body.shareId})
+      .exec(function(err,sha){
+        if(err){
+          console.log("111111111");
+          res.json({success:0,message:'收藏失败'});
+        }else{
+          collectionNum=sha.collectionNum;
+          sha.collectionNum=++collectionNum;
+          console.log('sha.collectionNum',sha.collectionNum);
+          sha.save(function(err,share){
+            if(err){
+              res.json({success:0,message:'收藏失败'});
+            }else{
+              collectionNum=share.collectionNum;
+              User.findOne({_id:req.body.userId})
+                .exec(function(err,user){
+                  // if(err){
+                  //   res.json({success:0,message:'收藏失败'});
+                  // }
+                  // else{
+                    user.myCollections.shares.push(req.body.shareId);
+                    user.save(function(err,user){
+                      if(err){
+                        res.json({success:0,message:'收藏失败'});
+                      }
+                      else{
+                        res.json({success:1,isCollect:1,CollectNum:collectionNum,message:'收藏成功'});
+                      }
+                    })
+                  // }
+                })
+            }
+          })
+        }
+      })
+  }
+  else{
+    Share.findById({'_id':req.body.shareId})
+      .exec(function(err,sha){
+        if(err){
+          res.json({success:0,message:'取消收藏失败'});
+        }else{
+          sha.collectionNum--;
+          console.log('zijian'+sha.collectionNum);
+          console.log('jianchenggong');
+          sha.save(function(err,share){
+            if(err){
+              res.json({success:0,message:'取消收藏失败'});
+            }else{
+              collectionNum=share.collectionNum;
+              User.findOne({_id:req.body.userId})
+                .exec(function(err,user){
+                  // if(err){
+                  //   res.json({success:0,message:'取消收藏失败'});
+                  // }else{
+                    for(var i=0;i<user.myCollections.shares.length;i++){
+                      if(user.myCollections.shares[i].toString()==req.body.shareId.toString()){
+                        user.myCollections.shares.splice(i,1);
+                        break;
+                      }
+                    }
+                    user.save(function(err,user){
+                      if(err){
+                        res.json({success:0,message:'取消收藏失败'});
+                      }else{
+                        res.json({success:1,isCollect:0,CollectNum:collectionNum,message:'取消收藏成功'});
+                      }
+                    })
+                  // }
+                })
+            }
+          })
+        }
+      })
+
+  }
+}
