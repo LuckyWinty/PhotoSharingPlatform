@@ -1,7 +1,7 @@
 mixin discuss(comment,user)
     #discussList.clearfix
         #discussContent.clearfix
-            <img src= '#{headPic}'/>
+            img(src='/image?imageId=#{comment.userId.portraitUrl}')
             <strong> #{comment.userId.userName}</strong> #{comment.content}
         #discussDetail
             span= moment(comment.created).format("YYYY-MM-DD HH:mm:ss")

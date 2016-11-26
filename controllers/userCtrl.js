@@ -23,6 +23,36 @@ db.open(function (err) {
     gfs = Grid(db, mongo);
 });
 module.exports.openCenter=function(req,res){
+    function isLiked(shareId){
+        if(req.session.user){
+            User.findById(req.query.userId)
+                .exec(function(err,person){
+                    var myLikes=person.myLikes.shares;
+                    for(var i=0;i<myLikes.length;i++){
+                        if(shareId.toString()==myLikes[i].toString){
+                            return true;
+                        }
+                    }
+                })
+        }else{
+            return false;
+        }
+    }
+    function isCollected(shareId){
+        if(req.session.user){
+            User.findById(req.query.userId)
+                .exec(function(err,person){
+                    var myLikes=person.myLikes.shares;
+                    for(var i=0;i<myLikes.length;i++){
+                        if(shareId.toString()==myLikes[i].toString){
+                            return true;
+                        }
+                    }
+                })
+        }else{
+            return false;
+        }
+    }
     Share.find({'userId':req.query.userId})
         .exec(function(error,sha){
             if(error){
@@ -39,7 +69,7 @@ module.exports.openCenter=function(req,res){
                             }else{
                                 isMyself=person._id==req.session.user._id?true:false;
                             }
-                            res.render('user',{'shares':sha,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment});
+                            res.render('user',{'shares':sha,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                         }
                     })
             }

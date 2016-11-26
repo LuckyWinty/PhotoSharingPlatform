@@ -15,7 +15,7 @@ if shares
                         h4.sharing_user_name= user.userName
                         .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
                         p.sharing_text= sharing.content
-                        if sharing.images.length==1
+                        if sharing.images.length == 1
                             #picPanel
                                 each pic in sharing.images
                                     img#singlePic(src='/image?imageId=' + pic)
@@ -33,17 +33,27 @@ if shares
                     .sharing_footer
                         ul
                             li
-                                a.praise_block
-                                    span
-                                        span 赞
+                                if isLiked(sharing._id) == false
+                                    a.praise_block
+                                        span
+                                            span 赞(#{sharing.likeNum})
+                                else
+                                    a.praise_block.active
+                                        span
+                                            span 赞(#{sharing.likeNum})
                             li
                                 a(href='/share?shareId=#{sharing._id}').comment_block
                                     span
-                                        span 评论
+                                        span 评论(#{sharing.comment.length})
                             li
-                                a.collect_block
-                                    span
-                                        span 收藏
+                                if isCollected(sharing._id) == false
+                                    a.collect_block
+                                        span
+                                            span 收藏(#{sharing.collectionNum})
+                                else
+                                    a.collect_block.active
+                                        span
+                                            span 收藏(#{sharing.collectionNum})
 
 
     #pagination_block
