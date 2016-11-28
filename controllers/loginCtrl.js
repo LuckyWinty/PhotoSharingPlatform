@@ -11,8 +11,10 @@ module.exports.doLogin = function(req, res){
         if(error){
             console.log(error);
         }else if(person){
+            console.log(person);
             if(person.password!=req.body.password){
-                res.render('error', {message:{title: '该用户不存在！请先注册,',link:'/regist'}});
+                //res.render('error', {message:{title: '该用户不存在！请先注册,',link:'/regist'}});
+                res.render('error', {message:{title: '密码不正确！请再次登录,',link:'/login'}});
             }else{
                 req.session.user = person;
                 indexCtrl.showIndex(req, res);

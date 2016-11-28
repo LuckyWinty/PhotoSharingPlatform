@@ -40,7 +40,23 @@ div#user_container div#user_content {
 }
 
 /* 中间模块 */
+div#user_container div#user_center.sp {
+    margin: 0 210px 0 0px;
+}
 div#user_container div#user_center {
     margin: 0 210px 0 160px;
 }
 
+/* 空白模块 */
+div#user_display.sp {
+    height: 380px;
+    background-color: #ffffff;
+    color: #333;
+    text-align: center;
+    font-size: 28px;
+    letter-spacing: 2px;
+    line-height: 380px;
+}
+div#user_display.sp.sp1 {
+    margin-top: 10px; 
+}

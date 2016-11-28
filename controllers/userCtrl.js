@@ -24,22 +24,51 @@ db.open(function (err) {
 });
 module.exports.openCenter=function(req,res){
     Share.find({'userId':req.query.userId})
+        .sort({'created': -1})
+        .populate('userId')
         .exec(function(error,sha){
             if(error){
                 console.log('.....查找所有分享出错',error);
             }else{
+                var shareArr = [];
+                sha.forEach(function(item,index){
+                    if (item.userId.isPublic == true || req.session.user._id == item.userId._id) {
+                        shareArr.push(item);
+                    }
+                })
+
                 User.findById(req.query.userId)
                     .exec(function(err,person){
                         if(err){
                             console.log('查找用户失败！');
                         }else{
+
                             var isMyself;
                             if(!req.session.user){
                                 isMyself=false;
                             }else{
                                 isMyself=person._id==req.session.user._id?true:false;
                             }
-                            res.render('user',{'shares':sha,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment});
+
+                            if (isMyself == false && req.session.user) {
+                                var isConcern = false;
+                                
+                                User.findById(req.session.user._id)
+                                .exec(function(err,u){
+                                    if (err) { console.log(err) }
+                                    else{
+                                        for (var i = u.myFocus.users.length - 1; i >= 0; i--) {
+                                            if (u.myFocus.users[i]._id.toString() === person._id.toString()) {
+                                                isConcern = true;
+                                                break;
+                                            }
+                                        }
+                                    }
+                                    res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isConcern':isConcern});
+                                })
+                            }else {
+                                res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment});
+                            }
                         }
                     })
             }
@@ -195,6 +224,199 @@ module.exports.doIgnore = function(req, res){
                     res.json({success: 1, isPublic: user.isPublic});
                 }
             })
+        }
+    })
+}
+
+module.exports.doFocus = function(req, res){
+    if (req.session.user) {
+        var sessionId = req.session.user._id;
+        var isConcern = req.body.isConcern;
+        var userId = req.body.userId;
+        //console.log(sessionId);
+        //console.log(userId);
+        //console.log(isConcern);
+        //console.log(typeof isConcern);
+
+        if (isConcern == "true") {
+            User.findById(sessionId)
+            .exec(function(err,person){
+                console.log(person.myFocus.users);
+                if (err) {
+                    res.json({"success": 0, "message": "找不到登录用户"});
+                }else{    
+                    for (var i = person.myFocus.users.length - 1; i >= 0; i--) {
+                        if (person.myFocus.users[i]._id.toString() === userId.toString()) {
+                            person.myFocus.users.splice(i,1);
+                            break;
+                        }
+                    }
+                    person.save(function(err, person){
+                        if (err) {
+                            res.json({"success": 0, "message": "取消关注失败"});
+                        }else {
+                            res.json({"success": 1, "isConcern": false, "message": "取消关注成功"})
+                        }
+                    })
+                }
+            })
+        }else {
+            User.findById(sessionId)
+            .exec(function(err,person){
+                console.log(person.myFocus.users);
+                if (err) {
+                    res.json({"success": 0, "message": "找不到登录用户"});
+                }else {                   
+                    User.findById(userId)
+                    .exec(function(err,u){
+                        person.myFocus.users.push(u);
+
+                        person.save(function(err, person){
+                            if (err) {
+                                res.json({"success": 0, "message": "关注失败"});
+                            }else {
+                                res.json({"success": 1, "isConcern": true, "message": "关注成功"})
+                            }
+                        })
+                    })
+                    
+                }
+            })
+        }
+    }else {
+        res.json({"success": 0, "message": "尚未登录"});
+    }
+}
+
+
+module.exports.doMyShare = function(req, res){
+    if (req.session.user) {
+        User.findById(req.session.user._id)
+        .populate('myShares.shares')
+        .exec(function(err, user){
+            if (err) { console.log(err); }
+
+            var shareArr = [];
+            var sharesArr = [];
+            //console.log("test77---------------");
+
+            shareArr = user.myShares.shares.slice(0); 
+            if (shareArr.length == 0) {
+                User.findById(req.session.user._id)
+                .exec(function(err, u){
+                    if (err) { console.log(err); }
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                })
+            }else {
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+            }
+        })
+    }else {
+        res.render('error', {message:{title: '用户登录超时，请再次登录！',link:'/login'}});
+    }  
+}
+
+module.exports.doMyLike = function(req, res){
+    if (req.session.user) {
+        User.findById(req.session.user._id)
+        .populate('myLikes.shares')
+        .exec(function(err, user){
+            if (err) { console.log(err); }
+
+            var shareArr = [];
+            var sharesArr = [];
+            console.log("test77---------------");
+
+            shareArr = user.myLikes.shares.slice(0); 
+            if (shareArr.length == 0) {
+                User.findById(req.session.user._id)
+                .exec(function(err, u){
+                    if (err) { console.log(err); }
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                })
+            }else {
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+            }
+        })
+    }else {
+        res.render('error', {message:{title: '用户登录超时，请再次登录！',link:'/login'}});
+    }  
+}
+
+module.exports.doMyCollection = function(req, res){
+    if (req.session.user) {
+        User.findById(req.session.user._id)
+        .populate('myCollections.shares')
+        .exec(function(err, user){
+            if (err) { console.log(err); }
+
+            var shareArr = [];
+            var sharesArr = [];
+            console.log("test77---------------");
+
+            shareArr = user.myCollections.shares.slice(0); 
+            if (shareArr.length == 0) {
+                User.findById(req.session.user._id)
+                .exec(function(err, u){
+                    if (err) { console.log(err); }
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                })
+            }else {
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+            }
+        })
+    }else {
+        res.render('error', {message:{title: '用户登录超时，请再次登录！',link:'/login'}});
+    }  
+}
+
+module.exports.doMyComment = function(req, res){
+    if (req.session.user) {
+        User.findById(req.session.user._id)
+        .populate('myComments.shares')
+        .exec(function(err, user){
+            if (err) { console.log(err); }
+
+            var shareArr = [];
+            var sharesArr = [];
+            console.log("test77---------------");
+
+            shareArr = user.myComments.shares.slice(0); 
+            if (shareArr.length == 0) {
+                User.findById(req.session.user._id)
+                .exec(function(err, u){
+                    if (err) { console.log(err); }
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                })
+            }else {
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+            }
+        })
+    }else {
+        res.render('error', {message:{title: '用户登录超时，请再次登录！',link:'/login'}});
+    }  
+}
+
+function dealModule(shareArr,sharesArr,index,req,res){
+    User.findById(shareArr[index].userId)
+    .exec(function(err, user){
+        if (err) { console.log(err); }
+        
+        if (user.isPublic == true || req.session.user._id == user._id) {
+            shareArr[index].userId = user;
+            sharesArr.push(shareArr[index]);
+        }
+
+        if (index == 0) {
+            //console.log('test77*****************');
+            //console.log(sharesArr);
+            User.findById(req.session.user._id)
+            .exec(function(err, u){
+                if (err) { console.log(err); }
+                res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+            })    
+        }else{
+            dealModule(shareArr,sharesArr,index-1,req,res);
         }
     })
 }

@@ -28,7 +28,7 @@ var userSchema = new mongoose.Schema({
         "default":[]
     },
     myFocus:{
-        users:[{type:mongoose.Schema.ObjectId,ref:'share'}],
+        users:[this],
         "default":[]
     },
     myCollections:{

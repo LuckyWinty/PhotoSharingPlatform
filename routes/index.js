@@ -78,6 +78,27 @@ router.get('/back', function(req, res, next) {
 router.get('/user/ignore',function(req,res){
     userCtrl.doIgnore(req,res);
 });
+//关注处理
+router.post('/user/focus',function(req,res){
+    userCtrl.doFocus(req,res);
+});
+//myShare板块跳转处理
+router.get('/user/myShare',function(req,res){
+    userCtrl.doMyShare(req,res);
+});
+//myLike板块跳转处理
+router.get('/user/myLike',function(req,res){
+    userCtrl.doMyLike(req,res);
+});
+//myCollection板块跳转处理
+router.get('/user/myCollection',function(req,res){
+    userCtrl.doMyCollection(req,res);
+});
+//myComment板块跳转处理
+router.get('/user/myComment',function(req,res){
+    userCtrl.doMyComment(req,res);
+});
+
 
 
 module.exports = router;
