@@ -23,6 +23,36 @@ db.open(function (err) {
     gfs = Grid(db, mongo);
 });
 module.exports.openCenter=function(req,res){
+    function isLiked(shareId){
+        if(req.session.user){
+            User.findById(req.query.userId)
+                .exec(function(err,person){
+                    var myLikes=person.myLikes.shares;
+                    for(var i=0;i<myLikes.length;i++){
+                        if(shareId.toString()==myLikes[i].toString){
+                            return true;
+                        }
+                    }
+                })
+        }else{
+            return false;
+        }
+    }
+    function isCollected(shareId){
+        if(req.session.user){
+            User.findById(req.query.userId)
+                .exec(function(err,person){
+                    var myLikes=person.myLikes.shares;
+                    for(var i=0;i<myLikes.length;i++){
+                        if(shareId.toString()==myLikes[i].toString){
+                            return true;
+                        }
+                    }
+                })
+        }else{
+            return false;
+        }
+    }
     Share.find({'userId':req.query.userId})
         .sort({'created': -1})
         .populate('userId')
@@ -64,10 +94,10 @@ module.exports.openCenter=function(req,res){
                                             }
                                         }
                                     }
-                                    res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isConcern':isConcern});
+                                    res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isConcern':isConcern,'isLiked':isLiked,'isCollected':isCollected});
                                 })
                             }else {
-                                res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment});
+                                res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                             }
                         }
                     })
@@ -76,7 +106,36 @@ module.exports.openCenter=function(req,res){
 }
 
 module.exports.doDeclare = function (req, res) {
-
+    function isLiked(shareId){
+        if(req.session.user){
+            User.findById(req.query.userId)
+                .exec(function(err,person){
+                    var myLikes=person.myLikes.shares;
+                    for(var i=0;i<myLikes.length;i++){
+                        if(shareId.toString()==myLikes[i].toString){
+                            return true;
+                        }
+                    }
+                })
+        }else{
+            return false;
+        }
+    }
+    function isCollected(shareId){
+        if(req.session.user){
+            User.findById(req.query.userId)
+                .exec(function(err,person){
+                    var myLikes=person.myLikes.shares;
+                    for(var i=0;i<myLikes.length;i++){
+                        if(shareId.toString()==myLikes[i].toString){
+                            return true;
+                        }
+                    }
+                })
+        }else{
+            return false;
+        }
+    }
     var busboy = new Busboy({headers: req.headers});
     var fileIds = [];
     var body = {};
@@ -118,7 +177,7 @@ module.exports.doDeclare = function (req, res) {
                                 if(err){
                                     console.log('....发布失败！');
                                 }else{
-                                    res.render('user',{'shares':sha,'user':use,sessionUser:req.session.user,'moment':moment});
+                                    res.render('user',{'shares':sha,'user':use,sessionUser:req.session.user,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                                 }
                             })
                         })

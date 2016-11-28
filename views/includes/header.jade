@@ -4,9 +4,9 @@ div#head
     a(href='/hotIndex')#hot
         <img>最热分享
     if sessionUser
-      h5 欢迎你#{sessionUser.userName}
       a#personal(href='/user?userId=#{sessionUser._id}' data-userId='#{sessionUser._id}')
         <img>个人中心
+      h5 欢迎你#{sessionUser.userName}
     else
       #checked
         a(href='/login') 登陆

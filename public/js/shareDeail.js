@@ -29,7 +29,7 @@ $(function(){
                     }else{
                         praise.removeClass('active');
                     }
-                    praise.find('span').text(data.likeNum);
+                    praise.find('span').text('赞('+data.likeNum+')');
                 }else{
                     alert(data.message);
                 }
@@ -38,6 +38,7 @@ $(function(){
     })
     //评论
     $('#comment-btn').click(function(){
+        var commentN=$('#comment>span').attr('data-num');
         var comment=$('#share-input');
         var userid=$('#personal').attr('data-userid');
 
@@ -54,12 +55,14 @@ $(function(){
                   comment.text('');
                   var commentHTML='<div id="discussList" class="clearfix">'+
                       '<div id="discussContent" class="clearfix">'+
-                      '<img src="/img/woman.png">'+
-                      '<strong>'+data.user.userName+'</strong>'+data.comment.content+
+                      '<a href="/user?userId='+data.user._id+'"><img src="/image?imageId=' + data.user.portraitUrl+'")</a>'+
+                      '<a href="/user?userId='+data.user._id+'"><strong>'+data.user.userName+'</strong></a>'+data.comment.content+
                       '</div><div id="discussDetail">'+
                       '<span>'+moment(data.comment.created).format("YYYY-MM-DD HH:mm:ss")+'</span>'+
                       '<a class="reply">回复</a></div></div>';
                   $('#discussion').append(commentHTML);
+                  commentN++;
+                  $('#comment>span').text('评论('+commentN+')');
               }else{
                   alert(data.message);
               }
@@ -93,7 +96,7 @@ $(function(){
                     }else{
                         collect.removeClass('active');
                     }
-                    collect.find('span').text(data.CollectNum);
+                    collect.find('span').text('收藏('+data.CollectNum+')');
                 }else{
                     alert(data.message);
                 }

@@ -39,18 +39,18 @@ block content
         #sharePanel.clearfix
             if info.isCollect == false
                 #collect
-                    span=share.collectionNum
+                    span 收藏(#{share.collectionNum})
             else
                 #collect.active
-                    span=share.collectionNum
+                    span 收藏(#{share.collectionNum})
             #comment
-                span=share.comment.length
+                span(data-num='#{share.comment.length}') 评论(#{share.comment.length})
             if info.isLike == false
                 #praise
-                    span=share.likeNum
+                    span 赞(#{share.likeNum})
             else
                 #praise.active
-                    span=share.likeNum
+                    span 赞(#{share.likeNum})
         #share-comment.clearfix
             #share-input(contenteditable=true)
             input#comment-btn.btn.btn-danger.btn-sm(type='button',value='评论')

@@ -1,8 +1,16 @@
 #head{
-	padding: 0 100px;
+	padding: 10px 0px;
 	overflow: hidden;
-	background-color: #a7d1ea;	
+/*	background-color: #a7d1ea;	*/
+	margin:0 150px;
 	min-width: 680px;
+	height: 70px;
+	color: #fff;
+}
+#head h5{
+	height: 50px;
+    line-height: 50px;
+    margin: 0 20px;
 }
 #head a,
 #checked a,
@@ -13,9 +21,10 @@
 	width:135px;
 	color: #fff;
 	opacity: 0.5;
-	font-weight: bold;
+	font-weight: bolder;
 	line-height: 50px; 
 	letter-spacing: 3px;
+	font-size: 18px;
 	text-decoration: none;
 	transition:all 0.5s; 
 }
@@ -27,21 +36,22 @@
 	float: left;
 }
 #personal,
-#checked{
+#checked,
+#head h5{
 	float: right;
 }
 #hot{
 	background: url('/img/fire.svg') 0 15px no-repeat;
-	background-size: 15%;
+	background-size: 20px;
 }
 #new{
 	background: url('/img/new.svg') 0 15px no-repeat;
-	background-size: 15%;
+	background-size: 20px;
 }
 #personal,
 #checked{
 	background: url('/img/user.svg') 0 15px no-repeat;
-	background-size: 15%;
+	background-size: 20px;
 }
 #checked a{
 	padding: 0;
