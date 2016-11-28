@@ -32,7 +32,7 @@ if shares.length>0
 
                     .sharing_footer
                         ul
-                            li
+                            li(dat='#{isLiked(sharing._id)}')
                                 if isLiked(sharing._id) == false
                                     a.praise_block
                                         span

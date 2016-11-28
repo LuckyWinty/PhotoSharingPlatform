@@ -22,33 +22,36 @@ db.open(function (err) {
     }
     gfs = Grid(db, mongo);
 });
+
 module.exports.openCenter=function(req,res){
+    var person_={};
+    User.findById(req.session.user._id)
+        .exec(function(err,perso){
+            person_=perso;
+     })
     function isLiked(shareId){
         if(req.session.user){
-            User.findById(req.query.userId)
-                .exec(function(err,person){
-                    var myLikes=person.myLikes.shares;
-                    for(var i=0;i<myLikes.length;i++){
-                        if(shareId.toString()==myLikes[i].toString){
-                            return true;
-                        }
-                    }
-                })
+            var myLikes=person_.myLikes.shares;
+
+            for(var i=0;i<myLikes.length;i++){
+                if(shareId.toString()==myLikes[i].toString()){
+                    return true;
+                }
+            }
+            return false;
         }else{
             return false;
         }
     }
     function isCollected(shareId){
         if(req.session.user){
-            User.findById(req.query.userId)
-                .exec(function(err,person){
-                    var myLikes=person.myLikes.shares;
-                    for(var i=0;i<myLikes.length;i++){
-                        if(shareId.toString()==myLikes[i].toString){
-                            return true;
-                        }
-                    }
-                })
+            var myCollections=person_.myCollections.shares;
+            for(var i=0;i<myCollections.length;i++){
+                if(shareId.toString()==myCollections[i].toString()){
+                    return true;
+                }
+            }
+            return false;
         }else{
             return false;
         }
@@ -106,36 +109,39 @@ module.exports.openCenter=function(req,res){
 }
 
 module.exports.doDeclare = function (req, res) {
+    var person_={};
+    User.findById(req.session.user._id)
+        .exec(function(err,perso){
+            person_=perso;
+     })
     function isLiked(shareId){
         if(req.session.user){
-            User.findById(req.query.userId)
-                .exec(function(err,person){
-                    var myLikes=person.myLikes.shares;
-                    for(var i=0;i<myLikes.length;i++){
-                        if(shareId.toString()==myLikes[i].toString){
-                            return true;
-                        }
-                    }
-                })
+            var myLikes=person_.myLikes.shares;
+
+            for(var i=0;i<myLikes.length;i++){
+                if(shareId.toString()==myLikes[i].toString()){
+                    return true;
+                }
+            }
+            return false;
         }else{
             return false;
         }
     }
     function isCollected(shareId){
         if(req.session.user){
-            User.findById(req.query.userId)
-                .exec(function(err,person){
-                    var myLikes=person.myLikes.shares;
-                    for(var i=0;i<myLikes.length;i++){
-                        if(shareId.toString()==myLikes[i].toString){
-                            return true;
-                        }
-                    }
-                })
+            var myCollections=person_.myCollections.shares;
+            for(var i=0;i<myCollections.length;i++){
+                if(shareId.toString()==myCollections[i].toString()){
+                    return true;
+                }
+            }
+            return false;
         }else{
             return false;
         }
     }
+
     var busboy = new Busboy({headers: req.headers});
     var fileIds = [];
     var body = {};
@@ -350,6 +356,40 @@ module.exports.doFocus = function(req, res){
 
 module.exports.doMyShare = function(req, res){
     if (req.session.user) {
+        var person_={};
+        User.findById(req.session.user._id)
+            .exec(function(err,perso){
+                person_=perso;
+         })
+        function isLiked(shareId){
+            if(req.session.user){
+                var myLikes=person_.myLikes.shares;
+
+                for(var i=0;i<myLikes.length;i++){
+                    if(shareId.toString()==myLikes[i].toString()){
+                        return true;
+                    }
+                }
+                return false;
+            }else{
+                return false;
+            }
+        }
+        function isCollected(shareId){
+            if(req.session.user){
+                var myCollections=person_.myCollections.shares;
+                for(var i=0;i<myCollections.length;i++){
+                    if(shareId.toString()==myCollections[i].toString()){
+                        return true;
+                    }
+                }
+                return false;
+            }else{
+                return false;
+            }
+        }
+
+
         User.findById(req.session.user._id)
         .populate('myShares.shares')
         .exec(function(err, user){
@@ -364,7 +404,7 @@ module.exports.doMyShare = function(req, res){
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                 })
             }else {
                 dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
@@ -377,6 +417,39 @@ module.exports.doMyShare = function(req, res){
 
 module.exports.doMyLike = function(req, res){
     if (req.session.user) {
+        var person_={};
+        User.findById(req.session.user._id)
+            .exec(function(err,perso){
+                person_=perso;
+         })
+        function isLiked(shareId){
+            if(req.session.user){
+                var myLikes=person_.myLikes.shares;
+
+                for(var i=0;i<myLikes.length;i++){
+                    if(shareId.toString()==myLikes[i].toString()){
+                        return true;
+                    }
+                }
+                return false;
+            }else{
+                return false;
+            }
+        }
+        function isCollected(shareId){
+            if(req.session.user){
+                var myCollections=person_.myCollections.shares;
+                for(var i=0;i<myCollections.length;i++){
+                    if(shareId.toString()==myCollections[i].toString()){
+                        return true;
+                    }
+                }
+                return false;
+            }else{
+                return false;
+            }
+        }
+
         User.findById(req.session.user._id)
         .populate('myLikes.shares')
         .exec(function(err, user){
@@ -384,14 +457,14 @@ module.exports.doMyLike = function(req, res){
 
             var shareArr = [];
             var sharesArr = [];
-            console.log("test77---------------");
+            //console.log("test77---------------");
 
             shareArr = user.myLikes.shares.slice(0); 
             if (shareArr.length == 0) {
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                 })
             }else {
                 dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
@@ -404,6 +477,39 @@ module.exports.doMyLike = function(req, res){
 
 module.exports.doMyCollection = function(req, res){
     if (req.session.user) {
+        var person_={};
+        User.findById(req.session.user._id)
+            .exec(function(err,perso){
+                person_=perso;
+         })
+        function isLiked(shareId){
+            if(req.session.user){
+                var myLikes=person_.myLikes.shares;
+
+                for(var i=0;i<myLikes.length;i++){
+                    if(shareId.toString()==myLikes[i].toString()){
+                        return true;
+                    }
+                }
+                return false;
+            }else{
+                return false;
+            }
+        }
+        function isCollected(shareId){
+            if(req.session.user){
+                var myCollections=person_.myCollections.shares;
+                for(var i=0;i<myCollections.length;i++){
+                    if(shareId.toString()==myCollections[i].toString()){
+                        return true;
+                    }
+                }
+                return false;
+            }else{
+                return false;
+            }
+        }
+
         User.findById(req.session.user._id)
         .populate('myCollections.shares')
         .exec(function(err, user){
@@ -411,14 +517,14 @@ module.exports.doMyCollection = function(req, res){
 
             var shareArr = [];
             var sharesArr = [];
-            console.log("test77---------------");
+            //console.log("test77---------------");
 
             shareArr = user.myCollections.shares.slice(0); 
             if (shareArr.length == 0) {
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                 })
             }else {
                 dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
@@ -430,6 +536,39 @@ module.exports.doMyCollection = function(req, res){
 }
 
 module.exports.doMyComment = function(req, res){
+    var person_={};
+    User.findById(req.session.user._id)
+        .exec(function(err,perso){
+            person_=perso;
+     })
+    function isLiked(shareId){
+        if(req.session.user){
+            var myLikes=person_.myLikes.shares;
+
+            for(var i=0;i<myLikes.length;i++){
+                if(shareId.toString()==myLikes[i].toString()){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+            return false;
+        }
+    }
+    function isCollected(shareId){
+        if(req.session.user){
+            var myCollections=person_.myCollections.shares;
+            for(var i=0;i<myCollections.length;i++){
+                if(shareId.toString()==myCollections[i].toString()){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+            return false;
+        }
+    }
+
     if (req.session.user) {
         User.findById(req.session.user._id)
         .populate('myComments.shares')
@@ -438,14 +577,14 @@ module.exports.doMyComment = function(req, res){
 
             var shareArr = [];
             var sharesArr = [];
-            console.log("test77---------------");
+            //console.log("test77---------------");
 
             shareArr = user.myComments.shares.slice(0); 
             if (shareArr.length == 0) {
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
                 })
             }else {
                 dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
@@ -457,6 +596,39 @@ module.exports.doMyComment = function(req, res){
 }
 
 function dealModule(shareArr,sharesArr,index,req,res){
+    var person_={};
+    User.findById(req.session.user._id)
+        .exec(function(err,perso){
+            person_=perso;
+     })
+    function isLiked(shareId){
+        if(req.session.user){
+            var myLikes=person_.myLikes.shares;
+
+            for(var i=0;i<myLikes.length;i++){
+                if(shareId.toString()==myLikes[i].toString()){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+            return false;
+        }
+    }
+    function isCollected(shareId){
+        if(req.session.user){
+            var myCollections=person_.myCollections.shares;
+            for(var i=0;i<myCollections.length;i++){
+                if(shareId.toString()==myCollections[i].toString()){
+                    return true;
+                }
+            }
+            return false;
+        }else{
+            return false;
+        }
+    }
+    
     User.findById(shareArr[index].userId)
     .exec(function(err, user){
         if (err) { console.log(err); }
@@ -472,7 +644,7 @@ function dealModule(shareArr,sharesArr,index,req,res){
             User.findById(req.session.user._id)
             .exec(function(err, u){
                 if (err) { console.log(err); }
-                res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment});
+                res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
             })    
         }else{
             dealModule(shareArr,sharesArr,index-1,req,res);
