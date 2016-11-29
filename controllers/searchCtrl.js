@@ -57,7 +57,6 @@ module.exports.showResult=function(req,res){
                         pubShares.push(item);
                     }
                 })
-                console.log('-----------------------'+sha);
                 res.render('searchResult',{'shares':pubShares,'sessionUser':req.session.user,moment:moment,'isLiked':isLiked,'isCollected':isCollected});
             }
         })

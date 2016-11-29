@@ -69,7 +69,11 @@ router.post('/doLike',function(req,res){
 //评论
 router.post('/doComment',function(req,res){
     shareCtrl.doComment(req,res);
-})
+});
+//评论里的回复
+router.post('/doReply',function(req,res){
+    shareCtrl.doReply(req,res);
+});
 //收藏
 router.post('/doCollect',function(req,res){
     shareCtrl.doCollect(req,res);
