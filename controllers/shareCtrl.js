@@ -14,7 +14,6 @@ module.exports.doShare = function (req, res) {
         .populate('userId')
         .populate('comment.userId')
         .exec(function (error, sha) {
-            console.log('有回复后的分享查找',sha.comment[0].subComment);
             if (error) {
                 console.log('.....查找一个分享出错', error);
             } else {
