@@ -1,0 +1,73 @@
+extends ../layout
+
+block append style
+    link(rel='stylesheet',href='/stylesheets/picture.css')
+    link(rel='stylesheet',href='/stylesheets/index.css')
+    link(rel='stylesheet', href='/stylesheets/user.css')
+    link(rel='stylesheet', href='/stylesheets/user_header.css')
+    link(rel='stylesheet', href='/stylesheets/user_left.css')
+    link(rel='stylesheet', href='/stylesheets/user_share.css')
+    link(rel='stylesheet', href='/stylesheets/user_display.css')
+    link(rel='stylesheet', href='/stylesheets/user_right.css')
+    link(rel='stylesheet', href='/stylesheets/picture.css')
+
+block content
+    div#user_container
+      div#user_center
+        if shares.length > 0
+          h3 搜索结果为：
+            #user_display
+                #user_display_block
+                    each sharing in shares
+                        .sharing_div(id= sharing._id)
+                            .sharing_user_pic
+                                // 这里的用户名和用户头像要改
+                                if sharing.userId.portraitUrl
+                                    img(src='/image?imageId=' + sharing.userId.portraitUrl)
+                                else
+                                    img(src='../img/user/user.jpg')
+                            .sharing_content
+                                h4.sharing_user_name= sharing.userId.userName
+                                .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
+                                p.sharing_text= sharing.content
+                                if sharing.images.length == 1
+                                    #picPanel
+                                        each pic in sharing.images
+                                            img#singlePic(src='/image?imageId=' + pic)
+                                else
+                                    #picsPanel
+                                        each pic,item in sharing.images
+                                            if item == 0
+                                                img#singlePic(src='/image?imageId=' + pic)
+                                            else
+                                                #row
+                                                    each pic,item in sharing.images
+                                                        if item >= 1
+                                                            img#singlePic(src='/image?imageId=' + pic)
+
+                            .sharing_footer
+                                ul
+                                    li
+                                        if isLiked(sharing._id) == false
+                                            a.praise_block
+                                                span
+                                                    span 赞(#{sharing.likeNum})
+                                        else
+                                            a.praise_block.active
+                                                span
+                                                    span 赞(#{sharing.likeNum})
+                                    li
+                                        a(href='/share?shareId=#{sharing._id}').comment_block
+                                            span
+                                                span 评论(#{sharing.comment.length})
+                                    li
+                                        if isCollected(sharing._id) == false
+                                            a.collect_block
+                                                span
+                                                    span 收藏(#{sharing.collectionNum})
+                                        else
+                                            a.collect_block.active
+                                                span
+                                                    span 收藏(#{sharing.collectionNum})
+        else
+            h3 没有找到你需要的内容~
