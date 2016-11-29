@@ -66,9 +66,6 @@ module.exports.doDeclare = function (req, res) {
     }).on('field', function (key, value) {
         body[key] = value;
     }).on('finish', function () {
-        console.log('--------------------finish');
-       console.log(util.inspect(body, {showHidden: false, depth: null}));
-
         var sha = new Share;
         sha.content = body.content;
         sha.images.push.apply(sha.images, fileIds);
@@ -92,7 +89,7 @@ module.exports.doDeclare = function (req, res) {
                                 if(err){
                                     console.log('....发布失败！');
                                 }else{
-                                    res.render('user',{'shares':sha,'user':use,'moment':moment});
+                                    res.render('user',{'shares':sha,'user':use,sessionUser:req.session.user,'moment':moment});
                                 }
                             })
                         })

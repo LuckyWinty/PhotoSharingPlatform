@@ -25,6 +25,10 @@ router.get('/regist', function(req, res, next) {
 router.get('/index', function(req, res, next) {
     indexCtrl.showIndex(req, res);
 });
+//加载最热分享
+router.get('/hotIndex', function(req, res, next) {
+    indexCtrl.showHotIndex(req, res);
+});
 
 /* 加载个人中心页 */
 router.get('/user', function(req, res, next) {
@@ -59,15 +63,15 @@ router.post('/doLike',function(req,res){
     shareCtrl.doLike(req,res);
 });
 
-//收藏
-router.post('/doCollect',function(req,res){
-    shareCtrl.doCollect(req,res);
-});
-
 //评论
 router.post('/doComment',function(req,res){
     shareCtrl.doComment(req,res);
 })
+
+//收藏
+router.post('/doCollect',function(req,res){
+    shareCtrl.doCollect(req,res);
+});
 
 //加载后台管理
 router.get('/back', function(req, res, next) {

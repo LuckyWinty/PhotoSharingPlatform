@@ -5,10 +5,11 @@
             img(src="/img/user/user.jpg")
         h3.user_name= user.userName
         a#concern(href="javascript:;")= isMyself == false ? '关注我' : ''
-        a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
+        if user._id == sessionUser._id
+            a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
     #result_block
-        h4 我的收获
+        h4 活力度
         ul
             li
                 .result_number= user.myLikes.shares.length
@@ -32,10 +33,10 @@
                         h5= u.userName
     else
         h5 还没有关注的人！
-
-#motify_block
-    h4 修改头像
-    form.form#pic_form
-        input(type="hidden",name="_id",value=user._id)
-        input(type="file",id="InputPic", name='portrait')
-        button.btn.btn-default(type="submit")#btn-submit 提交
+if user._id == sessionUser._id
+    #motify_block
+        h4 修改头像
+        form.form#pic_form
+            input(type="hidden",name="_id",value=user._id)
+            input(type="file",id="InputPic", name='portrait')
+            button.btn.btn-default(type="submit")#btn-submit 提交

@@ -30,6 +30,8 @@ $(function(){
                         praise.removeClass('active');
                     }
                     praise.find('span').text(data.likeNum);
+                }else{
+                    alert(data.message);
                 }
             }
         })
@@ -58,6 +60,8 @@ $(function(){
                       '<span>'+moment(data.comment.created).format("YYYY-MM-DD HH:mm:ss")+'</span>'+
                       '<a class="reply">回复</a></div></div>';
                   $('#discussion').append(commentHTML);
+              }else{
+                  alert(data.message);
               }
 
             }
@@ -90,6 +94,8 @@ $(function(){
                         collect.removeClass('active');
                     }
                     collect.find('span').text(data.CollectNum);
+                }else{
+                    alert(data.message);
                 }
             }
 

@@ -1,7 +1,7 @@
 div#head
     a(href='/index')#new.active
         <img>最新分享
-    a#hot
+    a(href='/hotIndex')#hot
         <img>最热分享
     if sessionUser
       a#personal(href='/user?userId=#{sessionUser._id}' data-userId='#{sessionUser._id}')
