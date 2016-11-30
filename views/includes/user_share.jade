@@ -1,10 +1,9 @@
-- var input_num = 10
 - var src = "/img/user/user.jpg"
 
 #user_share
     h4 有什么新鲜事想分享大家？
     form(method='post' action='/declare?userId=#{user._id}' enctype='multipart/form-data')
-        span#input_tip 还可以输入<span id="input_num">#{input_num}</span>字
+        span#input_tip 还可以输入<span id="input_num">300</span>字
         textarea#share_content(name='content' cols="30" rows="10")
         input(type='file' name='pic' multiple)
         //ul#pic_list

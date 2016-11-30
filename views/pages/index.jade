@@ -9,32 +9,34 @@ block content
         if picture.length == 1
             #picPanel
                 each pic in picture
-                    img#singlePic(src='/image?imageId=' + pic)
+                    img#big(src='/image?imageId=' + pic)
         else
             #picsPanel
                 each pic,item in picture
                     if item == 0
                         img(src='/image?imageId=' + pic)
-                    
+
                 #row
                     each pic,item in picture
                         if item>=1
                             img(src='/image?imageId=' + pic)
 
-
-    input#search.form-control(placeholder="搜索")
-    img#searchIcon(src="/img/search.svg")
+    #searchBlock
+        #searchBox
+            input#search.form-control(placeholder="搜索")
+            img#searchIcon(src="/img/search.svg")
     #container.clearfix
-        if shares
-        each list in shares
-            if list.images.length == 1
-                a#box(href='/share?shareId=#{list._id}')
-                    +box(list.images)
-                    #comment= list.content
-            else
-                a#boxes(href='/share?shareId=#{list._id}')
-                    +box(list.images)
-                    #comment= list.content
+        #picBoxes
+            if shares
+            each list in shares
+                if list.images.length == 1
+                    a#box(href='/share?shareId=#{list._id}')
+                        +box(list.images)
+                        #comment= list.content
+                else
+                    a#boxes(href='/share?shareId=#{list._id}')
+                        +box(list.images)
+                        #comment= list.content
 
 
 

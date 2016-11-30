@@ -59,7 +59,7 @@ div#user_container div#personInfo_block #concern {
     bottom: 7px;
     font-family: 'Arial','Microsoft YaHei';
 }
-div#user_container div#personInfo_block #mask {
+div#user_container div#personInfo_block #ignore {
     color: #808080;
     font-size: 12px;
     position: absolute;
@@ -99,6 +99,10 @@ div#user_container .result_text {
 /* focus block */
 #focus_block{
     padding-bottom: 15px;
+}
+#focus_block h5#sp{
+    margin: 0;
+    text-align: center;
 }
 #focus_block ul{
     margin: 0;

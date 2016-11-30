@@ -1,15 +1,15 @@
 #head{
-	padding: 10px 0px;
 	overflow: hidden;
-/*	background-color: #a7d1ea;	*/
-	margin:0 150px;
-	min-width: 680px;
-	height: 70px;
-	color: #fff;
+ 	background-color: rgba(255,255,255,0.94); 
+ 	border-top: 2px solid #fa7d3c;
+ 	padding: 15px 150px;
+	width: 100%;
+	min-width: 1056px;
+	height: 50px;
 }
 #head h5{
-	height: 50px;
-    line-height: 50px;
+	height: 20px;
+    line-height: 20px;
     margin: 0 20px;
 }
 #head a,
@@ -19,39 +19,56 @@
 	cursor: pointer;
 	padding-left: 25px;
 	width:135px;
-	color: #fff;
-	opacity: 0.5;
+	color: #333;
 	font-weight: bolder;
-	line-height: 50px; 
-	letter-spacing: 3px;
-	font-size: 18px;
+	line-height: 20px; 
+	font-size: 14px;
 	text-decoration: none;
-	transition:all 0.5s; 
-}
-#head .active{     
-	opacity: 1;
 }
 #hot,
 #new{
 	float: left;
 }
+#head #logout{
+	width:60px;
+	font-weight: normal;
+}
+#head #logout:hover{
+	color: #eb7350;
+}
 #personal,
 #checked,
-#head h5{
+#head h5,
+#logout{
 	float: right;
 }
 #hot{
-	background: url('/img/fire.svg') 0 15px no-repeat;
+	background: url('/img/header.png') 0 -95px no-repeat;
 	background-size: 20px;
 }
+#hot.active,
+#hot:hover{
+	background: url('/img/header.png') 0 -118px no-repeat;
+	color: #eb7350;
+}
 #new{
-	background: url('/img/new.svg') 0 15px no-repeat;
+	background: url('/img/header.png') 0 -52px no-repeat;
 	background-size: 20px;
+}
+#new.active,
+#new:hover{
+	background: url('/img/header.png') 0 -71px no-repeat;
+	color: #eb7350;
 }
 #personal,
 #checked{
-	background: url('/img/user.svg') 0 15px no-repeat;
+	background: url('/img/header.png') 0 -3px no-repeat;
 	background-size: 20px;
+}
+#personal.active,
+#personal:hover{
+	background: url('/img/header.png') 0 -26px no-repeat;
+	color: #eb7350;
 }
 #checked a{
 	padding: 0;

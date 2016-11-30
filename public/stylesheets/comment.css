@@ -1,6 +1,7 @@
 #discussList{
 	padding: 10px 50px;
 	padding-right:10%; 
+	background: #eee;
 	border-bottom: 2px solid #d9d9d9; 
 }
 #discussList:last-child{

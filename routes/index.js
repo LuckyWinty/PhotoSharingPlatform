@@ -77,5 +77,10 @@ router.post('/doCollect',function(req,res){
 router.get('/back', function(req, res, next) {
     res.render('backstage');
 });
+//屏蔽处理
+router.get('/user/ignore',function(req,res){
+    userCtrl.doIgnore(req,res);
+});
+
 
 module.exports = router;

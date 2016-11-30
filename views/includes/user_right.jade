@@ -2,11 +2,15 @@
     #personInfo_block
         #personInfo_bg
         div.user_pic#user_pic_sm
-            img(src="/img/user/user.jpg")
+            if user.portraitUrl
+                img(src='/image?imageId=' + user.portraitUrl)
+            else
+                img(src='../img/user/user.jpg')
         h3.user_name= user.userName
-        a#concern(href="javascript:;")= isMyself == false ? '关注我' : ''
+        if isMyself==false
+            a#concern(href="javascript:;") 关注我
         if user._id == sessionUser._id
-            a#mask(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
+            a#ignore(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
     #result_block
         h4 活力度
@@ -21,22 +25,23 @@
                 .result_number= user.myComments.shares.length
                 .result_text 评论
 
-#focus_block
-    h4 我的关注
-    if user.myFocus.users.length > 0
-        ul
-            each u in user.myFocus.users
-                li
-                    a(href="/user/#{u._id}")
-                        .focus_user_pic
-                            img(src=u.pic)
-                        h5= u.userName
-    else
-        h5 还没有关注的人！
-if user._id == sessionUser._id
-    #motify_block
-        h4 修改头像
-        form.form#pic_form
-            input(type="hidden",name="_id",value=user._id)
-            input(type="file",id="InputPic", name='portrait')
-            button.btn.btn-default(type="submit")#btn-submit 提交
+    #focus_block
+        h4 我的关注
+        if user.myFocus.users.length > 0
+            ul
+                each u in user.myFocus.users
+                    li
+                        a(href="/user/#{u._id}")
+                            .focus_user_pic
+                                img(src=u.pic)
+                            h5= u.userName
+        else
+            h5#sp 还没有关注的人！
+
+    if user._id == sessionUser._id
+        #motify_block
+            h4 修改头像
+            form.form#pic_form
+                input(type="hidden",name="_id",value=user._id)
+                input(type="file",id="InputPic", name='portrait')
+                button.btn.btn-default(type="submit")#btn-submit 提交
