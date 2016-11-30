@@ -57,10 +57,17 @@
 	width: 300px;
 /*	opacity: 0.8;*/
 }
-#searchIcon{
+#searchIcon,#subBtn{
 	height: 30px;
     position: absolute;
     top: 83px;
     left: 415px;
     cursor: pointer;
+}
+#searchIcon{
+	background-color: #fff;
+	pointer-events: none;
+}
+#subBtn{
+	width:30px;
 }

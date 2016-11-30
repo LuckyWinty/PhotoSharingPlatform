@@ -3,9 +3,21 @@ mixin discuss(comment,user)
         #discussContent.clearfix
             img(src='/image?imageId=#{comment.userId.portraitUrl}')
             <strong> #{comment.userId.userName}</strong> #{comment.content}
+        .reply-list
+          if comment.subComment.length>0
+            each rep in comment.subComment
+              .reply-detail
+                 .replay-user= user.portraitUrl
+                 .reply-userName= user.userName
+                 .reply-time= moment(rep.created).format("YYYY-MM-DD HH:mm:ss")
+                 .reply-content= rep.content
+
         #discussDetail
             span= moment(comment.created).format("YYYY-MM-DD HH:mm:ss")
-            a(id= '#{id}') 回复
+            a.reply 展开回复
+        .reply-wrap
+            .share-input(contenteditable=true)
+            input.reply-btn.btn.btn-danger.btn-sm.pull-right(type='button' value='回复' data-commentId='#{comment._id}')
 #discussion
     if share.comment
         each comment in share.comment

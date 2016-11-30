@@ -20,7 +20,6 @@ module.exports.showIndex=function(req,res){
                     pubShares.push(item);
                 }
             })
-
             res.render('index',{'shares':pubShares,'sessionUser':req.session.user});
         }
     })

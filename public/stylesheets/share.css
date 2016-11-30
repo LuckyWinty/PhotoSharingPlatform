@@ -1,3 +1,10 @@
+/*清楚浮动*/
+#discussDetail:after{
+	display: block;
+	content: '';
+	visibility: hidden;
+	clear: both;
+}
 #share-container{
 	margin: 0 auto;
 	width: 50%;
@@ -75,7 +82,7 @@
 	float: left;
 	text-align: center;
 }
-#share-input{
+.share-input{
 	padding: 2px 5px;
 	margin-bottom:20px; 
 	height: 100px;
@@ -90,4 +97,8 @@
 #share-comment .btn{
 	width: 80px;
 	float: right;
+}
+/*回复*/
+.reply-wrap{
+	display: none;
 }

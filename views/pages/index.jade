@@ -21,8 +21,10 @@ block content
                         if item>=1
                             img(src='/image?imageId=' + pic)
 
-    input#search.form-control(placeholder="搜索")
-    img#searchIcon(src="/img/search.svg")
+    form(method='post' action='/search')
+      input#search.form-control(placeholder="搜索" name="searchWords")
+      input#subBtn(type='submit' value='搜索')
+      img#searchIcon(src="/img/search.svg")
     #container.clearfix
         if shares
         each list in shares
@@ -34,6 +36,3 @@ block content
                 a#boxes(href='/share?shareId=#{list._id}')
                     +box(list.images)
                     #comment= list.content
-
-
-

@@ -6,6 +6,7 @@ var indexCtrl=require('../controllers/indexCtrl');
 var userCtrl=require('../controllers/userCtrl');
 var errorCtrl=require('../controllers/errorCtrl');
 var shareCtrl=require('../controllers/shareCtrl');
+var searchCtrl=require('../controllers/searchCtrl');
 
 /*登录*/
 router.get('/login', function(req, res, next) {
@@ -29,7 +30,10 @@ router.get('/index', function(req, res, next) {
 router.get('/hotIndex', function(req, res, next) {
     indexCtrl.showHotIndex(req, res);
 });
-
+//搜索
+router.post('/search', function (req,res,next) {
+    searchCtrl.showResult(req,res);
+});
 /* 加载个人中心页 */
 router.get('/user', function(req, res, next) {
     userCtrl.openCenter(req, res);
@@ -65,7 +69,11 @@ router.post('/doLike',function(req,res){
 //评论
 router.post('/doComment',function(req,res){
     shareCtrl.doComment(req,res);
-})
+});
+//评论里的回复
+router.post('/doReply',function(req,res){
+    shareCtrl.doReply(req,res);
+});
 //收藏
 router.post('/doCollect',function(req,res){
     shareCtrl.doCollect(req,res);
