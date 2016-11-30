@@ -46,7 +46,7 @@ router.get('/share', function(req, res, next) {
 });
 
 /* 发布. */
-router.post('/declare', function (req, res) {
+router.post('/user/declare', function (req, res) {
     userCtrl.doDeclare(req, res);
 });
 //加载图片

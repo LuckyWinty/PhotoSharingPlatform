@@ -1,10 +1,13 @@
 - var src = "/img/user/user.jpg"
 #user_share
     h4 有什么新鲜事想分享大家？
-    form(method='post' action='/declare?userId=#{user._id}' enctype='multipart/form-data')
+    form#share_form
         span#input_tip 还可以输入<span id="input_num">300</span>字
         textarea#share_content(name='content' cols="30" rows="10")
-        input(type='file' name='pic' multiple)
+        .file_div
+            input#inputImg(type='file' name='pic' multiple)
+            div 选择图片
+        .file_tip 只能分享1-6张图片哦~
         //ul#pic_list
         //  each val in [1,2,3,4,5]
         //    li

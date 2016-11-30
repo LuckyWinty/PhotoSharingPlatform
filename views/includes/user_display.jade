@@ -5,14 +5,15 @@ if shares.length>0
         #user_display_block
             each sharing in shares
                 .sharing_div(id= sharing._id)
-                    .sharing_user_pic
+                    a.sharing_user_pic(href='/user?userId=#{sharing.userId._id}')
                         // 这里的用户名和用户头像要改
                         if sharing.userId.portraitUrl
                             img(src='/image?imageId=' + sharing.userId.portraitUrl)
                         else
                             img(src='../img/user/user.jpg')
                     .sharing_content
-                        h4.sharing_user_name= sharing.userId.userName
+                        a(href='/user?userId=#{sharing.userId._id}')
+                            h4.sharing_user_name= sharing.userId.userName
                         .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
                         p.sharing_text= sharing.content
                         if sharing.images.length == 1
@@ -24,11 +25,10 @@ if shares.length>0
                                 each pic,item in sharing.images
                                     if item == 0
                                         img#singlePic(src='/image?imageId=' + pic)
-                                    else
-                                        #row
-                                            each pic,item in sharing.images
-                                                if item >= 1
-                                                    img#singlePic(src='/image?imageId=' + pic)
+                                #row
+                                    each pic,item in sharing.images
+                                        if item >= 1
+                                            img#singlePic(src='/image?imageId=' + pic)
 
                     .sharing_footer
                         ul
@@ -56,7 +56,7 @@ if shares.length>0
                                             span 收藏(#{sharing.collectionNum})
 
 
-    #pagination_block
+    //#pagination_block
         ul.pagination#pagination
             li: a(href="#") &lt;
                 each val in pages

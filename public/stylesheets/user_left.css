@@ -24,5 +24,8 @@ div#user_container div#leftBar a{
     text-decoration: none;
 }
 div#user_container div#leftBar li:hover{
+    background-color: #a7d4eb;
+}
+div#user_container div#leftBar li.active{
 	background-color: #a7d4eb;
 }
