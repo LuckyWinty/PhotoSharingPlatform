@@ -25,17 +25,17 @@ block content
             if share.images.length == 1
                 #picPanel
                     each pic in share.images
-                        img#singlePic(src='/image?imageId=' + pic)
+                        img#big(src='/image?imageId=' + pic)
             else
+                a#left
+                a#right
                 #picsPanel
                     each pic,item in share.images
                         if item == 0
-                            img#singlePic(src='/image?imageId=' + pic)
-                        else
-                            #row
-                                each pic,item in share.images
-                                    if item >= 1
-                                        img#singlePic(src='/image?imageId=' + pic)
+                            img#big(src='/image?imageId=' + pic,value=item)
+                    #row
+                        each pic,item in share.images
+                            img#singlePic(src='/image?imageId=' + pic,value=item)
         #sharePanel.clearfix
             if info.isCollect == false
                 #collect
@@ -52,6 +52,7 @@ block content
                 #praise.active
                     span 赞(#{share.likeNum})
         #share-comment.clearfix
+            <p> 还可以输入 <span id="shareRemlen">100</span>字</p>
             .share-input(contenteditable=true)
             input#comment-btn.btn.btn-danger.btn-sm(type='button',value='评论')
         include comment
@@ -60,3 +61,5 @@ block content
     script(src="/js/jquery.min.js")
     script(src='/js/moment.min.js')
     script(src="/js/shareDeail.js")
+    script(src="/js/picture.js")
+    script(src="/js/shareComment.js")

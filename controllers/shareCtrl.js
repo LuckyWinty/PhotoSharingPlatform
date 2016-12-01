@@ -38,11 +38,14 @@ module.exports.doShare = function (req, res) {
                             }
                             res.render('share', {'share': sha, 'user': sha.userId, 'info': info, 'moment': moment,'sessionUser':req.session.user});
                         })
+
                 }else{
                     res.render('share', {'share': sha, 'user': sha.userId, 'info': info, 'moment': moment,'sessionUser':req.session.user});
+
                 }
             }
         })
+
 }
 
 module.exports.doLike = function (req, res) {
@@ -225,7 +228,6 @@ module.exports.doCollect = function (req, res) {
                                                 });
                                             }
                                         })
-                                        // }
                                     })
                             }
                         })
@@ -266,14 +268,15 @@ module.exports.doCollect = function (req, res) {
                                                 });
                                             }
                                         })
-                                        // }
                                     })
                             }
                         })
                     }
+
                 })
         }
     } else {
         res.json({success: 0, message: '尚未登录'});
     }
+
 }

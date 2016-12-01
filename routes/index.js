@@ -66,6 +66,7 @@ router.post('/user', function (req, res) {
 router.post('/doLike',function(req,res){
     shareCtrl.doLike(req,res);
 });
+
 //评论
 router.post('/doComment',function(req,res){
     shareCtrl.doComment(req,res);

@@ -1,10 +1,10 @@
 /*singlePic*/
 #picPanel{
 	width:100%;
-	height: 335px;
+	height: 400px;
 	overflow: hidden;
 }
-#picPanel #singlePic{
+#picPanel #big{
 	width:100%;
 	height: 100%;
 }
@@ -12,19 +12,18 @@
 /*morePic*/
 #picsPanel{
 	width:100%;
-	height: 335px;
+	height: 446px;
 	overflow: hidden;
 }
-#picsPanel img:first-child{
+#picsPanel #big{
 	width:100%;
-	height: 225px;
+	height: 350px;
 }
 #picsPanel #row{
-	margin-right: -2%;
-	margin-left: -2%;
+	margin-right: -5px;
 }
 #picsPanel #row img{
-	width:18%;
-	height: 100px;
-	margin: 10px 1% 0; 
+	width: 71px;
+	height: 71px;
+	margin: 10px 5px 0 0; 
 }
