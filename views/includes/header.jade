@@ -1,6 +1,10 @@
 div#head
-    a(href='/index')#new.active 最新分享
-    a(href='/hotIndex')#hot 最热分享
+    if isIndex==true
+        a(href='/index')#new.active 最新分享
+        a(href='/hotIndex')#hot 最热分享
+    else
+        a(href='/index')#new 最新分享
+        a(href='/hotIndex')#hot.active 最热分享
     if sessionUser
       a#logout(href='/login') 注销
       h5 欢迎你#{sessionUser.userName}

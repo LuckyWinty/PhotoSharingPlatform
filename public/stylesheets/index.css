@@ -42,17 +42,19 @@
 	width:300px;
 	height: 80px;
 	position: absolute;
-	left: 10;
+	left: 15px;
 	bottom:60px;
-	background: #fff;
+	background: rgba(0,0,0,0.4);
 	transition: all 1s;
 	/*多行省略*/
+	text-indent: 2em;
+	font-family: "微软雅黑";
 	overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
-    color: #333;
+    color: #fff;
     word-wrap: break-word;
     word-break: break-all;
 }
@@ -84,16 +86,17 @@
 }
 #search{
 	position: absolute;
-	top: 20px;
+	top: 30px;
 	left: 0;
-	width: 300px;
+	width: 400px;
+	height: 45px;
 /*	opacity: 0.8;*/
 }
 #searchIcon,#subBtn{
-	height: 30px;
+	height: 42px;
     position: absolute;
-    top: 22px;
-    right: 5px;
+    top: 32px;
+    right: -100px;
     cursor: pointer;
 }
 #searchIcon{
@@ -101,5 +104,5 @@
 	pointer-events: none;
 }
 #subBtn{
-	width:30px;
+	width:40px;
 }
