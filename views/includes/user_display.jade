@@ -1,18 +1,18 @@
 - var pages = [1,2,3];
 
-if shares
+if shares.length>0
     #user_display
         #user_display_block
             each sharing in shares
-                .sharing_div(id= 'sharing.id')
+                .sharing_div(id= sharing._id)
                     .sharing_user_pic
                         // 这里的用户名和用户头像要改
-                        if user.portraitUrl
-                            img(src='/image?imageId=' + user.portraitUrl)
+                        if sharing.userId.portraitUrl
+                            img(src='/image?imageId=' + sharing.userId.portraitUrl)
                         else
                             img(src='../img/user/user.jpg')
                     .sharing_content
-                        h4.sharing_user_name= user.userName
+                        h4.sharing_user_name= sharing.userId.userName
                         .sharing_time= moment(sharing.created).format("YYYY-MM-DD HH:mm:ss")
                         p.sharing_text= sharing.content
                         if sharing.images.length == 1
@@ -62,3 +62,5 @@ if shares
                 each val in pages
                     li: a(href="#")= val
             li: a(href="#") &gt;
+else
+    #user_display.sp.sp1 空空如也

@@ -53,7 +53,7 @@ block content
                     span 赞(#{share.likeNum})
         #share-comment.clearfix
             <p> 还可以输入 <span id="shareRemlen">100</span>字</p>
-            #share-input(contenteditable=true)
+            .share-input(contenteditable=true)
             input#comment-btn.btn.btn-danger.btn-sm(type='button',value='评论')
         include comment
 

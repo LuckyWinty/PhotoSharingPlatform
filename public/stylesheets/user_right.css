@@ -55,7 +55,7 @@ div#user_container div#personInfo_block #concern {
     color: #808080;
     font-size: 12px;
     position: absolute;
-    left: 7px;
+    right: 10px;
     bottom: 7px;
     font-family: 'Arial','Microsoft YaHei';
 }
@@ -63,7 +63,7 @@ div#user_container div#personInfo_block #ignore {
     color: #808080;
     font-size: 12px;
     position: absolute;
-    right: 7px;
+    right: 10px;
     bottom: 7px;
     font-family: 'Arial','Microsoft YaHei';
 }
@@ -108,7 +108,7 @@ div#user_container .result_text {
     margin: 0;
     padding: 0 7px;
     list-style: none;
-    height: 112px;
+    max-height: 112px;
     overflow-y: auto;
 }
 #focus_block li{

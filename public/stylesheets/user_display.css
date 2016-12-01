@@ -4,6 +4,9 @@ div#user_container .sharing_div {
     padding: 20px 0 0;
     position: relative;
 }
+div#user_container div#user_center.sp .sharing_div:first-child {
+    margin-top: 0px;
+}
 
 
 div#user_container .sharing_user_pic {

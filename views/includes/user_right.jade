@@ -7,8 +7,8 @@
             else
                 img(src='../img/user/user.jpg')
         h3.user_name= user.userName
-        if isMyself==false
-            a#concern(href="javascript:;") 关注我
+        if user._id != sessionUser._id
+            a#concern(href="javascript:;")= isConcern == true ? '取消关注' : '关注我'
         if user._id == sessionUser._id
             a#ignore(href="javascript:;")= user.isPublic == true ? '屏蔽' : '已屏蔽'
 
@@ -31,9 +31,9 @@
             ul
                 each u in user.myFocus.users
                     li
-                        a(href="/user/#{u._id}")
+                        a(href="/user?userId=#{u._id}")
                             .focus_user_pic
-                                img(src=u.pic)
+                                img(src='/image?imageId=' + u.portraitUrl)
                             h5= u.userName
         else
             h5#sp 还没有关注的人！

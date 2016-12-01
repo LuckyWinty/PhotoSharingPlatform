@@ -1,3 +1,10 @@
+/*清楚浮动*/
+#discussDetail:after{
+	display: block;
+	content: '';
+	visibility: hidden;
+	clear: both;
+}
 #share-container{
 	margin: 20px auto;
 	width: 680px;
@@ -107,8 +114,11 @@
 	text-align: center;
 }
 
+
 /*输入评论*/
-#share-input{
+
+.share-input{
+
 	padding: 2px 5px;
 	margin-bottom:20px; 
 	height: 120px;
@@ -128,4 +138,8 @@
 #share-comment .btn{
 	width: 80px;
 	float: right;
+}
+/*回复*/
+.reply-wrap{
+	display: none;
 }

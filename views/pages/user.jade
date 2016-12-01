@@ -18,13 +18,13 @@ block content
         div#user_content
             if user._id == sessionUser._id
                 include ../includes/user_left
-            div#user_center
-                if user._id == sessionUser._id
+                div#user_center
                     include ../includes/user_share
-                if user.isPublic == true
                     include ../includes/user_display
-                else
-                    h3 空空如也
+            else
+                div#user_center.sp
+                    include ../includes/user_display
+
             include ../includes/user_right
 block script
     script(src='/js/jquery.min.js')

@@ -154,6 +154,46 @@ module.exports.doComment = function (req, res) {
         res.json({success: 0, message: '尚未登录'});
     }
 }
+//评论回复
+module.exports.doReply = function (req, res) {
+    if (req.session.user) {
+        Share.findById({'_id': req.body.shareId})
+            .populate('comment')
+            .exec(function (error, sha) {
+                if (error) {
+                    res.json({success: 0, message: '评论回复失败！'});
+                } else {
+                    var index='';
+                    for(var i=0;i<sha.comment.length;i++){
+                        if(sha.comment[i]._id.toString()==req.body.commentId){
+                            index=i;
+                            break;
+                        }
+                    }
+                    var rep=new Comment;
+                    rep.content=req.body.content;
+                    sha.comment[i].subComment.push(rep);
+                    sha.save(function (err, share) {
+                        console.log('存了回复之后的分享'+share)
+                        if (err) {
+                            res.json({success: 0, message: '评论失败'});
+                        } else {
+                            User.findOne({_id: req.session.user._id})
+                                .exec(function (err, person) {
+                                    if (err) {
+                                        res.json({success: 0, message: '评论回复失败'});
+                                    } else {
+                                        res.json({success: 1, user: person, reply: rep, message: '评论回复成功'});
+                                    }
+                                })
+                        }
+                    })
+                }
+            })
+    } else {
+        res.json({success: 0, message: '尚未登录'});
+    }
+}
 //收藏
 module.exports.doCollect = function (req, res) {
     if (req.session.user) {

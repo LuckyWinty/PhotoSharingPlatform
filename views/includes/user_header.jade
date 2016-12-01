@@ -1,5 +1,5 @@
 div#user_header
-  div.user_pic#user_pic_lg
+  div.user_pic#user_pic_lg(data-userId='#{user._id}')
     if user.portraitUrl
         img(src='/image?imageId=' + user.portraitUrl)
     else

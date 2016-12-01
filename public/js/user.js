@@ -75,4 +75,40 @@ window.onload = function(){
 			}
 		})
 	})
+
+	$('#concern').click(function(e){
+		var obj = e.target;
+		var isConcern; //表示是否关注
+		if (obj.innerHTML === '关注我') {
+			isConcern = false;
+		}else {
+			isConcern = true;
+		}
+		var userId = $('#user_pic_lg').attr('data-userId');
+		var data = {
+			userId: userId,
+			isConcern: isConcern
+		};
+		console.log(data);
+
+
+		$.ajax({
+			url: '/user/focus',
+			type: 'POST',
+			dataType: 'json',
+			data: data
+		})
+		.done(function(results){
+			if (results.success === 1) {
+				if (results.isConcern === true) {
+					obj.innerHTML = "取消关注";
+				}else {
+					obj.innerHTML = "关注我";
+				}
+				console.log(results.message);
+			}else{
+				console.log(results.message);
+			}
+		})
+	})
 }

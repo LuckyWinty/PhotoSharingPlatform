@@ -1,10 +1,10 @@
-#container,
-#searchBlock{
+.picContainer,
+.searchBlock{
 	margin:0 140px;
 	min-width: 1056px;
 	background: rgba(36,61,89,0.25);
 }
-#picBoxes{
+.picBoxes{
 	margin:0 auto;
 	width: 1056px;
 }
@@ -72,10 +72,10 @@
 
 
 /*搜索框*/
-#searchBlock{
+.searchBlock{
 	height: 100px;
 }
-#searchBox{
+.searchBox{
 	margin:0 auto;
 	width: 300px;
 	position: relative;
@@ -89,10 +89,17 @@
 	width: 300px;
 /*	opacity: 0.8;*/
 }
-#searchIcon{
+#searchIcon,#subBtn{
 	height: 30px;
     position: absolute;
     top: 22px;
     right: 5px;
     cursor: pointer;
+}
+#searchIcon{
+	background-color: #fff;
+	pointer-events: none;
+}
+#subBtn{
+	width:30px;
 }
