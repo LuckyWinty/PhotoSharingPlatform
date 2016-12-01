@@ -97,10 +97,10 @@ module.exports.openCenter=function(req,res){
                                             }
                                         }
                                     }
-                                    res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isConcern':isConcern,'isLiked':isLiked,'isCollected':isCollected});
+                                    res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isConcern':isConcern,'isLiked':isLiked,'isCollected':isCollected,'activeNum':1});
                                 })
                             }else {
-                                res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                                res.render('user',{'shares':shareArr,'user':person,sessionUser:req.session.user,'isMyself':isMyself,'moment':moment,'isLiked':isLiked,'isCollected':isCollected,'activeNum':1});
                             }
                         }
                     })
@@ -109,7 +109,7 @@ module.exports.openCenter=function(req,res){
 }
 
 module.exports.doDeclare = function (req, res) {
-    var person_={};
+    /*var person_={};
     User.findById(req.session.user._id)
         .exec(function(err,perso){
             person_=perso;
@@ -140,7 +140,7 @@ module.exports.doDeclare = function (req, res) {
         }else{
             return false;
         }
-    }
+    }*/
 
     var busboy = new Busboy({headers: req.headers});
     var fileIds = [];
@@ -163,19 +163,20 @@ module.exports.doDeclare = function (req, res) {
         var sha = new Share;
         sha.content = body.content;
         sha.images.push.apply(sha.images, fileIds);
-        sha.userId=req.query.userId;
+        sha.userId=req.session.user._id;
 
         sha.save(function (error, share) {
             if (error) {
                 console.log(error);
             } else {
-                Share.find({'userId':req.query.userId}).sort({created:-1})
-                    .exec(function(error,sha){
+                Share.findById(share._id)
+                    .populate('userId')
+                    .exec(function(error,_sha){
                     if(error){
                         console.log('.....查找所有分享出错',error);
                     }else{
-                        User.findById(req.query.userId)
-                            .exec(function(err,person){
+                        User.findById(req.session.user._id)
+                        .exec(function(err,person){
                                 //person.myShares.shares=[];
                             person.myShares.shares.push(share._id);
                             person.save(function(err,use){
@@ -183,7 +184,12 @@ module.exports.doDeclare = function (req, res) {
                                 if(err){
                                     console.log('....发布失败！');
                                 }else{
-                                    res.render('user',{'shares':sha,'user':use,sessionUser:req.session.user,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                                    //var isLike = isLiked(share._id);
+                                    //var isCollect = isCollected(share._id);
+                                    res.json({
+                                        "success": 1,
+                                        "share": _sha
+                                    });
                                 }
                             })
                         })
@@ -404,10 +410,10 @@ module.exports.doMyShare = function(req, res){
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected,'activeNum':1});
                 })
             }else {
-                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res,1);
             }
         })
     }else {
@@ -464,10 +470,10 @@ module.exports.doMyLike = function(req, res){
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected,'activeNum':2});
                 })
             }else {
-                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res,2);
             }
         })
     }else {
@@ -524,10 +530,10 @@ module.exports.doMyCollection = function(req, res){
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected,'activeNum':3});
                 })
             }else {
-                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res,3);
             }
         })
     }else {
@@ -584,10 +590,10 @@ module.exports.doMyComment = function(req, res){
                 User.findById(req.session.user._id)
                 .exec(function(err, u){
                     if (err) { console.log(err); }
-                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                    res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected,'activeNum':4});
                 })
             }else {
-                dealModule(shareArr,sharesArr,shareArr.length-1,req,res);
+                dealModule(shareArr,sharesArr,shareArr.length-1,req,res,4);
             }
         })
     }else {
@@ -595,7 +601,7 @@ module.exports.doMyComment = function(req, res){
     }  
 }
 
-function dealModule(shareArr,sharesArr,index,req,res){
+function dealModule(shareArr,sharesArr,index,req,res,activeNum){
     var person_={};
     User.findById(req.session.user._id)
         .exec(function(err,perso){
@@ -644,10 +650,10 @@ function dealModule(shareArr,sharesArr,index,req,res){
             User.findById(req.session.user._id)
             .exec(function(err, u){
                 if (err) { console.log(err); }
-                res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected});
+                res.render('user',{'shares':sharesArr,'user':u,'sessionUser':u,'isMyself':true,'moment':moment,'isLiked':isLiked,'isCollected':isCollected,'activeNum':activeNum});
             })    
         }else{
-            dealModule(shareArr,sharesArr,index-1,req,res);
+            dealModule(shareArr,sharesArr,index-1,req,res,activeNum);
         }
     })
 }

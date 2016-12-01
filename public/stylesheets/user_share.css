@@ -1,5 +1,5 @@
 div#user_container div#user_share {
-    height: 248px;
+    height: 225px;
     background-color: #ffffff;
     padding: 0 10px 10px 10px;
     position: relative;
@@ -7,20 +7,20 @@ div#user_container div#user_share {
 
 div#user_container div#user_share h4{
     margin: 0;
-    font-size: 13px;
+    font-size: 14px;
     color: #1b7fb6;
     font-weight: bold;
-    letter-spacing: 0.5px;
-    height: 36px;
-    line-height: 36px;
+    letter-spacing: 1px;
+    height: 45px;
+    line-height: 45px;
 }
 span#input_tip {
     position: absolute;
     top: 0px;
     right: 10px;
-    height: 36px;
-    line-height: 36px;
-    font-size: 13px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 14px;
 }
 span#input_num {
     font-weight: bold;
@@ -29,35 +29,46 @@ span#input_num {
     padding: 0 2px;
 }
 textarea#share_content {
-    height: 80px;
+    height: 85px;
     width: 100%;
     resize: none;
     padding: 5px;
 }
-
-ul#pic_list {
-    list-style: none;
-    padding: 0;
-    width: 100%;
-    height: 70px;
-    margin-top: 5px;
-}
-ul#pic_list>li {
+.file_div {
+    margin-top: 10px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #a9a9a9;
+    border-radius: 4px;
+    width: 90px;
+    color: #808080;
+    height: 30px;
     float: left;
-    width: 70px;
-    height: 70px;
-    margin: 0 5px;
 }
-ul#pic_list>li:first-child{
-	margin-left: 0;
+.file_div>input {
+    width: 100%;
+    height: 100%;
 }
-ul#pic_list>li:last-child{
-	margin-right: 0;
+.file_div>div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+    background-color: #fff;
+    text-align: center;
+    line-height: 30px;
 }
-ul#pic_list>li>img{
-	width: 100%;
-	height: 100%;
+.file_tip {
+    float: left;
+    margin-top: 20px;
+    height: 20px;
+    margin-left: 8px;
+    font-size: 13px;
+    color: #808080;
 }
+
 div#user_container #btn-publish {
     background-color: #FFC09F;
     border: none;

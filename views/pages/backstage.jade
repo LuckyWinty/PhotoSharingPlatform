@@ -1,34 +1,33 @@
 link(rel="stylesheet",href="/stylesheets/bootstrap.css")
 link(rel="stylesheet",href="/stylesheets/backstage.css")
 
-#backstageTitle 后台管理页
-a#userManagement 用户管理
-a#shareManagement 分享管理
-#userBlock.container
-	#row.row
-		.col-md-3 userName
-		.col-md-2 isAdmin
-		.col-md-2 isPublic
-		.col-md-5 operation
-	.row
-		.col-md-3 123
-		.col-md-2 123
-		.col-md-2 123
-		.col-md-5 
-			button.btn.btn-info.btn-xs 修改
-			button.btn.btn-danger.btn-xs 删除
-#shareBlock.container
-	#row.row
-		.col-md-2 shareId
-		.col-md-2 userName
-		.col-md-4 comment
-		.col-md-4 operation
-	.row
-		.col-md-2 123
-		.col-md-2 123
-		.col-md-4 123
-		.col-md-4 
-			button.btn.btn-info.btn-xs 屏蔽
-			button.btn.btn-danger.btn-xs 删除
+#userBlock
+	#backstageTitle 用户管理
+	.container
+		.row
+			table.table.table-hover.table-bordered
+				thead
+					tr
+						th 用户名
+						th 发布分享
+						th 是否屏蔽
+						th 创建时间
+						th 操作
+				tbody
+					each user in users
+						tr(class="item-id-#{user._id}")
+							td= user.userName
+							td= user.myShares.shares.length
+							td.shield= user.isPublic == true ? '否' : '是'
+							td #{moment(user.created).format("YYYY-MM-DD HH:mm:ss")}
+							td
+								if user.isPublic == true
+									button.btn.btn-danger(data-id=user._id) 屏蔽
+								else
+									button.btn.btn-success(data-id=user._id) 解除屏蔽
 
+
+
+
+script(src="js/jquery.min.js")
 script(src="/js/backstage.js")

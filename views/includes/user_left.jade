@@ -2,11 +2,27 @@
   ul
     li
       a(href='/index') 首页
-    li
-      a(href='/user/myShare') 我的分享
-    li
-      a(href='/user/myLike') 我的点赞
-    li
-      a(href='/user/myCollection') 我的收藏
-    li
-      a(href='/user/myComment') 我的点评
+    if activeNum == 1
+      li.active
+        a(href='/user/myShare') 我的分享
+    else
+      li
+        a(href='/user/myShare') 我的分享
+    if activeNum == 2
+      li.active
+        a(href='/user/myLike') 我的点赞
+    else
+      li
+        a(href='/user/myLike') 我的点赞
+    if activeNum == 3
+      li.active
+        a(href='/user/myCollection') 我的收藏
+    else
+      li
+        a(href='/user/myCollection') 我的收藏
+    if activeNum == 4
+      li.active
+        a(href='/user/myComment') 我的点评
+    else
+      li
+        a(href='/user/myComment') 我的点评
