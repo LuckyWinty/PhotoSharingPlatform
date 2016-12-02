@@ -22,7 +22,11 @@ block content
                             img(src='/image?imageId=' + pic)
 
     .searchBlock
+        a#btn-all.searchBtn 全部
+        a#btn-lastest.searchBtn 最近一周
+        a#btn-today.searchBtn 今天
         .searchBox
+
             form(method='post' action='/search')
                 input#search.form-control(placeholder="搜索" name="searchWords")
                 input#subBtn(type='submit' value='搜索')
