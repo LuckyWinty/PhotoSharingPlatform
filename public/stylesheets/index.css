@@ -1,3 +1,9 @@
+.searchBox>form:after,.searchBlock:after{
+	display: block;
+	content: '';
+	visibility: hidden;
+	clear: both;
+}
 .picContainer,
 .searchBlock{
 	margin:0 140px;
@@ -72,8 +78,6 @@
 }
 
 
-
-
 /*搜索框*/
 #searchBlock{
 	height: 100px;
@@ -93,13 +97,12 @@
     text-align: center;
 }
 .searchBox{
-	    /* margin: 0 auto; */
     width: 300px;
+	height:100px;
     position: relative;
     top: 0;
-    /* left: 0; */
-    float: right;
-    right: 100px;
+	left: 50%;
+    margin-left: -150px;
 }
 #search{
 	position: absolute;
