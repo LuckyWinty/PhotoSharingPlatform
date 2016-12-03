@@ -114,8 +114,11 @@
 	text-align: center;
 }
 
+
 /*输入评论*/
-#share-input{
+
+.share-input{
+
 	padding: 2px 5px;
 	margin-bottom:20px;
 	height: 120px;
