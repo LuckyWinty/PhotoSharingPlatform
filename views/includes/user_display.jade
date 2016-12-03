@@ -19,7 +19,7 @@ if shares.length>0
                         if sharing.images.length == 1
                             #picPanel
                                 each pic in sharing.images
-                                    img#singlePic(src='/image?imageId=' + pic)
+                                    img#big(src='/image?imageId=' + pic)
                         else
                             #picsPanel
                                 each pic,item in sharing.images

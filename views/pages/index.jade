@@ -20,14 +20,19 @@ block content
                     each pic,item in picture
                         if item>=1
                             img(src='/image?imageId=' + pic)
-    #searchBlock
-        #searchBox
+
+    .searchBlock
+        a#btn-all.searchBtn 全部
+        a#btn-lastest.searchBtn 最近一周
+        a#btn-today.searchBtn 今天
+        .searchBox
+
             form(method='post' action='/search')
-              input#search.form-control(placeholder="搜索" name="searchWords")
-              input#subBtn(type='submit' value='搜索')
-              img#searchIcon(src="/img/search.svg")
-    #container.clearfix
-        #picBoxes
+                input#search.form-control(placeholder="搜索" name="searchWords")
+                input#subBtn(type='submit' value='搜索')
+                img#searchIcon(src="/img/search.svg")
+    .picContainer
+        .picBoxes
             if shares
             each list in shares
                 if list.images.length == 1
@@ -41,3 +46,4 @@ block content
 
 
 
+>>>>>>> Temporary merge branch 2
