@@ -22,9 +22,19 @@ block content
                             img(src='/image?imageId=' + pic)
 
     .searchBlock
-        a#btn-all.searchBtn 全部
-        a#btn-lastest.searchBtn 最近一周
-        a#btn-today.searchBtn 今天
+        if isIndex == false
+            if isActive == 1
+                a#btn-all.searchBtn.active(href="javascript:;") 全部
+            else 
+                a#btn-all.searchBtn(href="/hotIndex") 全部
+            if isActive == 2
+                a#btn-lastest.searchBtn.active(href="javascript:;") 最近一周
+            else 
+                a#btn-lastest.searchBtn(href="/hotIndex/weekPage") 最近一周
+            if isActive == 3
+                a#btn-today.searchBtn.active(href="javascript:;") 今天
+            else 
+                a#btn-today.searchBtn(href="/hotIndex/todayPage") 今天
         .searchBox
 
             form(method='post' action='/search')
@@ -43,7 +53,3 @@ block content
                     a#boxes(href='/share?shareId=#{list._id}')
                         +box(list.images)
                         #comment= list.content
-
-
-
->>>>>>> Temporary merge branch 2

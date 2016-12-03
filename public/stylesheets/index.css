@@ -92,6 +92,10 @@
     cursor: pointer;
     text-align: center;
 }
+.searchBtn.active{
+	color: #fff;
+	text-decoration: none;
+}
 .searchBox{
 	    /* margin: 0 auto; */
     width: 300px;

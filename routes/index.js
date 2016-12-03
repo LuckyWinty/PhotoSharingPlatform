@@ -27,9 +27,17 @@ router.get('/regist', function(req, res, next) {
 router.get('/index', function(req, res, next) {
     indexCtrl.showIndex(req, res);
 });
-//加载最热分享
+//加载最热分享（的全部）
 router.get('/hotIndex', function(req, res, next) {
     indexCtrl.showHotIndex(req, res);
+});
+//处理最热分享的一周
+router.get('/hotIndex/weekPage', function(req, res, next) {
+    indexCtrl.doWeekPage(req, res);
+});
+//处理最热分享的今天
+router.get('/hotIndex/todayPage', function(req, res, next) {
+    indexCtrl.doTodayPage(req, res);
 });
 //搜索
 router.post('/search', function (req,res,next) {
