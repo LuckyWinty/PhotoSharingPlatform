@@ -20,7 +20,7 @@ module.exports.showIndex=function(req,res){
                     pubShares.push(item);
                 }
             })
-            res.render('index',{'shares':pubShares,'sessionUser':req.session.user});
+            res.render('index',{'shares':pubShares,'sessionUser':req.session.user,'isIndex':true});
         }
     })
 }
@@ -40,7 +40,7 @@ module.exports.showHotIndex=function(req,res){
                     }
                 })
 
-                res.render('index',{'shares':pubShares,'sessionUser':req.session.user});
+                res.render('index',{'shares':pubShares,'sessionUser':req.session.user,'isIndex':false});
             }
         })
 }

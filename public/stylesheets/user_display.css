@@ -22,9 +22,13 @@ div#user_container .sharing_user_pic>img {
     width: 100%;
     height: 100%;
 }
-div#user_container .sharing_content {
+div#user_container #user_display .sharing_content {
     margin: 0 20px 0 80px;
     color: #333;
+}
+div#user_container .sharing_content a{
+    color: #333;
+    text-decoration: none;
 }
 div#user_container h4.sharing_user_name {
     margin: 0;
@@ -53,6 +57,7 @@ div#user_container .sharing_footer>ul {
     list-style: none;
     height: 46px;
     padding: 0;
+    margin: 0;
 }
 div#user_container .sharing_footer li {
     box-sizing: border-box;

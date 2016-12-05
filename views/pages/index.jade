@@ -21,6 +21,7 @@ block content
                         if item>=1
                             img(src='/image?imageId=' + pic)
 
+
     .searchBlock
         a#btn-all.searchBtn 全部
         a#btn-lastest.searchBtn 最近一周
@@ -33,6 +34,7 @@ block content
                 img#searchIcon(src="/img/search.svg")
     .picContainer
         .picBoxes
+
             if shares
             each list in shares
                 if list.images.length == 1
@@ -43,5 +45,4 @@ block content
                     a#boxes(href='/share?shareId=#{list._id}')
                         +box(list.images)
                         #comment= list.content
-
 

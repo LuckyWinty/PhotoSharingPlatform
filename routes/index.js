@@ -7,6 +7,7 @@ var userCtrl=require('../controllers/userCtrl');
 var errorCtrl=require('../controllers/errorCtrl');
 var shareCtrl=require('../controllers/shareCtrl');
 var searchCtrl=require('../controllers/searchCtrl');
+var backCtrl=require('../controllers/backCtrl');
 
 /*登录*/
 router.get('/login', function(req, res, next) {
@@ -50,7 +51,7 @@ router.get('/share', function(req, res, next) {
 });
 
 /* 发布. */
-router.post('/declare', function (req, res) {
+router.post('/user/declare', function (req, res) {
     userCtrl.doDeclare(req, res);
 });
 //加载图片
@@ -79,10 +80,9 @@ router.post('/doReply',function(req,res){
 router.post('/doCollect',function(req,res){
     shareCtrl.doCollect(req,res);
 });
-
 //加载后台管理
 router.get('/back', function(req, res, next) {
-    res.render('backstage');
+    backCtrl.doBack(req, res);
 });
 //屏蔽处理
 router.get('/user/ignore',function(req,res){
@@ -107,6 +107,10 @@ router.get('/user/myCollection',function(req,res){
 //myComment板块跳转处理
 router.get('/user/myComment',function(req,res){
     userCtrl.doMyComment(req,res);
+});
+//后台管理的屏蔽操作
+router.post('/back/shield',function(req,res){
+    backCtrl.doShield(req,res);
 });
 
 
