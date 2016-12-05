@@ -1,0 +1,18 @@
+div#user_container .sharing_div{
+	min-width: 475px;
+}
+#picsPanel{
+	height: 360px;
+}
+#user_center h3{
+	color: #d9edf7;
+}
+.sharing_div {
+	box-shadow: 0 0 10px rgba(32, 33, 33, 0.5);
+}
+#picsPanel #big{
+	height: 280px;
+}
+#picPanel{
+	height: 330px;
+}

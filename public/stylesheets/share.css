@@ -22,7 +22,7 @@
 #share-container #sharer img{
 	width: 50px;
 	height: 50px;
-	background-color: #eee; 
+	background-color: #eee;
 	border-radius: 25px;
 	float: left;
 	margin-right: 10px;
@@ -31,7 +31,7 @@
 	line-height: 25px;
 	margin: 0;
 }
-#share-container #Name{ 
+#share-container #Name{
 	font-weight: bold;
 	font-size: 16px;
 	color: #eb7350;
@@ -83,14 +83,14 @@
 #sharePanel #praise,
 #sharePanel #comment{
 	background: url('../img/icon.png') no-repeat;
-    background-size: 25px;
-    position: relative;
+	background-size: 25px;
+	position: relative;
 }
 #sharePanel #collect{
-	background-position: 50px -150px; 
+	background-position: 50px -150px;
 }
 #sharePanel #collect.active{
-	background-position: 50px -200px; 
+	background-position: 50px -200px;
 }
 #sharePanel #praise{
 	background-position: 50px 0px;
@@ -103,7 +103,7 @@
 }
 #sharePanel #collect,
 #sharePanel #comment{
-	border-right: 2px solid #d9d9d9; 
+	border-right: 2px solid #d9d9d9;
 }
 #sharePanel #collect,
 #sharePanel #comment,
@@ -115,16 +115,15 @@
 }
 
 
-
 /*输入评论*/
 
 .share-input{
 	padding: 2px 5px;
-	margin-bottom:20px; 
+	margin-bottom:20px;
 	height: 120px;
 	font-size: 16px;
 	line-height: 30px;
-	background-color: #f9f9f9; 
+	background-color: #f9f9f9;
 }
 #share-comment p{
 	color: #eee;
@@ -139,7 +138,5 @@
 	width: 80px;
 	float: right;
 }
-/*回复*/
-.reply-wrap{
-	display: none;
-}
+
+

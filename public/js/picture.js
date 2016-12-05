@@ -14,7 +14,7 @@ $(document).ready(function () {
 		});
 	})
 
-	$('#left').click(function(){
+	$('#right').click(function(){
 		var j=parseInt($('#picsPanel #big').attr('value'));
 		if(j<l-1){
 				$('#picsPanel #big').attr('src',pics[j+1]);
@@ -26,7 +26,7 @@ $(document).ready(function () {
 			}
 	})
 
-	$('#right').click(function(){
+	$('#left').click(function(){
 		var j=parseInt($('#picsPanel #big').attr('value'));
 		if(j>0){
 				$('#picsPanel #big').attr('src',pics[j-1]);

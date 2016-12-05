@@ -7,6 +7,7 @@ div#user_container {
     margin: 0 auto;
     padding-top: 10px;
     min-width: 680px;
+    min-height: 500px;
 }
 
 

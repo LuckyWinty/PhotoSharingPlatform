@@ -24,7 +24,7 @@ if shares.length>0
                             #picsPanel
                                 each pic,item in sharing.images
                                     if item == 0
-                                        img#singlePic(src='/image?imageId=' + pic)
+                                        img#big(src='/image?imageId=' + pic)
                                 #row
                                     each pic,item in sharing.images
                                         if item >= 1

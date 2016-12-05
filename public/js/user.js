@@ -264,4 +264,71 @@ window.onload = function(){
 			}
 		})
 	})
+
+	$('.sharing_footer').delegate('.collect_block','click',function(){
+		var that = $(this);
+        var isCollect;
+        var userid = $('#personal').attr("data-userid");
+        if ($(this).hasClass("active")) {
+            isCollect = '0';
+        } else {
+            isCollect = '1';
+        }
+        $.ajax({
+            url: '/doCollect',
+            type: 'post',
+            data: {
+                isCollect: isCollect,
+                shareId: $(this).parents('.sharing_div').attr('id'),
+                userId: userid
+            },
+            success: function (data) {
+                console.log(data.isCollect);
+                if (data.success == 1) {
+                    if (data.isCollect == 1) {
+                        that.addClass('active');
+                    } else {
+                        that.removeClass('active');
+                    }
+                    that.find('span').eq(1).text('收藏(' + data.CollectNum + ')');
+                } else {
+                    alert(data.message);
+                }
+            }
+
+        })
+	})
+
+	$('.sharing_footer').delegate('.praise_block','click',function(e){
+		var that=$(this);
+		console.log(that);
+		var isLike;
+		if($(this).hasClass('active')){
+			isLike='0';
+		}else{
+			isLike='1';
+		}
+		//console.log( isLike, $(this).parents('.sharing_div').attr('id'),userid);
+		 $.ajax({
+            url: '/doLike',
+            type: 'post',
+            data: {
+                isLike: isLike,
+                shareId:$(this).parents('.sharing_div').attr('id')
+            },
+            success: function (data) {
+                console.log(data.isLike)
+                if (data.success == 1) {
+                    if (data.isLike == 1) {
+                        that.addClass('active');
+                    } else {
+                        that.removeClass('active');
+                    }
+                    that.find('span').eq(1).text('赞(' + data.likeNum + ')');
+                } else {
+                    alert(data.message);
+                }
+            }
+        })
+	})
 }

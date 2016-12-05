@@ -55,12 +55,14 @@ module.exports.doLike = function (req, res) {
             Share.findById({'_id': req.body.shareId})
                 .exec(function (error, sha) {
                     if (error) {
+                        console.log('findById 后，点赞失败');
                         res.json({success: 0, message: '点赞失败'});
                     } else {
                         likeNum = sha.likeNum;
                         sha.likeNum = ++likeNum;
                         sha.save(function (err, share) {
                             if (err) {
+                                console.log('save 失败')
                                 res.json({success: 0, message: '点赞失败'});
                             } else {
                                 likeNum = share.likeNum;
@@ -69,6 +71,7 @@ module.exports.doLike = function (req, res) {
                                         person.myLikes.shares.push(req.body.shareId);
                                         person.save(function (err, use) {
                                             if (err) {
+                                                console.log('person 存储失败')
                                                 res.json({success: 0, message: '点赞失败'});
                                             } else {
                                                 res.json({success: 1, isLike: 1, likeNum: likeNum, message: '点赞成功'});
@@ -83,6 +86,7 @@ module.exports.doLike = function (req, res) {
             Share.findById({'_id': req.body.shareId})
                 .exec(function (error, sha) {
                     if (error) {
+                        console.log('消赞查找id失败');
                         res.json({success: 0, message: '消赞失败'});
                     } else {
                         likeNum = sha.likeNum;
@@ -90,19 +94,25 @@ module.exports.doLike = function (req, res) {
                         console.log('111111111111~~~~' + sha.likeNum, likeNum);
                         sha.save(function (err, share) {
                             if (err) {
+                                console.log('数量减少，消赞失败');
                                 res.json({success: 0, message: '消赞失败'});
                             } else {
                                 likeNum = share.likeNum;
                                 User.findOne({_id: req.session.user._id})
                                     .exec(function (err, person) {
+                                        console.log(person);
                                         for (var i = 0; i < person.myLikes.shares.length; i++) {
                                             if (person.myLikes.shares[i].toString() == sha._id.toString()) {
+                                                console.log('找到person.myLikes.shares');
                                                 person.myLikes.shares.splice(i, 1);
                                                 break;
                                             }
                                         }
+                                        console.log(person);
                                         person.save(function (err, use) {
                                             if (err) {
+                                                console.log('err',err);
+                                                console.log('person 消赞存储失败');
                                                 res.json({success: 0, message: '消赞失败'});
                                             } else {
                                                 res.json({success: 1, isLike: 0, likeNum: likeNum, message: '消赞成功'});

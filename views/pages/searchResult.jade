@@ -1,7 +1,6 @@
 extends ../layout
 
 block append style
-    link(rel='stylesheet',href='/stylesheets/picture.css')
     link(rel='stylesheet',href='/stylesheets/index.css')
     link(rel='stylesheet', href='/stylesheets/user.css')
     link(rel='stylesheet', href='/stylesheets/user_header.css')
@@ -9,7 +8,8 @@ block append style
     link(rel='stylesheet', href='/stylesheets/user_share.css')
     link(rel='stylesheet', href='/stylesheets/user_display.css')
     link(rel='stylesheet', href='/stylesheets/user_right.css')
-    link(rel='stylesheet', href='/stylesheets/picture.css')
+    link(rel='stylesheet',href='/stylesheets/picture.css')
+    link(rel='stylesheet',href='/stylesheets/searchResult.css')
 
 block content
     div#user_container
@@ -33,17 +33,16 @@ block content
                                 if sharing.images.length == 1
                                     #picPanel
                                         each pic in sharing.images
-                                            img#singlePic(src='/image?imageId=' + pic)
+                                            img#big(src='/image?imageId=' + pic)
                                 else
                                     #picsPanel
                                         each pic,item in sharing.images
                                             if item == 0
-                                                img#singlePic(src='/image?imageId=' + pic)
-                                            else
-                                                #row
-                                                    each pic,item in sharing.images
-                                                        if item >= 1
-                                                            img#singlePic(src='/image?imageId=' + pic)
+                                                img#big(src='/image?imageId=' + pic)
+                                        #row
+                                            each pic,item in sharing.images
+                                                if item >= 1
+                                                    img#singlePic(src='/image?imageId=' + pic)
 
                             .sharing_footer
                                 ul
@@ -71,3 +70,7 @@ block content
                                                     span 收藏(#{sharing.collectionNum})
         else
             h3 没有找到你需要的内容~
+
+block append script
+    script(src='/js/jquery.min.js')
+    script(src='/js/user.js')

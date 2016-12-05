@@ -4,13 +4,13 @@ block title
     title 个人中心
 
 block append style
+    link(rel='stylesheet', href='/stylesheets/picture.css')
     link(rel='stylesheet', href='/stylesheets/user.css')
     link(rel='stylesheet', href='/stylesheets/user_header.css')
     link(rel='stylesheet', href='/stylesheets/user_left.css')
     link(rel='stylesheet', href='/stylesheets/user_share.css')
     link(rel='stylesheet', href='/stylesheets/user_display.css')
     link(rel='stylesheet', href='/stylesheets/user_right.css')
-    link(rel='stylesheet', href='/stylesheets/picture.css')
 
 block content
     div#user_container
@@ -28,6 +28,6 @@ block content
             include ../includes/user_right
 block script
     script(src='/js/jquery.min.js')
-
     script(src='/js/moment.min.js')
     script(src='/js/user.js')
+

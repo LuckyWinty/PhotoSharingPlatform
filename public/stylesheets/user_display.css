@@ -99,7 +99,7 @@ div#user_container .praise_block>span>span{
 }
 div#user_container .praise_block.active>span>span{
 	background: url(/img/icon.png) no-repeat;
-    background-position: 0px -32px;
+    background-position: 0px -33px;
     background-size: 17px;
 }
 div#user_container .comment_block>span>span{
@@ -120,4 +120,9 @@ div#user_container .collect_block.active>span>span{
 
 div#user_container #pagination_block{
 	text-align: center;
+}
+
+#picsPanel #row img{
+    width:61px;
+    height: 61px;
 }

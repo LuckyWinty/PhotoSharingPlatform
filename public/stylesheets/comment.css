@@ -1,36 +1,59 @@
-#discussList{
+.discussList{
 	padding: 10px 50px;
 	padding-right:10%; 
 	background: #eee;
 	border-bottom: 2px solid #d9d9d9; 
 }
-#discussList:last-child{
+.discussList:last-child{
 	border-bottom:none; 
 }
-#discussContent img,
-#discussContent p{
+.discussContent img{
 	float: left;
 }
-#discussContent img{
+.discussContent img{
 	width:50px;
 	height: 50px;
 	margin-right:10px; 
 }
-#discussContent strong{
+.discussContent strong{
 	color: #eea236;
-	font-size: 18px;
-	padding: 5px;
 }
-#discussContent p{
-	font-size: 14px;
+.discussContent p{
+	font-size: 16px;
+	margin-left: 60px;
 }
-#discussDetail{
-	margin: 10px 50px; 
+.discussDetail{
+	margin-bottom: 10px; 
+	margin-left: 60px; 
 }
-#discussDetail span{
+.discussDetail span{
 	float: left; 
-	margin: 0 10px;
 }
-#discussDetail a{
+.discussDetail a{
 	float: right;
+}
+
+/*回复*/
+.reply-wrap{
+	display: none;
+}
+.reply-list{
+	padding-left: 60px;
+}
+.replay-user img{
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
+	border-radius: 50%;
+	float: left;
+}
+.reply-userName{
+	color: #eea236;
+}
+.reply-content{
+	font-size: 16px;
+	margin-left: 60px;
+}
+.reply-time{
+	padding-left: 60px;
 }

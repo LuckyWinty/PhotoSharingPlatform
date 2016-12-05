@@ -1,20 +1,25 @@
 mixin discuss(comment,user)
-    #discussList.clearfix
-        #discussContent.clearfix
+    .discussList.clearfix
+        .discussContent.clearfix
             img(src='/image?imageId=#{comment.userId.portraitUrl}')
-            <strong> #{comment.userId.userName}</strong> #{comment.content}
+            <strong> #{comment.userId.userName}</strong> 
+            p #{comment.content}
+        .discussDetail.clearfix
+          span= moment(comment.created).format("YYYY-MM-DD HH:mm:ss")
+          a.reply 展开回复
         .reply-list
           if comment.subComment.length>0
             each rep in comment.subComment
-              .reply-detail
-                 .replay-user= user.portraitUrl
+              .reply-detail.clearfix
+                 .replay-user
+                    if user.portraitUrl
+                      img(src='/image?imageId=' + user.portraitUrl)
+                    else
+                      img(src='../img/user/user.jpg')
                  .reply-userName= user.userName
+                 p.reply-content= rep.content
                  .reply-time= moment(rep.created).format("YYYY-MM-DD HH:mm:ss")
-                 .reply-content= rep.content
 
-        #discussDetail
-            span= moment(comment.created).format("YYYY-MM-DD HH:mm:ss")
-            a.reply 展开回复
         .reply-wrap
             .share-input(contenteditable=true)
             input.reply-btn.btn.btn-danger.btn-sm.pull-right(type='button' value='回复' data-commentId='#{comment._id}')
